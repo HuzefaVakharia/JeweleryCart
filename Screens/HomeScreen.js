@@ -783,7 +783,7 @@ const HomeScreen = ({ route, navigation }) => {
                   marginBottom:responsiveHeight(6),    
                   //CCCCCCCCCCCCC
                 } }> */}
-                   <AllUITogether
+                    <AllUITogether
                     show={ "CustomeRoundBottomNavBar" }
                     onPressOnHome={ homeIconClickedDoThis }
                     homeIconColorprops={ "#F1CB8C" }
@@ -799,7 +799,7 @@ const HomeScreen = ({ route, navigation }) => {
                     onPressOnSupplier={ supplierIconClickedDoThis }
                     supplierIconColorprops={ "#fff" }
                     supplierTextColorprops={ "#fff" }
-                  />
+                  /> 
 
 
                
@@ -893,8 +893,8 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: height,
+    //flex: 1,
+    height: height+500,
     width: width,
     backgroundColor: 'purple',
   },

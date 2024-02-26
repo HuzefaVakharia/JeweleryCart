@@ -244,6 +244,7 @@ export default function AllUITogether(props)
       <Animated.View
         style={ {
           flex: 1,
+          
           justifyContent: 'center',
           backgroundColor: 'purple',
           alignItems: 'center',
