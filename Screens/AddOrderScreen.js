@@ -26,7 +26,17 @@ import
  } from 'react-native';
 
 //import { Camera } from 'expo-camera';
+import ImagePicker from 'react-native-image-crop-picker';
+//For latest React Native cli video see this: https://www.youtube.com/watch?v=irRbBXotgLA
+// React Native Image Crop Picker npm command from this site: https://github.com/ivpusic/react-native-image-crop-picker
+// create a component
+//For granting permission check this: https://stackoverflow.com/questions/45711011/error-permissions-not-granted-react-native-image-picker
 
+//Currently watching this video: https://www.youtube.com/watch?v=brE91Obyn78&t=501s
+
+//Ref of video which helped in diplaying the image after selecting it: https://www.youtube.com/watch?v=wzNcB5iCXE4&t=168s
+
+//Ref of Video to select Multiple images : https://www.youtube.com/watch?v=8gCMXXH9Vd4
 //import * as MediaLibrary from 'expo-media-library';
 import { getFormatedDate } from 'react-native-modern-datepicker';
 import AllUITogether from '../components/AllUITogether';
@@ -62,6 +72,7 @@ let singleFileButArray=[];
 let combineImagesArray=[];
 let arrayOfImagesSelectedDirectlyFromGallery=[];
 
+let imageList = [];
 
 
 
@@ -86,7 +97,9 @@ let [selectedCustomerIDFromList, setselectedCustomerIDFromList] = useState(-1);
 let [selectedSupplierIDFromList, setselectedSupplierIDFromList] = useState(-1);
 let [selectedCategoryIDFromList, setselectedCategoryIDFromList] = useState(-1);
 
-
+const [filePath, setFilePath] = useState({});
+  const [images, setImages] = useState([]);
+  let imageName = '';
 
 
 
@@ -106,7 +119,7 @@ let i=0;
  const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
 
  const [image, setImage] = useState(null);
- const [images, setImages] = useState([]);
+ //const [images, setImages] = useState([]);
 
  const [imageSecond, setImageSecond] = useState(null);
 
@@ -146,10 +159,88 @@ let i=0;
   /* Below we have passed empty array to singleFileButArray so that once user have created new order, and when he clicks on New order second time, then he will get empty array of image otherwise if we will not do this old selected image will be displayed for everytime.   */
   //singleFileButArray=[];
   combineImagesArray = [];    
-  singleFileButArray=[];  
-  alert('singleFileButArray made blank in useEffect of AddOrderScreen file...');
+  singleFileButArray=[]; 
+  imageList=[]; 
+  //alert('singleFileButArray made blank in useEffect of AddOrderScreen file...');
   //arrayOfImagesSelectedDirectlyFromGallery=arrayOfimagesCapturedUsingCamera;
  }, []);
+
+ useEffect(() => {
+  requestPermission();
+}, []);
+
+
+const requestPermission = async () => {
+  try {
+    console.log('asking for permission');
+    const granted = await PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    ]);
+    if (
+      granted['android.permission.CAMERA'] &&
+      granted['android.permission.WRITE_EXTERNAL_STORAGE']
+    ) {
+      console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (error) {
+    console.log('permission error', error);
+  }
+};
+
+const uploadORActuallyOpenGallery = () => {
+  //let imageList = [];
+  ImagePicker.openPicker({
+    multiple: true,
+    waitAnimationEnd: false,
+    includeExif: true,
+    forceJpg: true,
+    compressImageQuality: 0.8,
+    maxFiles: 10,
+    mediaType: 'photo',
+    //width: 300,
+    //height: 400,
+    cropping: true,
+    //includeBase64: true,
+  })
+    .then(response => {
+      console.log('Response:', JSON.stringify(response));
+      /* using above console.log we are displaying all the response that we got after selecting multiple images from gallery
+      Then in next step we will iterate each image selected using map() function and for each image we will create an array of name
+      imageList and in that array we will put single file name, its path and its data, and after filling this array with single image
+      information like filename,path and data we will use setImages() method of useState which will pass this single image
+      array information inside images variable, and this images variable will be used in FlatList data to show us preview of
+      that single image that we have selected. The very important information which we have to pass inside imageList array is
+      path of image which we are passing using synatx path: image.path, and this path is the data which will be used to display
+      image in our FlatList. */
+      response.map(image => {
+        imageList.push({
+          //filename: image.filename,
+          path: image.path,
+          //data: image.data,
+          type: image.mime,
+        });
+        //imageName = image.path;
+        //console.log('filename -> ', imageName.slice(30, 50));
+        console.log('FileName ->', image.path);
+        console.log('path -> ', image.path);
+        console.log('Type -> ', image.mime);
+      });
+      //By below syntax code of setImages(imageList) we will pass all the images data that we select from gallery in our images variable which is going to use in our Flatlist data
+      setImages(imageList);
+
+      //console.log(response.path);
+      //setFilePath(response.path);
+    })
+    .catch(error =>
+      console.log(
+        'Error while executing uploadORActuallyOpenGallery is:',
+        error,
+      ),
+    );
+};
 
  
 
@@ -395,7 +486,8 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
   navigation.navigate('AddOrderScreenSecond', {
    accessTokenSentToAddOrderScreenSecond: accessTokenSentToAddOrderScreen,
    //itemImageSentToAddOrderSecond: singleFileButArray,
-   combineImagesFromGalleryAndCamera:combineImagesArray,
+   //combineImagesFromGalleryAndCamera:combineImagesArray,
+   combineImagesFromGalleryAndCamera:imageList,
     customerIDSentToAddOrderSecond:selectedCustomerIDFromList,
     supplierIDSentToAddOrderSecond:selectedSupplierIDFromList,
     categoryIDSentToAddOrderSecond:selectedCategoryIDFromList,
@@ -469,7 +561,8 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
   navigation.navigate('AddPlatinumOrderScreenSecond', {
    accessTokenSentToPlatinumAddOrderScreenSecond: accessTokenSentToAddOrderScreen,
    //itemImageSentToPlatinumAddOrderSecond: singleFileButArray,
-   combineImagesFromGalleryAndCamera:combineImagesArray,
+   //combineImagesFromGalleryAndCamera:combineImagesArray,
+   combineImagesFromGalleryAndCamera:imageList,
    customerIDSentToPlatinumAddOrderSecond:selectedCustomerIDFromList,
     supplierIDSentToPlatinumAddOrderSecond:selectedSupplierIDFromList,
     categoryIDSentToPlatinumAddOrderSecond:selectedCategoryIDFromList,
@@ -782,7 +875,10 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
               fontFamily: 'raleway-light',
             } }
             onPress={ () =>
-              setcameraOrGalleryOptionsModal(!cameraOrGalleryOptionsModal)
+              {
+                //setcameraOrGalleryOptionsModal(!cameraOrGalleryOptionsModal),
+              uploadORActuallyOpenGallery()
+              }
             }>
             { singleFileButArray?.length > 0 ? 'Add More'
                       : arrayOfimagesCapturedUsingCamera?.length > 0 ? 'Add More'
@@ -793,16 +889,17 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
             style={ { flexDirection: 'row', marginTop: responsiveHeight(3.5) } }>
             <ScrollView horizontal={ true }>
 
-            {singleFileButArray?.length > 0 ?
+            {imageList?.length > 0 ?
             (
               <>
               <FlatList
-                data={singleFileButArray}
+                data={images}
                 horizontal
                 showsHorizontalScrollIndicator={ false }
                 renderItem={ ({ item, index }) => (
                   <Image
-                    source={ { uri: singleFileButArray[index].uri} }
+                    //source={ { uri: imageList[index].uri} }
+                    source={{uri: item.path}}
                     style={ {
                       borderRadius: responsiveWidth(2),
                       width: responsiveWidth(18),
@@ -842,17 +939,18 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
                
                   </>
             )
-                  :arrayOfimagesCapturedUsingCamera?.length > 0 ?
+                  :imageList?.length > 0 ?
                   (
               <>
 
               <FlatList
-                data={singleFileButArray}
+                data={images}
                 horizontal
                 showsHorizontalScrollIndicator={ false }
                 renderItem={ ({ item, index }) => (
                   <Image
-                    source={ { uri: singleFileButArray[index].uri} }
+                    //source={ { uri: imageList[index].uri} }
+                    source={{uri: item.path}}
                     style={ {
                       borderRadius: responsiveWidth(2),
                       width: responsiveWidth(18),
@@ -896,7 +994,10 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
             (
                <>
                <TouchableOpacity
-                    onPress={ () => setcameraOrGalleryOptionsModal(true)}>    
+                    onPress={ () => {
+                      //setcameraOrGalleryOptionsModal(true),
+                      uploadORActuallyOpenGallery()
+                      }}>    
                      <View style={ { flexDirection: 'row' } }>
                       <Image
                         source={ require('../images/threeGalleryIcon.png') }

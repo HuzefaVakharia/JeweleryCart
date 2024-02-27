@@ -423,6 +423,31 @@ const uploadImageAndStringForAddNewOrder = async () => {
 
      
       const data = new FormData();
+
+      for (let i = 0; i < combineImagesFromGalleryAndCamera.length; i++) {
+        alert(
+          'For Image number:' +
+            i +
+            '\n' +
+            'File uri is:' +
+            combineImagesFromGalleryAndCamera[i].path +
+            '\n' +
+            'File Name is:' +
+            combineImagesFromGalleryAndCamera[i].path +
+            '\n' +
+            'File mimeType is:' +
+            combineImagesFromGalleryAndCamera[i].type,
+        );
+        data.append(
+          'image_file[]',
+  
+          {
+            uri: combineImagesFromGalleryAndCamera[i].path,
+            type: combineImagesFromGalleryAndCamera[i].type,
+            name: combineImagesFromGalleryAndCamera[i].path,
+          },
+        );
+      }
       
 
        /* for(i=0;i<combineImagesFromGalleryAndCamera.length;i++){

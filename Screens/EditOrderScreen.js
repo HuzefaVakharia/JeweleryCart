@@ -33,7 +33,7 @@ import {
   Button,
   //TextInput,
 } from 'react-native';
-
+import ImagePicker from 'react-native-image-crop-picker';
 //import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { Camera } from 'expo-camera';
@@ -67,7 +67,8 @@ const orderForArray = [{ type: 'Client' }, { type: 'Stock' }];
 let arrayOfImages = [];
 let singleFileButArrayForEdit=[];
 let combineImagesArray=[];
-
+//let imageName = '';
+let imageList = [];
 
 let i=0;
 
@@ -123,7 +124,7 @@ const EditOrderScreen = ({navigation }) => {
     arrayOfimagesCapturedUsingCamera,
   } = route.params;
    
-  
+  let imageName = '';
   
 let imageBaseAPI = 'https://rajeshwersoftsolution.com/jwelcart/public';
    var userOrderDataGotFromOrderScreen = {
@@ -200,7 +201,8 @@ const [singleFile, setSingleFile] = useState(null);
 const [singleFileTwo, setSingleFileTwo] = useState('');
 
 const [openFullScreenCameraTrueOrFalse, setopenFullScreenCameraTrueOrFalse] = useState(false);
-
+const [filePath, setFilePath] = useState({});
+  //const [images, setImages] = useState([]);
 
 
 
@@ -303,6 +305,9 @@ let singleImage='';
     setSelectedTypeOfOrderValue(typeOfOrderFromOrderScreen);
     setselectedCustomerFromList(nameToBeEditedForEditOrder);
     setImageGotFromOrderScreen(itemImage);
+
+
+    requestPermission();
     // const { accessTokenSentToEditOrder, itemImage,orderDateSentFromOrderScreen,nameToBeEditedForEditOrder,typeOfOrderFromOrderScreen } = route.params;
   }, []);   
 
@@ -346,13 +351,13 @@ let singleImage='';
 
    
 
-  if (hasCameraPermission === undefined) {
+  /* if (hasCameraPermission === undefined) {
     return <Text>Requesting permissions...</Text>
   } else if (!hasCameraPermission) {
     return <Text>Permission for camera not granted. Please change this in settings.</Text>
-  }
+  } */
 
-  let takePic = async () => {
+  /* let takePic = async () => {
     let options = {
       quality: 1,
       base64: true,
@@ -361,7 +366,7 @@ let singleImage='';
 
     let newPhoto = await cameraRef.current.takePictureAsync(options);
     setPhoto(newPhoto);
-  };
+  }; */
 
   
 
@@ -397,13 +402,13 @@ let singleImage='';
       'Length of Images from Gallery Directly is:'+singleFileButArrayForEdit?.length
       )   
 
-      if(arrayOfimagesCapturedUsingCamera?.length>0)
+      if(imageList?.length>0)
       {
         combineImagesArray.push(...arrayOfimagesCapturedUsingCamera);
       }
 
 
-      if(singleFileButArrayForEdit?.length>0)
+      if(imageList?.length>0)
       {
       combineImagesArray.push(...singleFileButArrayForEdit);
       }
@@ -492,7 +497,77 @@ singleFileButArrayForEdit=[];
 
 
 
+  const requestPermission = async () => {
+    try {
+      console.log('asking for permission');
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      ]);
+      if (
+        granted['android.permission.CAMERA'] &&
+        granted['android.permission.WRITE_EXTERNAL_STORAGE']
+      ) {
+        console.log('You can use the camera');
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (error) {
+      console.log('permission error', error);
+    }
+  };
 
+  const uploadORActuallyOpenGallery = () => {
+    //let imageList = [];
+    ImagePicker.openPicker({
+      multiple: true,
+      waitAnimationEnd: false,
+      includeExif: true,
+      forceJpg: true,
+      compressImageQuality: 0.8,
+      maxFiles: 10,
+      mediaType: 'photo',
+      //width: 300,
+      //height: 400,
+      cropping: true,
+      //includeBase64: true,
+    })
+      .then(response => {
+        console.log('Response:', JSON.stringify(response));
+        /* using above console.log we are displaying all the response that we got after selecting multiple images from gallery
+        Then in next step we will iterate each image selected using map() function and for each image we will create an array of name
+        imageList and in that array we will put single file name, its path and its data, and after filling this array with single image
+        information like filename,path and data we will use setImages() method of useState which will pass this single image
+        array information inside images variable, and this images variable will be used in FlatList data to show us preview of
+        that single image that we have selected. The very important information which we have to pass inside imageList array is
+        path of image which we are passing using synatx path: image.path, and this path is the data which will be used to display
+        image in our FlatList. */
+        response.map(image => {
+          imageList.push({
+            //filename: image.filename,
+            path: image.path,
+            //data: image.data,
+            type: image.mime,
+          });
+          //imageName = image.path;
+          //console.log('filename -> ', imageName.slice(30, 50));
+          console.log('FileName ->', image.path);
+          console.log('path -> ', image.path);
+          console.log('Type -> ', image.mime);
+        });
+        //By below syntax code of setImages(imageList) we will pass all the images data that we select from gallery in our images variable which is going to use in our Flatlist data
+        setImages(imageList);
+
+        //console.log(response.path);
+        //setFilePath(response.path);
+      })
+      .catch(error =>
+        console.log(
+          'Error while executing uploadORActuallyOpenGallery is:',
+          error,
+        ),
+      );
+  };
 
 
 
@@ -628,9 +703,9 @@ singleFileButArrayForEdit=[];
   
   
   
-  if (hasGalleryPermission === false) {
+  /* if (hasGalleryPermission === false) {
     return <Text>No Access To Internal Storage</Text>;
-  }
+  }*/
 
   const gotoOrderScreen = () => {
     navigation.navigate('Order', {
@@ -639,7 +714,7 @@ singleFileButArrayForEdit=[];
     singleFileButArrayForEdit=[];
     //arrayOfimagesCapturedUsingCamera=[];
 
-  };
+  }; 
 
 
   
@@ -654,9 +729,35 @@ alert('Order ID is:'+orderIDToEdit);
      // alert('Single file is not null');
       // If file selected then create FormData
       const data = new FormData();
+
+      for (let i = 0; i < images.length; i++) {
+        alert(
+          'For Image number:' +
+            i +
+            '\n' +
+            'File uri is:' +
+            images[i].path +
+            '\n' +
+            'File Name is:' +
+            images[i].path +
+            '\n' +
+            'File mimeType is:' +
+            images[i].type,
+        );
+        data.append(
+          'image_file[]',
+  
+          {
+            uri: images[i].path,
+            type: images[i].type,
+            name: images[i].path,
+          },
+        );
+      }
+  
       
-      for(i=0;i<singleFileButArrayForEdit.length;i++){
-        //alert('For Image number:'+i+'\n'+'File uri is:'+singleFileButArrayForEdit[i].uri+'\n'+'File Name is:'+singleFileButArrayForEdit[i].name+'\n'+'File mimeType is:'+singleFileButArrayForEdit[i].mimeType);    
+      /* for(i=0;i<singleFileButArrayForEdit.length;i++){
+            
 
 
       data.append('image_file[]',
@@ -667,7 +768,9 @@ alert('Order ID is:'+orderIDToEdit);
         type: singleFileButArrayForEdit[i].mimeType,
       }
        );     
-      }
+      } */
+
+
       
       
 

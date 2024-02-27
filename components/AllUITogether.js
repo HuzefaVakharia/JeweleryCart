@@ -533,6 +533,17 @@ export default function AllUITogether(props)
             alignSelf: 'center',
             
           } }>
+
+          <Text 
+          style={ styles.dropDownTopSideLabelswhite }
+          onPress={ () =>
+            {
+              //alert('Golden Back Btn pressed....')
+              props.dothisProps();
+            } }
+          >
+                         Back   
+                      </Text>
          
           {/* <AntDesign
             name={props.iconDesignName}
@@ -2041,9 +2052,15 @@ export default function AllUITogether(props)
 const styles = StyleSheet.create({
   dropDownTopSideLabels: {
     color: 'black',
-
+    fontStyle:'normal',
     fontSize: responsiveFontSize(1.9),
-    fontFamily: 'raleway-light',
+    //fontFamily: 'raleway-light',
+  },
+  dropDownTopSideLabelswhite: {
+    color: 'white',
+    fontStyle:'normal',
+    fontSize: responsiveFontSize(1.9),
+    //fontFamily: 'raleway-light',
   },
   textlabelStyleForOrderScreen: {
     fontSize: responsiveHeight(2),
