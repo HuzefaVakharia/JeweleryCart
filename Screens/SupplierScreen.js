@@ -1314,7 +1314,7 @@ const styles = StyleSheet.create({
  },
 
  flatListForOrdersViewStyle: {
-  height: responsiveHeight(75),
+  //height: responsiveHeight(75),
   //backgroundColor:'purple',
  },
 

@@ -246,15 +246,15 @@ export default function AllUITogether(props)
           flex: 1,
           
           justifyContent: 'center',
-          backgroundColor: 'purple',
+          //backgroundColor: 'purple',
           alignItems: 'center',
-          marginTop: responsiveHeight(7.5),
+          //marginTop: responsiveHeight(7.5),
         } }>
         <View
           style={ {
             width: '100%',
             height: 100,
-            marginTop: threeLineButtonClicked ? -7.5 : 40,
+            //marginTop: threeLineButtonClicked ? -7.5 : 40,
             //backgroundColor: 'yellow',
             backgroundColor: threeLineButtonClicked ? '#757575' : null,
             justifyContent: 'flex-end',

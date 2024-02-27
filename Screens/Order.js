@@ -1009,7 +1009,21 @@ const Order = ({ route, navigation }) => {
 
               {/* Another Module for Number of orders Ends here: */ }
 
-
+              { callFetchDynamicAPIsInOrderScreen == true ? (
+                <FetchDynamicAPIs
+                  urlToFetchProps={ 'order_list' }
+                  mobileNumberForAuthentication={ '' }
+                  passwordForAuthentication={ '' }
+                  accessTokenForFetchingAPIProps={ accessTokenSentToOrderScreen }
+                  startProps={ '0' }
+                  limitProps={ '1000' }
+                  screenNameProps={ 'OrderScreen' }
+                  getData={ getOrderScreenData }
+                  setterToStopCallingFetchDynamicAPIsInOrderScreenprops={
+                    setcallFetchDynamicAPIsInOrderScreen
+                  }
+                />
+              ) : null }
 
 
                 </Animated.View>
@@ -3179,21 +3193,7 @@ const Order = ({ route, navigation }) => {
               removeAllAsyncStorageInformation={ removeData }
             />
 
-                 { callFetchDynamicAPIsInOrderScreen == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={ 'order_list' }
-                  mobileNumberForAuthentication={ '' }
-                  passwordForAuthentication={ '' }
-                  accessTokenForFetchingAPIProps={ accessTokenSentToOrderScreen }
-                  startProps={ '0' }
-                  limitProps={ '1000' }
-                  screenNameProps={ 'OrderScreen' }
-                  getData={ getOrderScreenData }
-                  setterToStopCallingFetchDynamicAPIsInOrderScreenprops={
-                    setcallFetchDynamicAPIsInOrderScreen
-                  }
-                />
-              ) : null }
+                 
                  </View>
 
 
@@ -3258,14 +3258,14 @@ export default Order;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     height: height,
     width: width,
     //backgroundColor: 'purple',
   },
 
   flatListForOrdersViewStyle: {
-    height: responsiveHeight(75),
+    //height: responsiveHeight(75),
     //backgroundColor:'purple',
   },
   footerStyle: {

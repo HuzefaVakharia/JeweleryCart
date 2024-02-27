@@ -21,7 +21,7 @@ import {
   Button,
   Modal,
   TouchableOpacity,
-  ImageBackground,   
+  ImageBackground,
   View,
   LogBox,
 } from 'react-native';
@@ -46,7 +46,8 @@ import Animated, {
 import AllUITogether from '../components/AllUITogether';
 let { height, width } = Dimensions.get('window');
 
-import React, { useEffect, useRef, useState } from 'react';    
+import React, { useEffect, useRef, useState } from 'react';
+
 
 const HomeScreen = ({ route, navigation }) => {
   let [new_orderKey, setnew_orderKey] = useState(0);
@@ -74,7 +75,7 @@ const HomeScreen = ({ route, navigation }) => {
   useEffect(() => {
     //LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     LogBox.ignoreAllLogs();
-}, []);
+  }, []);
 
 
 
@@ -99,7 +100,7 @@ const HomeScreen = ({ route, navigation }) => {
 
 
 
-  
+
 
 
 
@@ -155,16 +156,16 @@ const HomeScreen = ({ route, navigation }) => {
 
   const translateX = useSharedValue(0);
 
-  
 
 
 
 
 
-    const openingSideDrawerMenu = () => {
+
+  const openingSideDrawerMenu = () => {
     ChildRef.current.openSideNavigationMethod() ||
       setthreeLineButtonClicked(ChildRef.current.bringGrayColor);
-  }; 
+  };
 
 
 
@@ -226,7 +227,7 @@ const HomeScreen = ({ route, navigation }) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(0);
   const [threeLineButtonClicked, setthreeLineButtonClicked] = useState(false);
 
-  const [hideFlatList,sethideFlatList] = useState(false);
+  const [hideFlatList, sethideFlatList] = useState(false);
 
   let [bellNotificationNumber, setBellNotificationNumber] = useState(0);
 
@@ -236,49 +237,49 @@ const HomeScreen = ({ route, navigation }) => {
 
   let new_orderCount = 423;
 
-  
-
-  
-  
-  
-  
-  
 
 
 
-    
 
 
 
-      
 
-                   
 
-    
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const getLoggedInPersonData = () => {
     try {
       AsyncStorage.getItem('LoggedInPersonDataKey').then((value) => {
@@ -339,8 +340,8 @@ const HomeScreen = ({ route, navigation }) => {
 
       //alert(' Process_orderKey got in Homescreen after getdashboardData function:'+process_orderKey);
     } catch (error) {
-      console.log('Error while Fetching Dashboard Count is:',error);
-      alert('Error while Fetching Dashboard Count is:'+error);
+      console.log('Error while Fetching Dashboard Count is:', error);
+      alert('Error while Fetching Dashboard Count is:' + error);
     }
   };
 
@@ -424,7 +425,7 @@ const HomeScreen = ({ route, navigation }) => {
 
   const removingNowGrayColor = () => {
     setthreeLineButtonClicked(false);
-    
+
     //alert("Removing Gray Color");
   };
 
@@ -437,35 +438,25 @@ const HomeScreen = ({ route, navigation }) => {
   const bellIconPressedInHomeScreenDoThis = () => {
     alert('Bell icon button pressed From Home Screen...');
     //navigation.navigate('UploadImage');
-  };
-
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1, height: height, width: width }}>
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
+  }; return (
+    <SafeAreaView style={{
+      flex: 1,
+      //backgroundColor: 'red',
+    }}>
+      <GestureHandlerRootView style={{
+        flex: 1,
+        height: height,
+        width: width,
+        //backgroundColor: 'purple',
+      }}>
         <View style={styles.container}>
           <StatusBar backgroundColor="#283E65" barStyle={'light-content'} />
-
           <View
             style={{
               //flex: 1,
               width: width,
-              backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
-
+              //backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
+              //backgroundColor: 'green',
               position: 'absolute',
               left: 0,
               right: 0,
@@ -473,433 +464,385 @@ const HomeScreen = ({ route, navigation }) => {
               bottom: 0,
             }}>
             {/* Another Module for curve background starts here: */}
+            <ImageBackground
+              source={require('../images/background.png')}
+              resizeMode="cover"
+              style={{
+                // marginTop: responsiveHeight(-5),      
 
-            
+                //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
+                //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
+                //expo snake
+                //height: responsiveHeight(35),
+                height: responsiveHeight(37),
+                //marginBottom:responsiveHeight(-30),         
+              }} />
+            {/*Module for curve background Ends here: */}
 
+            <GestureDetector gesture={gesture}>
+              {/* Above is Starting of First GestureDetector */}
 
-
-
-
-
-
-
-
-
-          <ImageBackground
-          source={ require('../images/background.png') }
-          resizeMode="cover"
-          style={{
-           // marginTop: responsiveHeight(-5),      
-
-            //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
-            //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
-            //expo snake
-            //height: responsiveHeight(35),
-            height: responsiveHeight(29),
-            //marginBottom:responsiveHeight(-30),         
-          }}/>    
-
-
-
-
-
-
-
-
-
-
-
-         
-                  
-        
-
-            {/* <AllUITogether show="ImageBackgroundWhichContainsChildren">  */}
-              {/*Another Module for curve background Ends here: */}
-
-              <GestureDetector gesture={gesture}>
-                <Animated.View>
-                  {/*View to hold our created Drawer Navigation Three line image button */}
-
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginTop: responsiveHeight(-27),
-                      //marginTop: responsiveHeight(-31),        
-                    }}>
-                    <TouchableOpacity
-                      style={{ marginLeft: 20 }}
-                      onPress={() =>
-                        ChildRef.current.openSideNavigationMethod() ||
-                        setthreeLineButtonClicked(
-                          ChildRef.current.bringGrayColor
-                        )
-                      }>
-                      <AllUITogether show={'SideDrawerThreeLineImage'} />
-                    </TouchableOpacity>
-
-                    {/*View to hold Side Drawer Opening Icon ends here at below View  */}
-                  </View>
-
-                  
-                  
-                  {/* Another Module for JEWEL CART text starts here: */}
-                  <View>
-                    <AllUITogether
-                      show={'TopLabelForPagesListedInBottomNavigation'}
-                      topLabelForPagesListedInBottomNavProps={'JEWEL CART'}
-                      marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(31)}
-                    />
-                  </View>
-                  {/* Another Module for JEWEL CART text Ends here: */}
-
-                  {/* Another Module for Bell icon starts here: */}
-                  <View>
-                    <AllUITogether
-                      show={'TopSmallIcon'}
-                      dothisWhenTopSmallIconPressedProps={
-                        bellIconPressedInHomeScreenDoThis
-                      }
-                      bellNotificationNumberProps={bellNotificationNumber}
-                      iconToDisplayPathProps={require('../images/bell.png')}
-                      showBadgeAlsoprops={true}
-                      widthOfTopSmallIconprops={25}
-                      heightOfTopSmallIconprops={30}
-                      //marginTopOfTopSmallIconprops={-4}
-                      //marginLeftOfTopSmallIconprops={85}
-                      marginTopOfTopSmallIconprops={responsiveHeight(-4)}
-                            marginLeftOfTopSmallIconprops={responsiveWidth(85)}
-                    />
-                  </View>
-                  {/* Another Module for Bell icon Ends here: */}
-                </Animated.View>
-              </GestureDetector>
+              <Animated.View>
+                {/*First View to hold our created Drawer Navigation Three line image button */}
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    marginTop: responsiveHeight(-27),
+                    //marginTop: responsiveHeight(-31),
+                    //backgroundColor:'red',        
+                  }}>
+                  <TouchableOpacity
+                    style={{ marginLeft: 20 }}
+                    onPress={() =>
+                      ChildRef.current.openSideNavigationMethod() ||
+                      setthreeLineButtonClicked(
+                        ChildRef.current.bringGrayColor
+                      )
+                    }>
+                    <AllUITogether show={'SideDrawerThreeLineImage'} />
+                  </TouchableOpacity>
+                </View>
+                {/*First View to hold Side Drawer Opening Icon ends here at below View  */}
 
 
 
-              {/* Another Module for Welcome LoggedIn Person Name text starts here: */ }
-              <View>
-                      <Text
-                        style={ {
-                          fontSize: responsiveHeight(3.5),
-                          fontFamily: "raleway-regular",
-                          marginLeft: responsiveWidth(16),
-                          marginTop: responsiveHeight(-20),         
-                          color: "white",
-                        } }
+
+
+
+                {/* Second View for JEWEL CART text starts here: */}
+                <View>
+                  <AllUITogether
+                    show={'TopLabelForPagesListedInBottomNavigation'}
+                    topLabelForPagesListedInBottomNavProps={'JEWEL CART'}
+                    marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(31)}
+                  />
+                </View>
+                {/* Second View for JEWEL CART text Ends here: */}
+
+
+
+
+                {/* Third View for Bell icon starts here: */}
+                <View>
+                  <AllUITogether
+                    show={'TopSmallIcon'}
+                    dothisWhenTopSmallIconPressedProps={
+                      bellIconPressedInHomeScreenDoThis
+                    }
+                    bellNotificationNumberProps={bellNotificationNumber}
+                    iconToDisplayPathProps={require('../images/bell.png')}
+                    showBadgeAlsoprops={true}
+                    widthOfTopSmallIconprops={25}
+                    heightOfTopSmallIconprops={30}
+                    //marginTopOfTopSmallIconprops={-4}
+                    //marginLeftOfTopSmallIconprops={85}
+                    marginTopOfTopSmallIconprops={responsiveHeight(-4)}
+                    marginLeftOfTopSmallIconprops={responsiveWidth(85)}
+                  />
+                </View>
+                {/* Third View for Bell icon Ends here: */}
+
+                {callFetchDynamicAPIs == true ? (
+                  <FetchDynamicAPIs
+                    urlToFetchProps={"dashboard_count"}
+                    mobileNumberForAuthentication={""}
+                    passwordForAuthentication={""}
+                    accessTokenForFetchingAPIProps={accessTokenKey}
+                    getData={getDashBoardData}
+                    screenNameProps={'HomeScreen'}
+                  />
+                ) : null}
+
+
+
+
+              </Animated.View>
+
+              {/* Below is Ending of First GestureDetector */}
+            </GestureDetector>
+
+            {/* Fourth View for Welcome LoggedIn Person Name text starts here: When i put this View of Welcome,{} inside </Animated.View> </GestureDetector> it is not getting seen, due to three line button section to open SideNavigation, Because the first <View> tag inside  </Animated.View>  is having row as flex direction  */}
+            <View>
+              <Text
+                style={{
+                  fontSize: responsiveHeight(3.5),
+                  fontFamily: "raleway-regular",
+                  marginLeft: responsiveWidth(16),
+                  marginTop: responsiveHeight(-20),
+                  color: "white",
+                }}
+              >
+                Welcome, { }
+                <Text
+                  style={{
+                    fontSize: responsiveHeight(3.5),
+                    fontFamily: "raleway-medium",
+                    //marginLeft:responsiveWidth(10),
+                    marginTop: responsiveHeight(3),
+                    color: "white",
+                  }}
+                >
+                  {logedInPersonName}
+                </Text>
+              </Text>
+            </View>
+            {/* Fourth View for Welcome LoggedIn Person Name text Ends here: */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* Another Module for FlatList starts here: */}
+
+            <FlatList
+              style={{
+                marginTop: responsiveHeight(-11.5),
+                marginLeft: responsiveWidth(5),
+                //marginBottom: responsiveHeight(16),
+                height: responsiveHeight(60),
+              }}
+              numColumns={2}
+              data={menuItemsOne_Two}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item, index }) => {
+                return (
+
+                  <TouchableOpacity
+                    onPress={() => {
+
+                      index == 6 ? customerIconClickedDoThis()
+                        : index == 7 ? supplierIconClickedDoThis()
+                          : orderIconClickedDoThis()
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: responsiveWidth(40),
+                        height: responsiveHeight(24),
+                        //backgroundColor: '#fff',
+                        borderRadius: responsiveWidth(9),
+                        elevation: responsiveWidth(3),
+                        //margin:responsiveHeight(1),     
+                        marginRight: responsiveHeight(1.5),
+                        marginLeft: responsiveHeight(1.4),
+                        marginBottom: responsiveHeight(1.8),
+                        //margin: 10,
+                        backgroundColor: threeLineButtonClicked
+                          ? "#757575"
+                          : "#fff",
+                      }}
+                    >
+                      <View
+                        style={{
+                          flex: 1,
+                          justifyContent: "center",
+                        }}
                       >
-                        Welcome, { }
                         <Text
-                          style={ {
-                            fontSize: responsiveHeight(3.5),
-                            fontFamily: "raleway-medium",
-                            //marginLeft:responsiveWidth(10),
-                            marginTop: responsiveHeight(3),
-                            color: "white",
-                          } }
+                          style={{
+                            fontSize: responsiveHeight(2.9),
+                            fontFamily: "raleway-regular",
+                            textAlign: "center",
+                          }}
                         >
-                          { logedInPersonName }
+                          {item.title}
                         </Text>
-                      </Text>
-                    </View>
-                    {/* Another Module for Welcome LoggedIn Person Name text Ends here: */ }
 
-             {/*  
-             
-             This is working but Side Drawer Navigation Menu is opening behind FlatList and not above Flatlist
-             
-             <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
-            />   */}
+                        {/*View to display image inside card starts here  */}
 
-              {/* Another Module for FlatList starts here: */ }
-                    
-                    <FlatList
-                      style={ { 
-                        marginTop: responsiveHeight(-11.5),
-                        marginLeft: responsiveWidth(5),
-                        marginBottom:responsiveHeight(16),  
-                        height:responsiveHeight(40),
-                         } }   
-                      numColumns={ 2 }
-                      data={ menuItemsOne_Two }
-                      showsVerticalScrollIndicator={ false }
-                      renderItem={ ({ item, index }) =>
-                      {
-                        return (
-                          
-                          <TouchableOpacity
-                            onPress={ () =>
-                            {
-                              
-                              index==6?customerIconClickedDoThis()
-                              :index==7?supplierIconClickedDoThis()
-                              :orderIconClickedDoThis()
-                            } }
+                        {/* Code to include icon & number count in one row starts here */}
+
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            //marginTop: responsiveHeight(0.9),
+                          }}
+                        >
+                          {/* Code to include icon starts here */}
+
+                          <View
+                            style={{
+                              borderRadius: 10,
+                              //backgroundColor: '#E5E6E7',
+                              width: responsiveWidth(11.5),
+                              height: responsiveHeight(7.5),
+                              marginLeft: responsiveWidth(5),
+                              marginTop: responsiveHeight(2),
+                              backgroundColor: threeLineButtonClicked
+                                ? "#757575"
+                                : "#E5E6E7",
+                            }}
                           >
                             <View
-                              style={ {
-                                width: responsiveWidth(40),
-                                height: responsiveHeight(24),
-                                //backgroundColor: '#fff',
-                                borderRadius: responsiveWidth(9),
-                                elevation: responsiveWidth(3),
-                                //margin:responsiveHeight(1),     
-                                marginRight:responsiveHeight(1.5),   
-                                marginLeft:responsiveHeight(1.4),
-                                marginBottom:responsiveHeight(1.8),                
-                                //margin: 10,
-                                backgroundColor: threeLineButtonClicked
-                                  ? "#757575"
-                                  : "#fff",
-                              } }
+                              style={{
+                                flex: 1,
+                                justifyContent: "center",
+                                alignSelf: "center",
+                              }}
                             >
-                              <View
-                                style={ {
-                                  flex: 1,
-                                  justifyContent: "center",
-                                } }
-                              >
-                                <Text
-                                  style={ {
-                                    fontSize: responsiveHeight(2.9),
-                                    fontFamily: "raleway-regular",
-                                    textAlign: "center",
-                                  } }
-                                >
-                                  { item.title }
-                                </Text>
-
-                                {/*View to display image inside card starts here  */ }
-
-                                {/* Code to include icon & number count in one row starts here */ }
-
-                                <View
-                                  style={ {
-                                    flexDirection: "row",
-                                    //marginTop: responsiveHeight(0.9),
-                                  } }
-                                >
-                                  {/* Code to include icon starts here */ }
-
-                                  <View
-                                    style={ {
-                                      borderRadius: 10,
-                                      //backgroundColor: '#E5E6E7',
-                                      width: responsiveWidth(11.5),
-                                      height: responsiveHeight(7.5),
-                                      marginLeft: responsiveWidth(5),
-                                      marginTop: responsiveHeight(2),
-                                      backgroundColor: threeLineButtonClicked
-                                        ? "#757575"
-                                        : "#E5E6E7",
-                                    } }
-                                  >
-                                    <View
-                                      style={ {
-                                        flex: 1,
-                                        justifyContent: "center",
-                                        alignSelf: "center",
-                                      } }
-                                    >
-                                      <Image
-                                        source={ item.iconforMenu }
-                                        style={ {
-                                          width: responsiveWidth(8.5),
-                                          height: responsiveHeight(5.7),
-                                        } }
-                                      />
-                                      {/*Image Tag ends here  */ }
-                                    </View>
-
-                                    {/*View to display image inside card ends here  */ }
-                                  </View>
-
-                                  {/* Code to include icon ends here */ }
-
-                                  {/* Code to include number count starts here */ }
-                                  <View
-                                    style={ {
-                                      //backgroundColor:'blue',
-                                      marginLeft: responsiveWidth(2.5),
-                                    } }
-                                  >
-                                    <View
-                                      style={ {
-                                        flex: 1,
-                                        justifyContent: "center",
-                                        alignSelf: "center",
-                                      } }
-                                    >
-                                      <Text
-                                        style={ {
-                                          fontSize: responsiveHeight(4),
-                                          marginLeft: responsiveWidth(4),
-                                          //cccccccc
-                                          fontFamily: "raleway-medium",
-                                          textAlign: "center",
-                                        } }
-                                      >
-                                        { item.numberCount }
-                                      </Text>
-                                    </View>
-                                  </View>
-                                  {/* Code to include number count ends here */ }
-                                </View>
-
-                                {/* Code to include icon and number count in one row ends here */ }
-
-                                {/*View to hold text and image icon ends here   */ }
-                              </View>
-
-                              {/*Root View inside FlatList return() ends here  */ }
+                              <Image
+                                source={item.iconforMenu}
+                                style={{
+                                  width: responsiveWidth(8.5),
+                                  height: responsiveHeight(5.7),
+                                }}
+                              />
+                              {/*Image Tag ends here  */}
                             </View>
-                          </TouchableOpacity>
-                          
-                        );
-                      } }
-                    />
-                    
-                    {/*Flat list inside the Root View for Cards ends here  */ }
 
+                            {/*View to display image inside card ends here  */}
+                          </View>
 
+                          {/* Code to include icon ends here */}
 
+                          {/* Code to include number count starts here */}
+                          <View
+                            style={{
+                              //backgroundColor:'blue',
+                              marginLeft: responsiveWidth(2.5),
+                            }}
+                          >
+                            <View
+                              style={{
+                                flex: 1,
+                                justifyContent: "center",
+                                alignSelf: "center",
+                              }}
+                            >
+                              <Text
+                                style={{
+                                  fontSize: responsiveHeight(4),
+                                  marginLeft: responsiveWidth(4),
+                                  //cccccccc
+                                  fontFamily: "raleway-medium",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {item.numberCount}
+                              </Text>
+                            </View>
+                          </View>
+                          {/* Code to include number count ends here */}
+                        </View>
 
-              
+                        {/* Code to include icon and number count in one row ends here */}
 
+                        {/*View to hold text and image icon ends here   */}
+                      </View>
 
+                      {/*Root View inside FlatList return() ends here  */}
+                    </View>
+                  </TouchableOpacity>
 
-
-                    {/*Rounded Bottom Tab Bar code starts here */ }
-              {/* <GestureDetector gesture={ gesture }>
-                 <View style={ {
-                 marginTop: responsiveHeight(-20),         
-                  //backgroundColor:'purple',     
-                  marginBottom:responsiveHeight(6),    
-                  //CCCCCCCCCCCCC
-                } }> */}
-                    <AllUITogether
-                    show={ "CustomeRoundBottomNavBar" }
-                    onPressOnHome={ homeIconClickedDoThis }
-                    homeIconColorprops={ "#F1CB8C" }
-                    homeTextColorProps={ "#F1CB8C" }
-                    onPressOnOrder={ orderIconClickedDoThis }
-                    //onPressOnOrder={getDashBoardData}
-                    orderIconColorprops={ "#fff" }
-                    orderTextColorProps={ "#fff" }
-                    onPressOnAddOrder={ addOrderIconClickedDoThis }
-                    onPressOnCustomer={ customerIconClickedDoThis }
-                    customerIconColorprops={ "#fff" }
-                    customerTextColorprops={ "#fff" }
-                    onPressOnSupplier={ supplierIconClickedDoThis }
-                    supplierIconColorprops={ "#fff" }
-                    supplierTextColorprops={ "#fff" }
-                  /> 
-
-
-               
-                  
-                  
-                  
-                  <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              gotoCaratScreenPropsLabel={ goToCaratScreen }
-                goToAddStaffScreenPropsLabel={ goToAddStaffScreen }
-                gotoColorScreenPropsLabel={ goToColorScreen }
-              gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
+                );
+              }}
             />
 
-                  { callFetchDynamicAPIs == true ? (
-                    <FetchDynamicAPIs
-                      urlToFetchProps={ "dashboard_count" }
-                      mobileNumberForAuthentication={ "" }
-                      passwordForAuthentication={ "" }
-                      accessTokenForFetchingAPIProps={ accessTokenKey }
-                      getData={ getDashBoardData }
-                      screenNameProps={ 'HomeScreen' }
-                    />
-                  ) : null }   
-                 </View>
-
-
-                
-              {/*</GestureDetector>*/}
-
-              {/*Rounded Bottom Tab Bar code ends here*/ }
-
-             {/* <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
-            />    */} 
-
-              
-
-             {/*  {callFetchDynamicAPIs == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'dashboard_count'}
-                  mobileNumberForAuthentication={''}
-                  passwordForAuthentication={''}
-                  accessTokenForFetchingAPIProps={accessTokenKey}
-                  getData={getDashBoardData}
-                  screenNameProps={'HomeScreen'}
-                />
-              ) : null} */}    
-
-                
+            {/*Flat list inside the Root View for Cards ends here  */}
 
 
 
+            <AllUITogether
+              show={"CustomeRoundBottomNavBar"}
+              onPressOnHome={homeIconClickedDoThis}
+              homeIconColorprops={"#F1CB8C"}
+              homeTextColorProps={"#F1CB8C"}
+              onPressOnOrder={orderIconClickedDoThis}
+              //onPressOnOrder={getDashBoardData}
+              orderIconColorprops={"#fff"}
+              orderTextColorProps={"#fff"}
+              onPressOnAddOrder={addOrderIconClickedDoThis}
+              onPressOnCustomer={customerIconClickedDoThis}
+              customerIconColorprops={"#fff"}
+              customerTextColorprops={"#fff"}
+              onPressOnSupplier={supplierIconClickedDoThis}
+              supplierIconColorprops={"#fff"}
+              supplierTextColorprops={"#fff"}
+            />
+
+            <ActualSideNavigationMenu
+              ref={ChildRef}
+              removeGraycolorPropsLabel={removingNowGrayColor}
+              gotoCategoryScreenPropsLabel={goToCategoryScreen}
+              gotoCaratScreenPropsLabel={goToCaratScreen}
+              goToAddStaffScreenPropsLabel={goToAddStaffScreen}
+              gotoColorScreenPropsLabel={goToColorScreen}
+              gotoSettingsScreenPropsLabel={goToSettingsScreen}
+              gotoChangePasswordScreenPropsLabel={goToChangePasswordScreen}
+
+              removeAllAsyncStorageInformation={removeData}
+            />
+
+
+
+            {/* <AllUITogether
+              show={"CustomeRoundBottomNavBar"}
+              onPressOnHome={homeIconClickedDoThis}
+              homeIconColorprops={"#F1CB8C"}
+              homeTextColorProps={"#F1CB8C"}
+              onPressOnOrder={orderIconClickedDoThis}
+              //onPressOnOrder={getDashBoardData}
+              orderIconColorprops={"#fff"}
+              orderTextColorProps={"#fff"}
+              onPressOnAddOrder={addOrderIconClickedDoThis}
+              onPressOnCustomer={customerIconClickedDoThis}
+              customerIconColorprops={"#fff"}
+              customerTextColorprops={"#fff"}
+              onPressOnSupplier={supplierIconClickedDoThis}
+              supplierIconColorprops={"#fff"}
+              supplierTextColorprops={"#fff"}
+            /> */}
 
 
 
 
 
 
-             {/* </AllUITogether> */}      
-             
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </View>
-          
-        
-            
+
+        </View>
+
+
       </GestureHandlerRootView>
-
-
-        
-
-
-
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
-
+// define your styles
 const styles = StyleSheet.create({
   container: {
     //flex: 1,
-    height: height+500,
+    height: height,
     width: width,
-    backgroundColor: 'purple',
+    //backgroundColor: 'yellow',
   },
-
-  scrollViewStyle: { 
-    //height: responsiveHeight(71)     
-    },
 });
+
+//make this component available to the app
+export default HomeScreen;
