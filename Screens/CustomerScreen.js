@@ -307,7 +307,7 @@ const removeDataForCustomerScreenFromAsync = async () =>
   
   
   useEffect(() => {
-    alert('UseEffect inside CustomerScreen running...');
+    //alert('UseEffect inside CustomerScreen running...');
     setIsLoadingCustomerScreenData(true);
     setcallFetchDynamicAPIsInCustomerScreen(true);
     getCustomerScreenData();
@@ -435,32 +435,24 @@ const removeDataForCustomerScreenFromAsync = async () =>
   
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1, height: height, width: width }}>
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
+    <SafeAreaView style={{
+      flex: 1,
+      //backgroundColor: 'red',
+    }}>
+      <GestureHandlerRootView style={{
+        flex: 1,
+        height: height,
+        width: width,
+        //backgroundColor: 'purple',
+      }}>
         <View style={styles.container}>
           <StatusBar backgroundColor="#283E65" barStyle={'light-content'} />
-
           <View
             style={{
               //flex: 1,
               width: width,
               backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
-
+              //backgroundColor: 'green',
               position: 'absolute',
               left: 0,
               right: 0,
@@ -468,163 +460,221 @@ const removeDataForCustomerScreenFromAsync = async () =>
               bottom: 0,
             }}>
             {/* Another Module for curve background starts here: */}
+            <ImageBackground
+              source={require('../images/background.png')}
+              resizeMode="cover"
+              style={{
+                // marginTop: responsiveHeight(-5),      
 
+                //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
+                //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
+                //expo snake
+                //height: responsiveHeight(35),
+                height: responsiveHeight(37),
+                //marginBottom:responsiveHeight(-30),         
+              }} />
+            {/*Module for curve background Ends here: */}
 
+            <GestureDetector gesture={gesture}>
+              {/* Above is Starting of First GestureDetector */}
 
-
-
-
-
-
-
-
-             <ImageBackground
-          source={ require('../images/background.png') }
-          resizeMode="cover"
-          style={ {
-            marginTop: responsiveHeight(-5),      
-
-            //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
-            //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
-            //expo snake
-            height: responsiveHeight(35),
-            //height: responsiveHeight(29),
-            //marginBottom:responsiveHeight(-30),         
-          } }/>
-
-
-
-         
-                  
-        
-
-            {/* <AllUITogether show="ImageBackgroundWhichContainsChildren">  */}
-              {/*Another Module for curve background Ends here: */}
-
-              <GestureDetector gesture={gesture}>
-                <Animated.View>
-                  {/*View to hold our created Drawer Navigation Three line image button */}
-
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginTop: responsiveHeight(-27),        
-                    }}>
-                    <TouchableOpacity
-                      style={{ marginLeft: 20 }}
-                      onPress={() =>
-                        ChildRef.current.openSideNavigationMethod() ||
-                        setthreeLineButtonClicked(
-                          ChildRef.current.bringGrayColor
-                        )
-                      }>
-                      <AllUITogether show={'SideDrawerThreeLineImage'} />
-                    </TouchableOpacity>
-
-                    {/*View to hold Side Drawer Opening Icon ends here at below View  */}
-                  </View>
-
-
-
-                  {/* Another Module for CustomerScreen text starts here: */ }
-             <AllUITogether
-                show={'TopLabelForPagesListedInBottomNavigation'}
-                topLabelForPagesListedInBottomNavProps={'CUSTOMERS'}
-                marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(26)}
-              />
-
-              {/* Another Module for JEWEL CART text Ends here: */ }
-                  
-                  
-              {/* Another Module for Search, Filter and Plus icon starts here: */}
-              <View styles={{ flexDirection: 'row' }}>
-                <AllUITogether
-                  show={'TopSmallIcon'}
-                  dothisWhenTopSmallIconPressedProps={
-                    searchTopSmallIconPressedDoThis
-                  }
-                  bellNotificationNumberProps={bellNotificationNumber}
-                  iconToDisplayPathProps={require('../images/search_golden.png')}
-                  showBadgeAlsoprops={false}
-                  widthOfTopSmallIconprops={22}
-                  heightOfTopSmallIconprops={22}
-                  //marginTopOfTopSmallIconprops={-3.5}
-                  //marginLeftOfTopSmallIconprops={71}
-                  marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
-                            marginLeftOfTopSmallIconprops={responsiveWidth(71)}
-                />
-
-                <AllUITogether
-                  show={'TopSmallIcon'}
-                  dothisWhenTopSmallIconPressedProps={
-                    searchTopSmallIconPressedDoThis
-                  }
-                  bellNotificationNumberProps={bellNotificationNumber}
-                  iconToDisplayPathProps={require('../images/filter_golden.png')}
-                  showBadgeAlsoprops={false}
-                  widthOfTopSmallIconprops={22}
-                  heightOfTopSmallIconprops={22}
-                  //marginTopOfTopSmallIconprops={-3.5}
-                  //marginLeftOfTopSmallIconprops={80}
-                  marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
-                            marginLeftOfTopSmallIconprops={responsiveWidth(80)}
-                />
-
-                <AllUITogether
-                  show={'TopSmallIcon'}
-                  dothisWhenTopSmallIconPressedProps={
-                    plusTopSmallIconPressedDoThis
-                  }
-                  bellNotificationNumberProps={bellNotificationNumber}
-                  iconToDisplayPathProps={require('../images/plus.png')}
-                  showBadgeAlsoprops={false}
-                  widthOfTopSmallIconprops={22}
-                  heightOfTopSmallIconprops={22}
-                  //marginTopOfTopSmallIconprops={-3.5}
-                 // marginLeftOfTopSmallIconprops={89}
-                 marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
-                            marginLeftOfTopSmallIconprops={responsiveWidth(89)}
-                />
-              </View>
-              {/* Another Module for Search, Filter and Plus icon Ends here: */}
-
-
-
-
-
-
-
-
-             
-
-
-
-
-                </Animated.View>
-              </GestureDetector>
-
-
-
-              
-
-              {/*View to start FlatList for Customers */}
-
-              <View style={styles.flatListForOrdersViewStyle}>
-                {/* Another Module for Cards starts here   : */}
-
+              <Animated.View>
+                {/*First View to hold our created Drawer Navigation Three line image button */}
                 <View
                   style={{
-                    marginTop: responsiveHeight(-22),    
-                    alignItems: 'center',
-                   height: responsiveHeight(80),
-                    // backgroundColor:'yellow',
+                    flexDirection: 'row',
+                    marginTop: responsiveHeight(-33),
+                    //marginTop: responsiveHeight(-31),
+                    //backgroundColor:'red',        
                   }}>
-                  {isLoadingCustomerScreenData == true ? (
+                  <TouchableOpacity
+                    style={{ marginLeft: 20 }}
+                    onPress={() =>
+                      ChildRef.current.openSideNavigationMethod() ||
+                      setthreeLineButtonClicked(
+                        ChildRef.current.bringGrayColor
+                      )
+                    }>
+                    <AllUITogether show={'SideDrawerThreeLineImage'} />
+                  </TouchableOpacity>
+                </View>
+                {/*First View to hold Side Drawer Opening Icon ends here at below View  */}
+
+
+
+
+
+
+                {/* Second View for JEWEL CART text starts here: */}
+                <View>
+                  <AllUITogether
+                    show={'TopLabelForPagesListedInBottomNavigation'}
+                    topLabelForPagesListedInBottomNavProps={'CUSTOMER'}
+                    marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(31)}
+                  />
+                </View>
+                {/* Second View for JEWEL CART text Ends here: */}
+
+
+
+
+                {/* Another Module for Search, Filter and Plus icon starts here: */ }
+     <View styles={ { flexDirection: 'row' } }>
+      <AllUITogether
+       show={ 'TopSmallIcon' }
+       dothisWhenTopSmallIconPressedProps={
+        searchTopSmallIconPressedDoThis
+       }
+       bellNotificationNumberProps={ bellNotificationNumber }
+       iconToDisplayPathProps={ require('../images/search_golden.png') }
+       showBadgeAlsoprops={ false }
+       widthOfTopSmallIconprops={ 22 }
+       heightOfTopSmallIconprops={ 22 }
+       //marginTopOfTopSmallIconprops={ -3.5 }
+       //marginLeftOfTopSmallIconprops={ 71 }
+       marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
+                          marginLeftOfTopSmallIconprops={responsiveWidth(71)}
+      />
+
+      <AllUITogether
+       show={ 'TopSmallIcon' }
+       dothisWhenTopSmallIconPressedProps={
+        searchTopSmallIconPressedDoThis
+       }
+       bellNotificationNumberProps={ bellNotificationNumber }
+       iconToDisplayPathProps={ require('../images/filter_golden.png') }
+       showBadgeAlsoprops={ false }
+       widthOfTopSmallIconprops={ 22 }
+       heightOfTopSmallIconprops={ 22 }
+       //marginTopOfTopSmallIconprops={ -3.5 }
+       //marginLeftOfTopSmallIconprops={ 80 }
+       marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
+                          marginLeftOfTopSmallIconprops={responsiveWidth(80)}
+      />
+
+      <AllUITogether
+       show={ 'TopSmallIcon' }
+       dothisWhenTopSmallIconPressedProps={
+        plusTopSmallIconPressedDoThis
+       }
+       bellNotificationNumberProps={ bellNotificationNumber }
+       iconToDisplayPathProps={ require('../images/plus.png') }
+       showBadgeAlsoprops={ false }
+       widthOfTopSmallIconprops={ 22 }
+       heightOfTopSmallIconprops={ 22 }
+       //marginTopOfTopSmallIconprops={ -3.5 }
+       //marginLeftOfTopSmallIconprops={ 89 }
+       marginTopOfTopSmallIconprops={responsiveHeight(-3.5)}
+                          marginLeftOfTopSmallIconprops={responsiveWidth(89)}
+      />
+     </View>
+     {/* Another Module for Search, Filter and Plus icon Ends here: */ }
+
+
+
+
+     {callFetchDynamicAPIsInCustomerScreen == true ? (
+                <FetchDynamicAPIs
+                  urlToFetchProps={'manage_customer'}
+                  mobileNumberForAuthentication={''}
+                  passwordForAuthentication={''}
+                  accessTokenForFetchingAPIProps={
+                    accessTokenSentToCustomerScreen
+                  }
+                  startProps={'0'}
+                  limitProps={'100'}
+                  actionProps={'search'}
+                  sortByProps={'desc'}
+                  screenNameProps={'CustomerScreen'}
+                  getData={getCustomerScreenData}
+                  setterToStopCallingFetchDynamicAPIsInCustomerScreenprops={setcallFetchDynamicAPIsInCustomerScreen}
+                />
+              ) : null}
+
+
+
+
+            {callFetchDynamicAPIsInCustomerScreenToDelete == true ? (
+                <FetchDynamicAPIs
+                  urlToFetchProps={'manage_customer'}
+                  
+                  accessTokenForFetchingAPIProps={
+                    accessTokenSentToCustomerScreen
+                  }
+                  actionProps={'delete'}
+                  
+                  customerIDProps={customerIDNowToDeleteIt}
+                  
+                  screenNameProps={'CustomerScreenForDelete'}
+                  
+                  setNowcallingDeleteAPIVariablePropsInCustomerScreen={setcallFetchDynamicAPIsInCustomerScreenToDelete}
+                  setterForRefreshingOurFlatListInCustomerScreen={setcallFetchDynamicAPIsInCustomerScreen}
+
+
+                  setterForLastFlatListDataisToBeDeletedPropsInCustomerScreen={setLastCustomerInFlatListIsToBeDeleted}
+                  variableForLastFlatListDataisToBeDeletedPropsInCustomerScreen={lastCustomerInFlatListIsToBeDeleted}
+                  removeFlatListDataFromAsynPropsInCustomerScreen={removeDataForCustomerScreenFromAsync}  
+                  refreshOnLastFlatListDeletedSuccessfullyInCustomerScreen={setResultsecondForCustomerScreen} 
+                   
+                 
+                />
+              ) : null}
+
+
+              {askDeleteOrNotModal==true?<AllUITogether
+              show={'InteractiveModalWithTwoOptions'}
+              //widthPropsForInteractiveModal={78}
+              //heightPropsForInteractiveModal={19}
+              widthPropsForInteractiveModal={responsiveWidth(78)}
+              heightPropsForInteractiveModal={responsiveHeight(19)}
+              questionToAskForInteractiveModalProps={'Do you really want to '+'\n'+'delete?'}
+              interactiveModalFirstOptionLabelProps={'Yes'}
+              interactiveModalSecondOptionLabelProps={'No'}
+              tasktoDowhenFirstOptionSelectedProps={dothisOnSelectingFirstOptionForInteractiveModal}
+              tasktoDowhenSecondOptionSelectedProps={dothisOnSelectingSecondOptionForInteractiveModal}
+              doWhenBackBtnPressedOnInteractiveModalWithTwoOptions={dothisOnBackButtonPressedInteractiveModal}
+              />:null}
+
+               
+
+
+
+
+              </Animated.View>
+
+              {/* Below is Ending of First GestureDetector */}
+            </GestureDetector>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {isLoadingCustomerScreenData == true ? (
                     <ActivityIndicator size="large" color="#013F66" style={{marginTop:responsiveHeight(30)}} />
                   ) : (
                     <>  
                    
                   <FlatList
+                  style={{
+                marginTop: responsiveHeight(-22.5),
+                marginLeft: responsiveWidth(2.5),
+                //marginBottom: responsiveHeight(16),
+                height: responsiveHeight(60),
+              }}
                     numColumns={1}
                     data={resultsecondForCustomerScreen}
                     showsVerticalScrollIndicator={false}
@@ -1091,31 +1141,14 @@ const removeDataForCustomerScreenFromAsync = async () =>
                   </>
                   )
                   }
-                  {/*Flat list inside the Root View for Cards ends here  */}
-                </View>
-                {/*Root View for Cards ends here  */}
-              </View>
-
-              {/*View to end FlatList of Orders  */}
+       
+      
+                
+     {/*View to end FlatList of Orders  */ }
 
 
 
-
-              
-
-
-
-
-                    {/*Rounded Bottom Tab Bar code starts here */}
-                    {/* <GestureDetector gesture={ gesture }>
-                 <View style={ {
-                 marginTop: responsiveHeight(-19),               
-                  //backgroundColor:'purple',     
-                  //marginBottom:responsiveHeight(6),        
-                  //CCCCCCCCCCCCC
-                } }>    */} 
-
-              <AllUITogether
+     <AllUITogether
                 show={'CustomeRoundBottomNavBar'}
                 onPressOnHome={homeIconClickedDoThis}
                 homeIconColorprops={'#fff'}
@@ -1132,198 +1165,22 @@ const removeDataForCustomerScreenFromAsync = async () =>
                 supplierTextColorprops={'#fff'}
               />
 
-              {callFetchDynamicAPIsInCustomerScreen == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'manage_customer'}
-                  mobileNumberForAuthentication={''}
-                  passwordForAuthentication={''}
-                  accessTokenForFetchingAPIProps={
-                    accessTokenSentToCustomerScreen
-                  }
-                  startProps={'0'}
-                  limitProps={'100'}
-                  actionProps={'search'}
-                  sortByProps={'desc'}
-                  screenNameProps={'CustomerScreen'}
-                  getData={getCustomerScreenData}
-                  setterToStopCallingFetchDynamicAPIsInCustomerScreenprops={setcallFetchDynamicAPIsInCustomerScreen}
-                />
-              ) : null}
-
-
-
-
-            {callFetchDynamicAPIsInCustomerScreenToDelete == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'manage_customer'}
-                  
-                  accessTokenForFetchingAPIProps={
-                    accessTokenSentToCustomerScreen
-                  }
-                  actionProps={'delete'}
-                  
-                  customerIDProps={customerIDNowToDeleteIt}
-                  
-                  screenNameProps={'CustomerScreenForDelete'}
-                  
-                  setNowcallingDeleteAPIVariablePropsInCustomerScreen={setcallFetchDynamicAPIsInCustomerScreenToDelete}
-                  setterForRefreshingOurFlatListInCustomerScreen={setcallFetchDynamicAPIsInCustomerScreen}
-
-
-                  setterForLastFlatListDataisToBeDeletedPropsInCustomerScreen={setLastCustomerInFlatListIsToBeDeleted}
-                  variableForLastFlatListDataisToBeDeletedPropsInCustomerScreen={lastCustomerInFlatListIsToBeDeleted}
-                  removeFlatListDataFromAsynPropsInCustomerScreen={removeDataForCustomerScreenFromAsync}  
-                  refreshOnLastFlatListDeletedSuccessfullyInCustomerScreen={setResultsecondForCustomerScreen} 
-                   
-                 
-                />
-              ) : null}
-
-
-              {askDeleteOrNotModal==true?<AllUITogether
-              show={'InteractiveModalWithTwoOptions'}
-              //widthPropsForInteractiveModal={78}
-              //heightPropsForInteractiveModal={19}
-              widthPropsForInteractiveModal={responsiveWidth(78)}
-              heightPropsForInteractiveModal={responsiveHeight(19)}
-              questionToAskForInteractiveModalProps={'Do you really want to '+'\n'+'delete?'}
-              interactiveModalFirstOptionLabelProps={'Yes'}
-              interactiveModalSecondOptionLabelProps={'No'}
-              tasktoDowhenFirstOptionSelectedProps={dothisOnSelectingFirstOptionForInteractiveModal}
-              tasktoDowhenSecondOptionSelectedProps={dothisOnSelectingSecondOptionForInteractiveModal}
-              doWhenBackBtnPressedOnInteractiveModalWithTwoOptions={dothisOnBackButtonPressedInteractiveModal}
-              />:null}
-
-
-              {/* <Modal
-            transparent={ true }
-            visible={ askDeleteOrNotModal }
-            onRequestClose={ () => setAskDeleteOrNotModal(false) }>
-            <View
-              style={ {
-                backgroundColor: 'rgba(0,0,0,0.4)',
-                flex: 1,
-                justifyContent: 'center',
-              } }>
-              <View
-                style={ { backgroundColor: 'white', padding: 13, margin: 40 } }>
-                <Text style={ styles.textForgotPasswordModalStyle }>
-                  Do you really want to delete?
-                </Text>
-
-                
-
-                
-
-                <View style={ { alignItems: 'center',flexDirection:'row' } }>
-                  <Button
-                    title="Yes"
-                    onPress={()=>
-                      {
-                        setcallFetchDynamicAPIsInCustomerScreenToDelete(true)
-                        //alert('Yes deleting')
-                      
-                      }
-                    }
-                    titleStyle={ {
-                      fontWeight: '500',
-                      fontFamily: 'raleway-medium',
-                    } }
-                    buttonStyle={ {
-                      width: responsiveWidth(30),
-                      backgroundColor: '#283E65',//#013F66
-                      borderColor: 'transparent',
-                      borderWidth: 0,
-                      borderRadius: 5,
-                    } }
-                  />
-
-                  <Button
-                    title="No"
-                    onPress={()=>
-                      alert('Not deleting')
-                    }
-                    titleStyle={ {
-                      fontWeight: '500',
-                      fontFamily: 'raleway-medium',
-                    } }
-                    buttonStyle={ {
-                      width: responsiveWidth(30),
-                      backgroundColor: '#283E65',//#013F66
-                      borderColor: 'transparent',
-                      borderWidth: 0,
-                      borderRadius: 5,
-                    } }
-                  />
-                </View>
-              </View>
-            </View>
-          </Modal> */}
-
-
-
-
-
-                  </View>
-              {/*</GestureDetector>*/}
-
-              {/*Rounded Bottom Tab Bar code ends here*/}
-
-
-
-
-             {/* <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
-            />     */}
-
             <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              gotoCaratScreenPropsLabel={ goToCaratScreen }
-                goToAddStaffScreenPropsLabel={ goToAddStaffScreen }
-                gotoColorScreenPropsLabel={ goToColorScreen }
-              gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
+              ref={ChildRef}
+              removeGraycolorPropsLabel={removingNowGrayColor}
+              gotoCategoryScreenPropsLabel={goToCategoryScreen}
+              gotoCaratScreenPropsLabel={goToCaratScreen}
+              goToAddStaffScreenPropsLabel={goToAddStaffScreen}
+              gotoColorScreenPropsLabel={goToColorScreen}
+              gotoSettingsScreenPropsLabel={goToSettingsScreen}
+              gotoChangePasswordScreenPropsLabel={goToChangePasswordScreen}
+
+              removeAllAsyncStorageInformation={removeData}
             />
 
 
 
-
-
-
-             {/* <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
-            />    */} 
-
-              
-
-             {/*  {callFetchDynamicAPIs == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'dashboard_count'}
-                  mobileNumberForAuthentication={''}
-                  passwordForAuthentication={''}
-                  accessTokenForFetchingAPIProps={accessTokenKey}
-                  getData={getDashBoardData}
-                  screenNameProps={'CustomerScreen'}
-                />
-              ) : null} */}    
-
-                
+            
 
 
 
@@ -1333,23 +1190,26 @@ const removeDataForCustomerScreenFromAsync = async () =>
 
 
 
-             {/* </AllUITogether> */}      
-             
+
+
+
+
+
+
+
+
+
 
 
           </View>
-          
-        
-            
+
+        </View>
+
+
       </GestureHandlerRootView>
-
-
-        
-
-
-
     </SafeAreaView>
   );
+    
 };
 
 export default CustomerScreen;    

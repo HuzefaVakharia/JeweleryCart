@@ -425,7 +425,7 @@ const uploadImageAndStringForAddNewOrder = async () => {
       const data = new FormData();
 
       for (let i = 0; i < combineImagesFromGalleryAndCamera.length; i++) {
-        alert(
+        /* alert(
           'For Image number:' +
             i +
             '\n' +
@@ -437,7 +437,7 @@ const uploadImageAndStringForAddNewOrder = async () => {
             '\n' +
             'File mimeType is:' +
             combineImagesFromGalleryAndCamera[i].type,
-        );
+        ); */
         data.append(
           'image_file[]',
   
@@ -538,7 +538,7 @@ const uploadImageAndStringForAddNewOrder = async () => {
 
         let result = await res.json();
         console.log('result', result);
-        alert('Info after Uploading Image:'+result.message); 
+        //alert('Info after Uploading Image:'+result.message); 
         setIsLoading(false);
 
       setitemname('');
@@ -563,6 +563,13 @@ const uploadImageAndStringForAddNewOrder = async () => {
       } catch (error) {
         
         console.log('error upload', error);
+        /* ToastAndroid.showWithGravity(
+          'Error:',JSON.stringify(error),
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
+        setIsLoading(false);
+        gotoOrderScreen();
       }
 
       //gotoOrderScreen();
@@ -686,11 +693,11 @@ useEffect(() => {
     //accessTokenSentToAddOrderScreenSecond
 
 
-     alert(
+     /* alert(
     
       '1.combine images length is:'+combineImagesFromGalleryAndCamera.length
       
-      );
+      ); */
   }, []);
 
 
@@ -717,7 +724,12 @@ useEffect(() => {
       
       } 
     
-    alert('Diamond is from Party?'+diamondFromPartyYesOrNo);
+    //alert('Diamond is from Party?'+diamondFromPartyYesOrNo);
+    ToastAndroid.showWithGravity(
+      'Diamond is from Party?'+diamondFromPartyYesOrNo,
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+    )
   
   
   
@@ -762,7 +774,12 @@ useEffect(() => {
       
       } 
     
-    alert('Stone is from Party?'+stoneFromPartyYesOrNo);
+    //alert('Stone is from Party?'+stoneFromPartyYesOrNo);
+    ToastAndroid.showWithGravity(
+      'Stone is from Party?'+stoneFromPartyYesOrNo,
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+    )
     }
   
 
@@ -796,7 +813,12 @@ useEffect(() => {
 
     //setPlatinumEditOrderScreenModal(false);
 
-    alert('Going back');
+    //alert('Going back');
+    ToastAndroid.showWithGravity(
+      'Going back',
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+    )
   };
 
   const updateBtnPressed = () => {

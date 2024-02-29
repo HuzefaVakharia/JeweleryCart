@@ -61,29 +61,29 @@ const typeOfOrderArray = [
   { type: 'Platinum' },
 ];
 
-const orderForArray = [{ type: 'Client' }, { type: 'Stock' }];   
+const orderForArray = [{ type: 'Client' }, { type: 'Stock' }];
 
 
 let arrayOfImages = [];
-let singleFileButArrayForEdit=[];
-let combineImagesArray=[];
+let singleFileButArrayForEdit = [];
+let combineImagesArray = [];
 //let imageName = '';
 let imageList = [];
 
-let i=0;
+let i = 0;
 
-const EditOrderScreen = ({navigation }) => {
-  const route = useRoute();     
- const {
+const EditOrderScreen = ({ navigation }) => {
+  const route = useRoute();
+  const {
     accessTokenSentToEditOrder,
     orderIDSentToEditOrder,
-    itemImage,   
+    itemImage,
     orderDateSentFromOrderScreen,
     nameToBeEditedForEditOrder,
     categorynameReceivedFromOrderScreen,
     typeOfOrderFromOrderScreen,
     //singleFileButArrayForEditKey,
-     customerIDSentToEditOrder,
+    customerIDSentToEditOrder,
     supplierIDSentToEditOrder,
     categoryIDSentToEditOrder,
     partydiamondFromOrderScreen,
@@ -123,37 +123,37 @@ const EditOrderScreen = ({navigation }) => {
     hallmarkReceivedFromOrderScreen,
     arrayOfimagesCapturedUsingCamera,
   } = route.params;
-   
-  let imageName = '';
-  
-let imageBaseAPI = 'https://rajeshwersoftsolution.com/jwelcart/public';
-   var userOrderDataGotFromOrderScreen = {
-    
-    OrderID:orderIDSentToEditOrder,
-    
 
-    ItemName:itemNameReceivedFromOrderScreen,
-     Qty:qtyReceivedFromOrderScreen?.toString(),
-    Size:sizeReceivedFromOrderScreen,
-    Narration:narrationReceivedFromOrderScreen,
-    DeliveryDate:deliveryDateReceivedFromOrderScreen,
-    Priority:priorityReceivedFromOrderScreen,
-    DesignNo:designNoReceivedFromOrderScreen,
-    Broadness:broadnessReceivedFromOrderScreen,
-    Diamondweight:diamondweightReceivedFromOrderScreen,
-    Diamondquality:diamondqualityReceivedFromOrderScreen,
-    Diamondpcs:diamondpcsReceivedFromOrderScreen,
-    Partydiamond:partydiamondReceivedFromOrderScreen,
-    Stoneweight:stoneweightReceivedFromOrderScreen,
-    Stonequality:stonequalityReceivedFromOrderScreen,
-    Stonepcs:stonepcsReceivedFromOrderScreen,
-    Partystone:partystoneReceivedFromOrderScreen,
-    Ptpolish:ptpolishReceivedFromOrderScreen,
-    Kt18polish:kt18polishReceivedFromOrderScreen,
-    Engravingdetails:engravingdetailsReceivedFromOrderScreen, 
+  let imageName = '';
+
+  let imageBaseAPI = 'https://rajeshwersoftsolution.com/jwelcart/public';
+  var userOrderDataGotFromOrderScreen = {
+
+    OrderID: orderIDSentToEditOrder,
+
+
+    ItemName: itemNameReceivedFromOrderScreen,
+    Qty: qtyReceivedFromOrderScreen?.toString(),
+    Size: sizeReceivedFromOrderScreen,
+    Narration: narrationReceivedFromOrderScreen,
+    DeliveryDate: deliveryDateReceivedFromOrderScreen,
+    Priority: priorityReceivedFromOrderScreen,
+    DesignNo: designNoReceivedFromOrderScreen,
+    Broadness: broadnessReceivedFromOrderScreen,
+    Diamondweight: diamondweightReceivedFromOrderScreen,
+    Diamondquality: diamondqualityReceivedFromOrderScreen,
+    Diamondpcs: diamondpcsReceivedFromOrderScreen,
+    Partydiamond: partydiamondReceivedFromOrderScreen,
+    Stoneweight: stoneweightReceivedFromOrderScreen,
+    Stonequality: stonequalityReceivedFromOrderScreen,
+    Stonepcs: stonepcsReceivedFromOrderScreen,
+    Partystone: partystoneReceivedFromOrderScreen,
+    Ptpolish: ptpolishReceivedFromOrderScreen,
+    Kt18polish: kt18polishReceivedFromOrderScreen,
+    Engravingdetails: engravingdetailsReceivedFromOrderScreen,
     //ItemName:orderforFromOrderScreenReceivedFromOrderScreen,
     //ItemName:suppliernameReceivedFromOrderScreen,
-     Hallmark:hallmarkReceivedFromOrderScreen,  
+    Hallmark: hallmarkReceivedFromOrderScreen,
 
 
   }
@@ -161,67 +161,63 @@ let imageBaseAPI = 'https://rajeshwersoftsolution.com/jwelcart/public';
 
 
 
- const storeEditOrderScreenSecondAndPlatinumScreenDataInAsyncStorage = async () =>
-  {
-    
-    AsyncStorage.setItem('EditOrderDataForSecondPageDataAndPlatinumPage', JSON.stringify(userOrderDataGotFromOrderScreen)); 
+  const storeEditOrderScreenSecondAndPlatinumScreenDataInAsyncStorage = async () => {
+
+    AsyncStorage.setItem('EditOrderDataForSecondPageDataAndPlatinumPage', JSON.stringify(userOrderDataGotFromOrderScreen));
     //alert('storeEditOrderScreenSecondAndPlatinumScreenDataInAsyncStorage done');
-  } 
-
-
- 
+  }
 
 
 
 
-  const removeData = async () =>
-  {
-    try
-    {
+
+
+
+  const removeData = async () => {
+    try {
       await AsyncStorage.removeItem('NewRegisterationFirstPageData');
       await AsyncStorage.removeItem('NewRegisterationSecondPageData');
       //navigation.navigate('Login');
-    } catch (error)
-    {
+    } catch (error) {
       console.log(error);
     }
-  } 
-   const [isLoadingForGalleryImages, setIsLoadingForGalleryImages] =
+  }
+  const [isLoadingForGalleryImages, setIsLoadingForGalleryImages] =
     useState(false);
 
-    const [isCameraButtonClicked, setisCameraButtonClicked] =
-    useState(false);    
+  const [isCameraButtonClicked, setisCameraButtonClicked] =
+    useState(false);
   //setisCameraButtonClicked
 
   let [doneAddingImage, setdoneAddingImage] = useState('blank');
 
-const [showSelectedImagesFlatList, setShowSelectedImagesFlatList] = useState(true);
+  const [showSelectedImagesFlatList, setShowSelectedImagesFlatList] = useState(true);
 
-const [singleFile, setSingleFile] = useState(null);
-const [singleFileTwo, setSingleFileTwo] = useState('');
+  const [singleFile, setSingleFile] = useState(null);
+  const [singleFileTwo, setSingleFileTwo] = useState('');
 
-const [openFullScreenCameraTrueOrFalse, setopenFullScreenCameraTrueOrFalse] = useState(false);
-const [filePath, setFilePath] = useState({});
+  const [openFullScreenCameraTrueOrFalse, setopenFullScreenCameraTrueOrFalse] = useState(false);
+  const [filePath, setFilePath] = useState({});
   //const [images, setImages] = useState([]);
 
 
 
 
-let cameraRef = useRef();
+  let cameraRef = useRef();
   const [previousImage, setPreviousImage] = useState(null);
   const [previousImages, setPreviousImages] = useState([]);
- const [cameraOrGalleryOptionsModal, setcameraOrGalleryOptionsModal] =
+  const [cameraOrGalleryOptionsModal, setcameraOrGalleryOptionsModal] =
     useState(false);
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
-/* Using MediaLibrary we can save captured photos from camera to our gallery. */
+  /* Using MediaLibrary we can save captured photos from camera to our gallery. */
 
-    const [
+  const [
     orderDateReveivedFromOrderScreen,
     setOrderDateReveivedFromOrderScreen,
   ] = useState('');
-  
+
   const [collectionOfAllImagesToSendToSecondEditScreen, setCollectionOfAllImagesToSendToSecondEditScreen] = useState([]);
 
 
@@ -249,7 +245,7 @@ let cameraRef = useRef();
 
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
 
-  
+
   let [result, setResult] = useState([]);
 
   const [logedInPersonAccessToken, setLogedInPersonAccessToken] = useState('');
@@ -264,42 +260,41 @@ let cameraRef = useRef();
   const [selectedCustomerFromList, setselectedCustomerFromList] = useState('');
   const [selectedCustomerIDFromList, setselectedCustomerIDFromList] = useState(customerIDSentToEditOrder);
 
-/* 
-
-selectedCustomerIDFromList
- */
-
-
-
-let singleImage='';
+  /* 
+  
+  selectedCustomerIDFromList
+   */
 
 
-  const [selectedSupplierFromList, setselectedSupplierFromList] = useState(suppliernameReceivedFromOrderScreen);   
+
+  let singleImage = '';
+
+
+  const [selectedSupplierFromList, setselectedSupplierFromList] = useState(suppliernameReceivedFromOrderScreen);
   const [selectedSupplierIDFromList, setselectedSupplierIDFromList] = useState(supplierIDSentToEditOrder);
 
 
 
 
   const [selectedCategoryFromList, setselectedCategoryFromList] = useState(categorynameReceivedFromOrderScreen);
-  const [selectedCategoryIDFromList, setselectedCategoryIDFromList] = useState(categoryIDSentToEditOrder);    
-  
-  
-  let callEditOrderAPIToUploadImage='WAIT';
-  
-  
-  
+  const [selectedCategoryIDFromList, setselectedCategoryIDFromList] = useState(categoryIDSentToEditOrder);
+
+
+  let callEditOrderAPIToUploadImage = 'WAIT';
+
+
+
 
   const [isLoading, setIsLoading] = useState(false);
 
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     //alert('Order ID Received from Order Screen is:'+orderIDSentToEditOrder);
 
     //alert('Carret ID Received is:'+carretIDSentToEditOrder);
 
 
-    
+
     setLogedInPersonAccessToken(accessTokenSentToEditOrder);
     setOrderDateReveivedFromOrderScreen(orderDateSentFromOrderScreen);
     setSelectedTypeOfOrderValue(typeOfOrderFromOrderScreen);
@@ -309,47 +304,46 @@ let singleImage='';
 
     requestPermission();
     // const { accessTokenSentToEditOrder, itemImage,orderDateSentFromOrderScreen,nameToBeEditedForEditOrder,typeOfOrderFromOrderScreen } = route.params;
-  }, []);   
+  }, []);
 
- /*  useEffect(() => {
-    //getData();
-    //alert('Order ID selected to edit is:'+orderIDSentToEditOrder);
-    console.log('Length of Image Array got from Order Screen is:'+itemImage.length);
-    storeEditOrderScreenSecondAndPlatinumScreenDataInAsyncStorage();
-    setLogedInPersonAccessToken(accessTokenSentToEditOrder);
-    setOrderDateReveivedFromOrderScreen(orderDateSentFromOrderScreen);
-    setSelectedTypeOfOrderValue(typeOfOrderFromOrderScreen);
-    setselectedCustomerFromList(nameToBeEditedForEditOrder);
+  /*  useEffect(() => {
+     //getData();
+     //alert('Order ID selected to edit is:'+orderIDSentToEditOrder);
+     console.log('Length of Image Array got from Order Screen is:'+itemImage.length);
+     storeEditOrderScreenSecondAndPlatinumScreenDataInAsyncStorage();
+     setLogedInPersonAccessToken(accessTokenSentToEditOrder);
+     setOrderDateReveivedFromOrderScreen(orderDateSentFromOrderScreen);
+     setSelectedTypeOfOrderValue(typeOfOrderFromOrderScreen);
+     setselectedCustomerFromList(nameToBeEditedForEditOrder);
+ 
+     
+ 
+ 
+ 
+     setCollectionOfAllImagesToSendToSecondEditScreen(itemImage);
+     console.log('Url is:'+itemImage[0].image);    
+     setselectedSupplierFromList(suppliernameReceivedFromOrderScreen);
+     // const { accessTokenSentToEditOrder, itemImage,orderDateSentFromOrderScreen,nameToBeEditedForEditOrder,typeOfOrderFromOrderScreen } = route.params;
+   }, []); */
 
-    
-
-
-
-    setCollectionOfAllImagesToSendToSecondEditScreen(itemImage);
-    console.log('Url is:'+itemImage[0].image);    
-    setselectedSupplierFromList(suppliernameReceivedFromOrderScreen);
-    // const { accessTokenSentToEditOrder, itemImage,orderDateSentFromOrderScreen,nameToBeEditedForEditOrder,typeOfOrderFromOrderScreen } = route.params;
-  }, []); */
-
-   useEffect(() =>
-  {
+  useEffect(() => {
     //alert('Array Length of Images captured using camera is...');       
     //getEditOrderImagesData();
 
     /*  if(arrayOfimagesCapturedUsingCamera?.length>0){
       singleFileButArrayForEdit.push(arrayOfimagesCapturedUsingCamera);
-    }   */   
+    }   */
 
 
-      combineImagesArray = [];    
-      singleFileButArrayForEdit=[];  
-      
-  alert('singleFileButArrayForEdit made blank in useEffect of AddOrderScreen file...');
-    
-  }, []); 
+    combineImagesArray = [];
+    singleFileButArrayForEdit = [];
+
+    //alert('singleFileButArrayForEdit made blank in useEffect of AddOrderScreen file...');
+
+  }, []);
 
 
-   
+
 
   /* if (hasCameraPermission === undefined) {
     return <Text>Requesting permissions...</Text>
@@ -368,7 +362,7 @@ let singleImage='';
     setPhoto(newPhoto);
   }; */
 
-  
+
 
 
 
@@ -383,7 +377,7 @@ let singleImage='';
     </Camera>
   );
   } */
-  
+
 
   /* useEffect(() =>
   {
@@ -392,108 +386,112 @@ let singleImage='';
 
   //orderDateSentToEditOrderSecond:xyz
 
-    //const gotoEditOrderSecondPage = (orderIDGot,arrayOfimagesCapturedUsingCamera,singleFileButArrayForEdit) => {
+  //const gotoEditOrderSecondPage = (orderIDGot,arrayOfimagesCapturedUsingCamera,singleFileButArrayForEdit) => {
 
-      //const gotoEditOrderSecondPage=(orderIDGotWhileCallingGoToEditOrderSecondPage)=>{
+  //const gotoEditOrderSecondPage=(orderIDGotWhileCallingGoToEditOrderSecondPage)=>{
 
-        const gotoEditOrderSecondPage=()=>{    
+  const gotoEditOrderSecondPage = () => {
 
-       alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCamera?.length+'\n'+
-      'Length of Images from Gallery Directly is:'+singleFileButArrayForEdit?.length
-      )   
+    //alert('Length of Images Array inside imageList is:'+imageList.length);
 
-      if(imageList?.length>0)
-      {
-        combineImagesArray.push(...arrayOfimagesCapturedUsingCamera);
-      }
+    /* alert('Length of images Captured Using Camera is:' + arrayOfimagesCapturedUsingCamera?.length + '\n' +
+      'Length of Images from Gallery Directly is:' + singleFileButArrayForEdit?.length
+    )
 
-
-      if(imageList?.length>0)
-      {
-      combineImagesArray.push(...singleFileButArrayForEdit);
-      }
-
-    
-      
-      
-      
-      if(combineImagesArray?.length>0){
-       alert('Length of combineImagesArray Captured Using Camera is:'+combineImagesArray.length);  
+    if (combineImagesArray?.length > 0) {
+      combineImagesArray.push(...arrayOfimagesCapturedUsingCamera);
     }
 
-//console.log('Information: '+collectionOfAllImagesToSendToSecondEditScreen);
 
-      /* uploadImage(orderIDGot);*/
-      /* 
-      Now while uploading our new selected images from our Gallery and Camera, remember that we do not have to send our itemImage which we have fetched from our Server while fetching full Order list data, because , the API of our JewelCart EditOrder require only new Images which we want to add in our Server data, and when we will call API to Edit our Order list data, then the API will take only new images which we want to add to our already present images in Server and the API will just add our new Images to our Old previously present image in Server, Note that the Edit order API will not replace our Old image of that Order with our New images selected using Camera or Gallery, it will just add new image with old images.
-       */
-     
-     /* alert('orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDGotWhileCallingGoToEditOrderSecondPage); */
+    if (combineImagesArray?.length > 0) {
+      combineImagesArray.push(...singleFileButArrayForEdit);
+    }
 
 
 
-    alert(
-      'orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDSentToEditOrder+'\n'+
-      
-      'Quantity which is being sent to Edit Order Second Screen is:'+qtyReceivedFromOrderScreen  
-    );
+
+
+    if (combineImagesArray?.length > 0) {
+      alert('Length of combineImagesArray Captured Using Camera is:' + combineImagesArray.length);
+    }
+ */
+    //console.log('Information: '+collectionOfAllImagesToSendToSecondEditScreen);
+
+    /* uploadImage(orderIDGot);*/
+    /* 
+    Now while uploading our new selected images from our Gallery and Camera, remember that we do not have to send our itemImage which we have fetched from our Server while fetching full Order list data, because , the API of our JewelCart EditOrder require only new Images which we want to add in our Server data, and when we will call API to Edit our Order list data, then the API will take only new images which we want to add to our already present images in Server and the API will just add our new Images to our Old previously present image in Server, Note that the Edit order API will not replace our Old image of that Order with our New images selected using Camera or Gallery, it will just add new image with old images.
+     */
+
+    /* alert('orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDGotWhileCallingGoToEditOrderSecondPage); */
 
 
 
-     navigation.navigate('EditOrderScreenSecond', {
+    /* alert(
+      'orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:' + orderIDSentToEditOrder + '\n' +
+
+      'Quantity which is being sent to Edit Order Second Screen is:' + qtyReceivedFromOrderScreen
+    ); */
+
+
+
+    navigation.navigate('EditOrderScreenSecond', {
       accessTokenSentToEditOrderSecond: accessTokenSentToEditOrder,
-      orderIDSentToEditOrderSecond:orderIDSentToEditOrder,
+      orderIDSentToEditOrderSecond: orderIDSentToEditOrder,
       //orderIDSentToEditOrderSecond:orderIDGot,        
 
-      
 
 
-      combineImagesFromGalleryAndCamera:combineImagesArray,
-       itemImageSentToEditOrderSecond: itemImage,
+
+      //combineImagesFromGalleryAndCamera:combineImagesArray,
+      combineImagesFromGalleryAndCamera: imageList,
+      itemImageSentToEditOrderSecond: itemImage,
+
+
+
       itemNameSentToEditOrderSecond: itemNameReceivedFromOrderScreen,
 
-      colorIDSentToEditOrderSecond:colorIDSentToEditOrder,
-    colorNameSentToEditOrderSecond:colorNameSentToEditOrder,
+      colorIDSentToEditOrderSecond: colorIDSentToEditOrder,
+      colorNameSentToEditOrderSecond: colorNameSentToEditOrder,
 
-    carretIDSentToEditOrderSecond:carretIDSentToEditOrder,    
-    carretNameSentToEditOrderSecond:carretNameSentToEditOrder,   
+      carretIDSentToEditOrderSecond: carretIDSentToEditOrder,
+      carretNameSentToEditOrderSecond: carretNameSentToEditOrder,
 
 
-      qtySentToEditOrderSecond:qtyReceivedFromOrderScreen,
-      sizeSentToEditOrderSecond:sizeReceivedFromOrderScreen,
-      deliveryDateSentToEditOrderSecond:deliveryDateReceivedFromOrderScreen,
-      hallmarkSentToEditOrderSecond:hallmarkReceivedFromOrderScreen,
-      prioritySentToEditOrderSecond:priorityReceivedFromOrderScreen,
-      narrationSentToEditOrderSecond:narrationReceivedFromOrderScreen,
-      
-      
-     
-      
-      customerIDSentToEditOrderSecond:selectedCustomerIDFromList,
-      supplierIDSentToEditOrderSecond:selectedSupplierIDFromList,
-      categoryIDSentToEditOrderSecond:selectedCategoryIDFromList,
-      orderDateSentToEditOrderSecond:orderDateReveivedFromOrderScreen,
-      orderForSentToEditOrderSecond:selectedOrderForValue,
-      typeOfOrderSentToEditOrderSecond:selectedTypeOfOrderValue,
+      qtySentToEditOrderSecond: qtyReceivedFromOrderScreen,
+      sizeSentToEditOrderSecond: sizeReceivedFromOrderScreen,
+      deliveryDateSentToEditOrderSecond: deliveryDateReceivedFromOrderScreen,
+      hallmarkSentToEditOrderSecond: hallmarkReceivedFromOrderScreen,
+      prioritySentToEditOrderSecond: priorityReceivedFromOrderScreen,
+      narrationSentToEditOrderSecond: narrationReceivedFromOrderScreen,
+
+
+
+
+      customerIDSentToEditOrderSecond: selectedCustomerIDFromList,
+      supplierIDSentToEditOrderSecond: selectedSupplierIDFromList,
+      categoryIDSentToEditOrderSecond: selectedCategoryIDFromList,
+      orderDateSentToEditOrderSecond: orderDateReveivedFromOrderScreen,
+      orderForSentToEditOrderSecond: selectedOrderForValue,
+      typeOfOrderSentToEditOrderSecond: selectedTypeOfOrderValue,
       //fullArrayOfImagesSentToEditOrderSecond:arrayOfImages,
-      fullArrayOfImagesSentToEditOrderSecond:singleFileTwo,
+      fullArrayOfImagesSentToEditOrderSecond: singleFileTwo,
       //singleFileButArrayForEditKey:singleFileButArrayForEdit,
 
 
       //The image we have to send using props because when we are saving the image got from Order screen inside any useState variable using useEffect then also when we move from second Edit order screen to first edit order screen then image is not comming and it remains blank, so we have to do props drilling for image, and as we have to use our accessToken in second Edit order screen also, so we have to send our accessToken using props, so we have to do props drilling of two things i.e. accessToken and image received from Order screen, but rest of things like .... we can save inside an useState variable using useEffect so that when we come back from second Edit order page to first Edit order page then that value is not seen blank in UI and it get filled using useEffect.
-    }); 
+    });
 
 
-setShowSelectedImagesFlatList(false);
-combineImagesArray = [];    
-singleFileButArrayForEdit=[];  
+    setShowSelectedImagesFlatList(false);
+    combineImagesArray = [];
+    singleFileButArrayForEdit = [];
 
 
-  }; 
+  };
 
- 
- 
- 
+
+
+
 
 
 
@@ -576,7 +574,7 @@ singleFileButArrayForEdit=[];
 
 
 
- 
+
 
   const gotoEditOrderSecondPageWithPlatinum = () => {
     //uploadImage(orderIDGot);
@@ -586,104 +584,103 @@ singleFileButArrayForEdit=[];
     
     alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCamera?.length+'\n'+
       'Length of Images from Gallery Directly is:'+singleFileButArrayForEdit?.length
-      ) */   
+      ) */
 
-      if(arrayOfimagesCapturedUsingCamera?.length>0)
-      {
-        combineImagesArray.push(...arrayOfimagesCapturedUsingCamera);
-      }
+    if (arrayOfimagesCapturedUsingCamera?.length > 0) {
+      combineImagesArray.push(...arrayOfimagesCapturedUsingCamera);
+    }
 
 
-      if(singleFileButArrayForEdit?.length>0)
-      {
+    if (singleFileButArrayForEdit?.length > 0) {
       combineImagesArray.push(...singleFileButArrayForEdit);
-      }
+    }
 
+
+
+
+
+    /*This is useful 
     
-      
-      
-      
-      /*This is useful 
-      
-      
-      
-      if(combineImagesArray?.length>0)
-      {
-       alert('Length of combineImagesArray Captured Using Camera is:'+combineImagesArray.length);  
-      } */
+    
+    
+    if(combineImagesArray?.length>0)
+    {
+     alert('Length of combineImagesArray Captured Using Camera is:'+combineImagesArray.length);  
+    } */
 
-//console.log('Information: '+collectionOfAllImagesToSendToSecondEditScreen);
+    //console.log('Information: '+collectionOfAllImagesToSendToSecondEditScreen);
 
-      /* uploadImage(orderIDGot);*/
-      /* 
-      Now while uploading our new selected images from our Gallery and Camera, remember that we do not have to send our itemImage which we have fetched from our Server while fetching full Order list data, because , the API of our JewelCart EditOrder require only new Images which we want to add in our Server data, and when we will call API to Edit our Order list data, then the API will take only new images which we want to add to our already present images in Server and the API will just add our new Images to our Old previously present image in Server, Note that the Edit order API will not replace our Old image of that Order with our New images selected using Camera or Gallery, it will just add new image with old images.
-       */
-     
-     /* This is useful
-     
-     
-     alert('orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDGotWhileCallingGoToEditOrderSecondPage); */
+    /* uploadImage(orderIDGot);*/
+    /* 
+    Now while uploading our new selected images from our Gallery and Camera, remember that we do not have to send our itemImage which we have fetched from our Server while fetching full Order list data, because , the API of our JewelCart EditOrder require only new Images which we want to add in our Server data, and when we will call API to Edit our Order list data, then the API will take only new images which we want to add to our already present images in Server and the API will just add our new Images to our Old previously present image in Server, Note that the Edit order API will not replace our Old image of that Order with our New images selected using Camera or Gallery, it will just add new image with old images.
+     */
+
+    /* This is useful
+    
+    
+    alert('orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDGotWhileCallingGoToEditOrderSecondPage); */
 
 
 
     //alert('orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDSentToEditOrder);
 
 
-     alert(   
-      'orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:'+orderIDSentToEditOrder+'\n'+
-      
-      'Category ID which is being sent to Edit Order Second Screen is:'+selectedCategoryIDFromList  
-    );
+    /* alert(
+      'orderIDSentToEditOrder which is being sent to EditOrderScreenSecond is:' + orderIDSentToEditOrder + '\n' +
+
+      'Category ID which is being sent to Edit Order Second Screen is:' + selectedCategoryIDFromList
+    ); */
 
 
 
     navigation.navigate('PlatinumEditOrderTwo', {
-    accessTokenSentToPlatinumEditOrderScreen:accessTokenSentToEditOrder,
-    itemImageSentToEditOrderSecond:itemImage,
-    orderIDSentToPlatinumEditOrderTwo:orderIDSentToEditOrder,
-    combineImagesFromGalleryAndCamera:combineImagesArray,
-    customerIDSentToPlatinumEditOrderTwo:selectedCustomerIDFromList,
-    supplierIDSentToPlatinumEditOrderTwo:selectedSupplierIDFromList,
-    categoryIDSentToPlatinumEditOrderTwo:selectedCategoryIDFromList,
-    orderDateSentToPlatinumEditOrderTwo:orderDateReveivedFromOrderScreen,
-    orderForSentToPlatinumEditOrderTwo:selectedOrderForValue,
-    typeOfOrderSentToPlatinumEditOrderTwo:selectedTypeOfOrderValue,
-    fullArrayOfImagesSentToPlatinumEditOrderTwo:arrayOfImages,
-    partydiamondSentToPlatinumEditOrderTwo:partydiamondReceivedFromOrderScreen,
-    partystoneSentToPlatinumEditOrderTwo:partystoneReceivedFromOrderScreen,
+      accessTokenSentToPlatinumEditOrderScreen: accessTokenSentToEditOrder,
+      itemImageSentToEditOrderSecond: itemImage,
+      orderIDSentToPlatinumEditOrderTwo: orderIDSentToEditOrder,
+      //combineImagesFromGalleryAndCamera:combineImagesArray,
+      combineImagesFromGalleryAndCamera: imageList,
+      customerIDSentToPlatinumEditOrderTwo: selectedCustomerIDFromList,
+      supplierIDSentToPlatinumEditOrderTwo: selectedSupplierIDFromList,
+      categoryIDSentToPlatinumEditOrderTwo: selectedCategoryIDFromList,
+      orderDateSentToPlatinumEditOrderTwo: orderDateReveivedFromOrderScreen,
+      orderForSentToPlatinumEditOrderTwo: selectedOrderForValue,
+      typeOfOrderSentToPlatinumEditOrderTwo: selectedTypeOfOrderValue,
+      fullArrayOfImagesSentToPlatinumEditOrderTwo: arrayOfImages,
+      partydiamondSentToPlatinumEditOrderTwo: partydiamondReceivedFromOrderScreen,
+      partystoneSentToPlatinumEditOrderTwo: partystoneReceivedFromOrderScreen,
 
 
-    itemNameSentToPlatinumEditOrderTwo:itemNameReceivedFromOrderScreen,
+      itemNameSentToPlatinumEditOrderTwo: itemNameReceivedFromOrderScreen,
 
 
 
-   /*  colorIDSentToPlatinumEditOrderTwo:colorIDFromOrderScreen,
-    colorNameSentToPlatinumEditOrderTwo:colorNameFromOrderScreen,
+      /*  colorIDSentToPlatinumEditOrderTwo:colorIDFromOrderScreen,
+       colorNameSentToPlatinumEditOrderTwo:colorNameFromOrderScreen,
+   
+       carretIDSentToPlatinumEditOrderTwo:carretIDFromOrderScreen,
+       carretNameSentToPlatinumEditOrderTwo:carretNameFromOrderScreen, */
 
-    carretIDSentToPlatinumEditOrderTwo:carretIDFromOrderScreen,
-    carretNameSentToPlatinumEditOrderTwo:carretNameFromOrderScreen, */
 
 
-    
-    qtySentToPlatinumEditOrderTwo:qtyReceivedFromOrderScreen,
-    sizeSentToPlatinumEditOrderTwo:sizeReceivedFromOrderScreen,
-    narrationSentToPlatinumEditOrderTwo:narrationReceivedFromOrderScreen,
-    deliveryDateSentToPlatinumEditOrderTwo:deliveryDateReceivedFromOrderScreen,
-    prioritySentToPlatinumEditOrderTwo:priorityReceivedFromOrderScreen,
-    designNoSentToPlatinumEditOrderTwo:designNoReceivedFromOrderScreen,
-    broadnessSentToPlatinumEditOrderTwo:broadnessReceivedFromOrderScreen,
-    diamondweightSentToPlatinumEditOrderTwo:diamondweightReceivedFromOrderScreen,
-    diamondqualitySentToPlatinumEditOrderTwo:diamondqualityReceivedFromOrderScreen,
-    diamondpcsSentToPlatinumEditOrderTwo:diamondpcsReceivedFromOrderScreen,
-    //partydiamondSentToPlatinumEditOrderTwo:partydiamondReceivedFromOrderScreen,
-    stoneweightSentToPlatinumEditOrderTwo:stoneweightReceivedFromOrderScreen,
-    stonequalitySentToPlatinumEditOrderTwo:stonequalityReceivedFromOrderScreen,
-    stonepcsSentToPlatinumEditOrderTwo:stonepcsReceivedFromOrderScreen,
-    //partystoneSentToPlatinumEditOrderTwo:partystoneReceivedFromOrderScreen,
-    ptpolishSentToPlatinumEditOrderTwo:ptpolishReceivedFromOrderScreen,
-    kt18polishSentToPlatinumEditOrderTwo:kt18polishReceivedFromOrderScreen,
-    engravingdetailsSentToPlatinumEditOrderTwo:engravingdetailsReceivedFromOrderScreen,
-    //orderforSentToPlatinumEditOrderTwo:orderforFromOrderScreenReceivedFromOrderScreen,
+      qtySentToPlatinumEditOrderTwo: qtyReceivedFromOrderScreen,
+      sizeSentToPlatinumEditOrderTwo: sizeReceivedFromOrderScreen,
+      narrationSentToPlatinumEditOrderTwo: narrationReceivedFromOrderScreen,
+      deliveryDateSentToPlatinumEditOrderTwo: deliveryDateReceivedFromOrderScreen,
+      prioritySentToPlatinumEditOrderTwo: priorityReceivedFromOrderScreen,
+      designNoSentToPlatinumEditOrderTwo: designNoReceivedFromOrderScreen,
+      broadnessSentToPlatinumEditOrderTwo: broadnessReceivedFromOrderScreen,
+      diamondweightSentToPlatinumEditOrderTwo: diamondweightReceivedFromOrderScreen,
+      diamondqualitySentToPlatinumEditOrderTwo: diamondqualityReceivedFromOrderScreen,
+      diamondpcsSentToPlatinumEditOrderTwo: diamondpcsReceivedFromOrderScreen,
+      //partydiamondSentToPlatinumEditOrderTwo:partydiamondReceivedFromOrderScreen,
+      stoneweightSentToPlatinumEditOrderTwo: stoneweightReceivedFromOrderScreen,
+      stonequalitySentToPlatinumEditOrderTwo: stonequalityReceivedFromOrderScreen,
+      stonepcsSentToPlatinumEditOrderTwo: stonepcsReceivedFromOrderScreen,
+      //partystoneSentToPlatinumEditOrderTwo:partystoneReceivedFromOrderScreen,
+      ptpolishSentToPlatinumEditOrderTwo: ptpolishReceivedFromOrderScreen,
+      kt18polishSentToPlatinumEditOrderTwo: kt18polishReceivedFromOrderScreen,
+      engravingdetailsSentToPlatinumEditOrderTwo: engravingdetailsReceivedFromOrderScreen,
+      //orderforSentToPlatinumEditOrderTwo:orderforFromOrderScreenReceivedFromOrderScreen,
 
 
 
@@ -691,18 +688,18 @@ singleFileButArrayForEdit=[];
 
 
     setShowSelectedImagesFlatList(false);
-    singleFileButArrayForEdit = [];       
+    singleFileButArrayForEdit = [];
   };
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
   /* if (hasGalleryPermission === false) {
     return <Text>No Access To Internal Storage</Text>;
   }*/
@@ -711,102 +708,102 @@ singleFileButArrayForEdit=[];
     navigation.navigate('Order', {
       accessTokenSentToOrderScreen: accessTokenSentToEditOrder,
     });
-    singleFileButArrayForEdit=[];
+    singleFileButArrayForEdit = [];
     //arrayOfimagesCapturedUsingCamera=[];
 
-  }; 
+  };
 
 
-  
 
-const uploadImage = async (orderIDToEdit) => {
-    
-alert('Order ID is:'+orderIDToEdit);
-    
-    
+
+  const uploadImage = async (orderIDToEdit) => {
+
+    //alert('Order ID is:' + orderIDToEdit);
+
+
     // Check if any file is selected or not
-    
-     // alert('Single file is not null');
-      // If file selected then create FormData
-      const data = new FormData();
 
-      for (let i = 0; i < images.length; i++) {
-        alert(
-          'For Image number:' +
-            i +
-            '\n' +
-            'File uri is:' +
-            images[i].path +
-            '\n' +
-            'File Name is:' +
-            images[i].path +
-            '\n' +
-            'File mimeType is:' +
-            images[i].type,
-        );
-        data.append(
-          'image_file[]',
-  
-          {
-            uri: images[i].path,
-            type: images[i].type,
-            name: images[i].path,
-          },
-        );
-      }
-  
-      
-      /* for(i=0;i<singleFileButArrayForEdit.length;i++){
-            
+    // alert('Single file is not null');
+    // If file selected then create FormData
+    const data = new FormData();
 
-
-      data.append('image_file[]',
+    for (let i = 0; i < images.length; i++) {
+      /* alert(
+        'For Image number:' +
+        i +
+        '\n' +
+        'File uri is:' +
+        images[i].path +
+        '\n' +
+        'File Name is:' +
+        images[i].path +
+        '\n' +
+        'File mimeType is:' +
+        images[i].type,
+      ); */
+      data.append(
+        'image_file[]',
 
         {
-        uri: singleFileButArrayForEdit[i].uri,
-        name: singleFileButArrayForEdit[i].name,
-        type: singleFileButArrayForEdit[i].mimeType,
-      }
-       );     
-      } */
+          uri: images[i].path,
+          type: images[i].type,
+          name: images[i].path,
+        },
+      );
+    }
 
 
-      
-      
+    /* for(i=0;i<singleFileButArrayForEdit.length;i++){
+          
+
+
+    data.append('image_file[]',
+
+      {
+      uri: singleFileButArrayForEdit[i].uri,
+      name: singleFileButArrayForEdit[i].name,
+      type: singleFileButArrayForEdit[i].mimeType,
+    }
+     );     
+    } */
 
 
 
-      data.append('order_id',orderIDToEdit);        
-      
 
-      //if(callEditOrderAPIToUploadImage=='NOW'){
-      try {
-        let res = await fetch('https://rajeshwersoftsolution.com/jwelcart/api/edit_order', {
-          method: 'post',
-          body: data,
-          headers: {
-             Authorization: 'Bearer ' +accessTokenSentToEditOrder,
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-          timeout: 5000,
-        });
 
-        let result = await res.json();
-        console.log('result', result);
-        alert('Info after Uploading Image:'+result.message); 
-        
-      } catch (error) {
-        
-        console.log('error upload', error);
-      }
 
-      /* }else{
-        alert('callEditOrderAPIToUploadImage useState variable is on WAIT');
-      } */
-         
-    
-    
+
+    data.append('order_id', orderIDToEdit);
+
+
+    //if(callEditOrderAPIToUploadImage=='NOW'){
+    try {
+      let res = await fetch('https://rajeshwersoftsolution.com/jwelcart/api/edit_order', {
+        method: 'post',
+        body: data,
+        headers: {
+          Authorization: 'Bearer ' + accessTokenSentToEditOrder,
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+        timeout: 5000,
+      });
+
+      let result = await res.json();
+      console.log('result', result);
+      //alert('Info after Uploading Image:' + result.message);
+
+    } catch (error) {
+
+      console.log('error upload', error);
+    }
+
+    /* }else{
+      alert('callEditOrderAPIToUploadImage useState variable is on WAIT');
+    } */
+
+
+
   };
 
 
@@ -846,7 +843,6 @@ alert('Order ID is:'+orderIDToEdit);
 
 
 
-    
 
 
 
@@ -875,21 +871,17 @@ alert('Order ID is:'+orderIDToEdit);
 
 
 
-const getEditOrderImagesData = () =>
-  {
-    try
-    {
-      AsyncStorage.getItem('imagesForEditOrderScreen').then((value) =>
-      {
-        if (value != null)
-        {
+
+  const getEditOrderImagesData = () => {
+    try {
+      AsyncStorage.getItem('imagesForEditOrderScreen').then((value) => {
+        if (value != null) {
           let user = JSON.parse(value);
           setPreviousImages(user.GalleryImages);
           setPreviousImage(user.CameraImage);
         }
       });
-    } catch (error)
-    {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -897,93 +889,93 @@ const getEditOrderImagesData = () =>
 
 
 
-const openFullScreenCamera=()=>{
+  const openFullScreenCamera = () => {
 
 
-  setopenFullScreenCameraTrueOrFalse(true);
-/* navigation.navigate('CameraFullScreen', {
-      accessTokenSentToCameraFullScreen: accessTokenSentToEditOrder,
-      itemImageSentToCameraFullScreen: itemImage,
-      orderIDSentToCameraFullScreen:orderIDSentToEditOrder,
+    setopenFullScreenCameraTrueOrFalse(true);
+    /* navigation.navigate('CameraFullScreen', {
+          accessTokenSentToCameraFullScreen: accessTokenSentToEditOrder,
+          itemImageSentToCameraFullScreen: itemImage,
+          orderIDSentToCameraFullScreen:orderIDSentToEditOrder,
+    
+          orderDateSentToCameraFullScreen:orderDateSentFromOrderScreen,
+        nameSentToCameraFullScreen:nameToBeEditedForEditOrder,
+        categorynameSentToCameraFullScreen:categorynameReceivedFromOrderScreen,
+        typeOfOrderSentToCameraFullScreen:typeOfOrderFromOrderScreen,
+    
+         customerIDSentToCameraFullScreen:customerIDSentToEditOrder,
+        supplierIDSentToCameraFullScreen:supplierIDSentToEditOrder,
+        categoryIDSentToCameraFullScreen:categoryIDSentToEditOrder,
+    
+    
+    
+        itemNameSentToCameraFullScreen:itemNameReceivedFromOrderScreen,
+        qtySentToCameraFullScreen:qtyReceivedFromOrderScreen,
+        sizeSentToCameraFullScreen:sizeReceivedFromOrderScreen,
+        narrationSentToCameraFullScreen:narrationReceivedFromOrderScreen,
+        deliveryDateSentToCameraFullScreen:deliveryDateReceivedFromOrderScreen,
+        prioritySentToCameraFullScreen:priorityReceivedFromOrderScreen,
+        designNoSentToCameraFullScreen:designNoReceivedFromOrderScreen,
+        broadnessSentToCameraFullScreen:broadnessReceivedFromOrderScreen,
+        diamondweightSentToCameraFullScreen:diamondweightReceivedFromOrderScreen,
+        diamondqualitySentToCameraFullScreen:diamondqualityReceivedFromOrderScreen,
+        diamondpcsSentToCameraFullScreen:diamondpcsReceivedFromOrderScreen,
+        partydiamondSentToCameraFullScreen:partydiamondReceivedFromOrderScreen,
+        stoneweightSentToCameraFullScreen:stoneweightReceivedFromOrderScreen,
+        stonequalitySentToCameraFullScreen:stonequalityReceivedFromOrderScreen,
+        stonepcsSentToCameraFullScreen:stonepcsReceivedFromOrderScreen,
+        partystoneSentToCameraFullScreen:partystoneReceivedFromOrderScreen,
+        ptpolishSentToCameraFullScreen:ptpolishReceivedFromOrderScreen,
+        kt18polishSentToCameraFullScreen:kt18polishReceivedFromOrderScreen,
+        engravingdetailsSentToCameraFullScreen:engravingdetailsReceivedFromOrderScreen,
+        orderforSentToCameraFullScreen:orderforFromOrderScreenReceivedFromOrderScreen,
+        suppliernameSentToCameraFullScreen:suppliernameReceivedFromOrderScreen,
+        hallmarkSentToCameraFullScreen:hallmarkReceivedFromOrderScreen,
+        arrayOfimagesSentToCameraFullScreen:arrayOfimagesCapturedUsingCamera,
+        }); */
+    /* 
+    
+        orderDateSentFromOrderScreen,
+        nameToBeEditedForEditOrder,
+        categorynameReceivedFromOrderScreen,
+        typeOfOrderFromOrderScreen,
+    
+         customerIDSentToEditOrder,
+        supplierIDSentToEditOrder,
+        categoryIDSentToEditOrder,
+    
+    
+    
+        itemNameReceivedFromOrderScreen,
+        qtyReceivedFromOrderScreen,
+        sizeReceivedFromOrderScreen,
+        narrationReceivedFromOrderScreen,
+        deliveryDateReceivedFromOrderScreen,
+        priorityReceivedFromOrderScreen,
+        designNoReceivedFromOrderScreen,
+        broadnessReceivedFromOrderScreen,
+        diamondweightReceivedFromOrderScreen,
+        diamondqualityReceivedFromOrderScreen,
+        diamondpcsReceivedFromOrderScreen,
+        partydiamondReceivedFromOrderScreen,
+        stoneweightReceivedFromOrderScreen,
+        stonequalityReceivedFromOrderScreen,
+        stonepcsReceivedFromOrderScreen,
+        partystoneReceivedFromOrderScreen,
+        ptpolishReceivedFromOrderScreen,
+        kt18polishReceivedFromOrderScreen,
+        engravingdetailsReceivedFromOrderScreen,
+        orderforFromOrderScreenReceivedFromOrderScreen,
+        suppliernameReceivedFromOrderScreen,
+        hallmarkReceivedFromOrderScreen,
+        arrayOfimagesCapturedUsingCamera,
+    
+     */
 
-      orderDateSentToCameraFullScreen:orderDateSentFromOrderScreen,
-    nameSentToCameraFullScreen:nameToBeEditedForEditOrder,
-    categorynameSentToCameraFullScreen:categorynameReceivedFromOrderScreen,
-    typeOfOrderSentToCameraFullScreen:typeOfOrderFromOrderScreen,
-
-     customerIDSentToCameraFullScreen:customerIDSentToEditOrder,
-    supplierIDSentToCameraFullScreen:supplierIDSentToEditOrder,
-    categoryIDSentToCameraFullScreen:categoryIDSentToEditOrder,
 
 
 
-    itemNameSentToCameraFullScreen:itemNameReceivedFromOrderScreen,
-    qtySentToCameraFullScreen:qtyReceivedFromOrderScreen,
-    sizeSentToCameraFullScreen:sizeReceivedFromOrderScreen,
-    narrationSentToCameraFullScreen:narrationReceivedFromOrderScreen,
-    deliveryDateSentToCameraFullScreen:deliveryDateReceivedFromOrderScreen,
-    prioritySentToCameraFullScreen:priorityReceivedFromOrderScreen,
-    designNoSentToCameraFullScreen:designNoReceivedFromOrderScreen,
-    broadnessSentToCameraFullScreen:broadnessReceivedFromOrderScreen,
-    diamondweightSentToCameraFullScreen:diamondweightReceivedFromOrderScreen,
-    diamondqualitySentToCameraFullScreen:diamondqualityReceivedFromOrderScreen,
-    diamondpcsSentToCameraFullScreen:diamondpcsReceivedFromOrderScreen,
-    partydiamondSentToCameraFullScreen:partydiamondReceivedFromOrderScreen,
-    stoneweightSentToCameraFullScreen:stoneweightReceivedFromOrderScreen,
-    stonequalitySentToCameraFullScreen:stonequalityReceivedFromOrderScreen,
-    stonepcsSentToCameraFullScreen:stonepcsReceivedFromOrderScreen,
-    partystoneSentToCameraFullScreen:partystoneReceivedFromOrderScreen,
-    ptpolishSentToCameraFullScreen:ptpolishReceivedFromOrderScreen,
-    kt18polishSentToCameraFullScreen:kt18polishReceivedFromOrderScreen,
-    engravingdetailsSentToCameraFullScreen:engravingdetailsReceivedFromOrderScreen,
-    orderforSentToCameraFullScreen:orderforFromOrderScreenReceivedFromOrderScreen,
-    suppliernameSentToCameraFullScreen:suppliernameReceivedFromOrderScreen,
-    hallmarkSentToCameraFullScreen:hallmarkReceivedFromOrderScreen,
-    arrayOfimagesSentToCameraFullScreen:arrayOfimagesCapturedUsingCamera,
-    }); */
-/* 
-
-    orderDateSentFromOrderScreen,
-    nameToBeEditedForEditOrder,
-    categorynameReceivedFromOrderScreen,
-    typeOfOrderFromOrderScreen,
-
-     customerIDSentToEditOrder,
-    supplierIDSentToEditOrder,
-    categoryIDSentToEditOrder,
-
-
-
-    itemNameReceivedFromOrderScreen,
-    qtyReceivedFromOrderScreen,
-    sizeReceivedFromOrderScreen,
-    narrationReceivedFromOrderScreen,
-    deliveryDateReceivedFromOrderScreen,
-    priorityReceivedFromOrderScreen,
-    designNoReceivedFromOrderScreen,
-    broadnessReceivedFromOrderScreen,
-    diamondweightReceivedFromOrderScreen,
-    diamondqualityReceivedFromOrderScreen,
-    diamondpcsReceivedFromOrderScreen,
-    partydiamondReceivedFromOrderScreen,
-    stoneweightReceivedFromOrderScreen,
-    stonequalityReceivedFromOrderScreen,
-    stonepcsReceivedFromOrderScreen,
-    partystoneReceivedFromOrderScreen,
-    ptpolishReceivedFromOrderScreen,
-    kt18polishReceivedFromOrderScreen,
-    engravingdetailsReceivedFromOrderScreen,
-    orderforFromOrderScreenReceivedFromOrderScreen,
-    suppliernameReceivedFromOrderScreen,
-    hallmarkReceivedFromOrderScreen,
-    arrayOfimagesCapturedUsingCamera,
-
- */
-
-
-
-  
-}
+  }
 
 
 
@@ -1013,39 +1005,39 @@ const openFullScreenCamera=()=>{
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
-    {openFullScreenCameraTrueOrFalse==true?
-                  (
-                  <>
-                  <View style={{width:width,height:height+responsiveHeight(5)}}>
-                  <CameraFullScreen
-                  singleFileButArrayProps={singleFileButArrayForEdit}
-                  openFullScreenCameraTrueOrFalseProps={setopenFullScreenCameraTrueOrFalse}
+      {openFullScreenCameraTrueOrFalse == true ?
+        (
+          <>
+            <View style={{ width: width, height: height + responsiveHeight(5) }}>
+              <CameraFullScreen
+                singleFileButArrayProps={singleFileButArrayForEdit}
+                openFullScreenCameraTrueOrFalseProps={setopenFullScreenCameraTrueOrFalse}
 
-                  />
-                  </View>   
-                  </>
-                  ):
-                  null
-                  }   
+              />
+            </View>
+          </>
+        ) :
+        null
+      }
 
 
 
-                  
+
       <StatusBar backgroundColor="#283E65" barStyle={'light-content'} />
       {/* <AllUITogether show="ImageBackgroundWhichContainsChildren"></AllUITogether> */}
-        <ImageBackground
-          source={ require('../images/background.png') }
-          resizeMode="cover"
-          style={ {
-           marginTop: responsiveHeight(-1),      
+      <ImageBackground
+        source={require('../images/background.png')}
+        resizeMode="cover"
+        style={{
+          marginTop: responsiveHeight(-1),
 
-            //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
-            //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
-            //expo snake
-            height: responsiveHeight(35),
+          //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
+          //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
+          //expo snake
+          height: responsiveHeight(35),
 
-            //marginBottom:responsiveHeight(-30),         
-          } }/>
+          //marginBottom:responsiveHeight(-30),         
+        }} />
 
       {/*View which will hold back arrow image and EDIT ORDER text starts here  */}
       <View
@@ -1083,21 +1075,21 @@ const openFullScreenCamera=()=>{
               boardWidthForIconinAntDesignBtn={0}
             />*/}
             <AllUITogether
-            show={'AntIconBtn'}
+              show={'AntIconBtn'}
               //dothisProps={gotoSupplierScreen}    
-            dothisProps={gotoOrderScreen}
-            iconDesignName={'left'}
-            colorForIconinAntDesignBtn={'gold'}
-            backgroundColorForIconinAntDesignBtn={'transparent'}
-            sizeForIconinAntDesignBtn={26}
-            boardRadiusForIconinAntDesignBtn={10}
-            widthForIconinAntDesignBtn={responsiveWidth(11)}
-            heightForIconinAntDesignBtn={responsiveHeight(6)}
-            marginLeftForIconinAntDesignBtn={responsiveWidth(5)}
-            marginTopForIconinAntDesignBtn={responsiveHeight(0)}   
-            boardColorForIconinAntDesignBtn={'transparent'}
-            boardWidthForIconinAntDesignBtn={responsiveWidth(0)}
-                />
+              dothisProps={gotoOrderScreen}
+              iconDesignName={'left'}
+              colorForIconinAntDesignBtn={'gold'}
+              backgroundColorForIconinAntDesignBtn={'transparent'}
+              sizeForIconinAntDesignBtn={26}
+              boardRadiusForIconinAntDesignBtn={10}
+              widthForIconinAntDesignBtn={responsiveWidth(11)}
+              heightForIconinAntDesignBtn={responsiveHeight(6)}
+              marginLeftForIconinAntDesignBtn={responsiveWidth(5)}
+              marginTopForIconinAntDesignBtn={responsiveHeight(0)}
+              boardColorForIconinAntDesignBtn={'transparent'}
+              boardWidthForIconinAntDesignBtn={responsiveWidth(0)}
+            />
           </View>
 
           <View
@@ -1157,20 +1149,24 @@ const openFullScreenCamera=()=>{
             bounces={false}>
             {/*Our UI in Card starts here  */}
 
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           {/*Add Images section starts here  */}
 
 
 
 
+
+
+
+
+
+            {/*Add Images section starts here  */}
+
+
+
+
+             
+           
+           
+           
            <AllUITogether
                     show={ "AddImages" }
                     textToShowProps={ singleFileButArrayForEdit?.length > 0 ? 'Add More'
@@ -1181,8 +1177,9 @@ const openFullScreenCamera=()=>{
                     //itemImageprops={ itemImage }
                     //imageProps={ images }
                     //setImageProps={ setImages }
-                    //openDocumentPickerprops={selectFile}
-                    openCameraFullScreenprops={openFullScreenCamera}
+                    openDocumentPickerprops={uploadORActuallyOpenGallery}
+                    //openCameraFullScreenprops={openFullScreenCamera}
+                    openCameraFullScreenprops={uploadORActuallyOpenGallery}
                     //imagePropsOnlyForCamera={ image }
                     //setImagePropsOnlyForCamera={ setImage }
                     
@@ -1201,11 +1198,14 @@ const openFullScreenCamera=()=>{
 
 
                   />
+ 
 
 
-                  <View style={{flexDirection:'row'}}>
+            
 
-                 {/*  <Image
+              <View style={{ flexDirection: 'row' }}>
+
+                {/*  <Image
                 source={ { uri:imageBaseAPI+itemImage } }
                 
                 style={ {
@@ -1218,62 +1218,64 @@ const openFullScreenCamera=()=>{
                 } }
               />     */}
 
-              <FlatList
-                data={itemImage}
-                horizontal
-                showsHorizontalScrollIndicator={ false }
-                renderItem={ ({ item, index }) => (
-                  <>
-          
-                   <Image
-                    source={ { uri:imageBaseAPI +item.image } }
-                   
-                    style={ {
-                      borderRadius: responsiveWidth(2),
-                      width: responsiveWidth(18),
-                      height: responsiveHeight(13),
-                      marginLeft: responsiveWidth(2),
-                      marginRight: responsiveWidth(2),
-                      marginBottom: responsiveHeight(1.9),
-                    } }
-                  />  
-                 </> 
-                )    
-                
-                 
-                
-                }
-                //numColumns={2}
-                keyExtractor={ (item) => item.uri }
-              //contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
-              />
+                <FlatList
+                  data={itemImage}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <>
 
+                      <Image
+                        source={{ uri: imageBaseAPI + item.image }}
 
-              <FlatList
-                data={singleFileButArrayForEdit}
-                horizontal
-                showsHorizontalScrollIndicator={ false }
-                renderItem={ ({ item, index }) => (
-                  <Image
-                    source={ { uri: singleFileButArrayForEdit[index].uri} }
-                    style={ {
-                      borderRadius: responsiveWidth(2),
-                      width: responsiveWidth(18),
-                      height: responsiveHeight(13),
-                      marginLeft: responsiveWidth(2),
-                      marginRight: responsiveWidth(2),
-                      marginBottom: responsiveHeight(1.9),
-                    } }
-                  />
-                ) }   
-                //numColumns={2}
-                keyExtractor={ (item) => item.uri }
-              //contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
-              />  
+                        style={{
+                          borderRadius: responsiveWidth(2),
+                          width: responsiveWidth(18),
+                          height: responsiveHeight(13),
+                          marginLeft: responsiveWidth(2),
+                          marginRight: responsiveWidth(2),
+                          marginBottom: responsiveHeight(1.9),
+                        }}
+                      />
+                    </>
+                  )
 
 
 
-                   { /* <FlatList
+                  }
+                  //numColumns={2}
+                  keyExtractor={(item) => item.uri}
+                //contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
+                />
+
+
+                <FlatList
+                  //data={singleFileButArrayForEdit}
+                  data={images}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <Image
+                      //source={ { uri: singleFileButArrayForEdit[index].uri} }
+                      source={{ uri: item.path }}
+                      style={{
+                        borderRadius: responsiveWidth(2),
+                        width: responsiveWidth(18),
+                        height: responsiveHeight(13),
+                        marginLeft: responsiveWidth(2),
+                        marginRight: responsiveWidth(2),
+                        marginBottom: responsiveHeight(1.9),
+                      }}
+                    />
+                  )}
+                  //numColumns={2}
+                  keyExtractor={(item) => item.uri}
+                //contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
+                />
+
+
+
+                { /* <FlatList
                 data={arrayOfimagesCapturedUsingCamera}
                 horizontal
                 showsHorizontalScrollIndicator={ false }
@@ -1293,14 +1295,14 @@ const openFullScreenCamera=()=>{
                 //numColumns={2}
                 keyExtractor={ (item) => item.uri }
               //contentContainerStyle={{ marginVertical: 50, paddingBottom: 100 }}
-              /> */}    
- 
+              /> */}
 
-              
-              </View>   
 
-            {/*Add Images section ends here  */}
-            {/* <View>
+
+              </View>
+
+              {/*Add Images section ends here  */}
+              {/* <View>
             <TouchableOpacity onPress={()=>setisCameraButtonClicked(true)}>    
 
             <Text>OPEN CAMERA</Text>     
@@ -1321,38 +1323,135 @@ const openFullScreenCamera=()=>{
 
 
 
-            </View> */}   
+            </View> */}
 
-            {/* Drop Down for Customer List starts here */}
+              {/* Drop Down for Customer List starts here */}
 
-            <View>
-              <Text style={styles.dropDownTopSideLabels}>Select Customer</Text>
+              <View>
+                <Text style={styles.dropDownTopSideLabels}>Select Customer</Text>
+
+                <AnimatedTextInputFile
+                  show={'AnimatedTextInputDDL'}
+                  ddlWidth={responsiveWidth(81)}
+                  heightOfDDLprops={responsiveHeight(7)}
+                  marginTopPropsForDDL={responsiveHeight(1)}
+                  widthForTextInDDLprops={responsiveWidth(81)}
+                  ddlTextmarginLeft={responsiveWidth(2)}
+                  ddlDownArrowIconmarginLeft={responsiveWidth(22)}
+                  //marginVerticalPropsForDDL={0.9}
+                  // marginTopPropsForDDL={1}
+                  ddlInsideTextFontSize={responsiveFontSize(2)}
+                  ddlInsideTextFontName={'raleway-light'}
+                  ddlBoarderColor={'#8e8e8e'}
+                  ddlboarderThickness={responsiveWidth(0.15)}
+                  ddlInsideTextFontColor={'#2D2D2D'}
+                  dropdownIconProps={require('../images/dropdowncurved.png')}
+                  //heightOfDDLprops={7}
+                  largeDropDownListTopLabel={'Customer'}
+                  itemIconPropslabel={require('../images/customer_whiteR.png')}
+                  tintColorForDDLIconLeft={'#283E65'}
+                  largeDropDownListOnPressCallThisAPI={'manage_customer'}
+                  actionprops={'search'}
+                  selectSetter={'ForCustomer'}
+                  //setterPathToFetchAPIResult={customer}
+                  modalToplabelProps={'Select Customer'}
+                  accessTokenprops={logedInPersonAccessToken}
+                  startprops={'0'}
+                  limitprops={'100000'}
+                  state_idprops={''}
+                  city_idprops={''}
+                  search_allprops={''}
+                  sortby_nameprops={'desc'}
+                  mobile_noprops={''}
+                  passwordprops={''}
+                  selectedCustomerFromListProps={selectedCustomerFromList}
+                  setselectedCustomerFromListProps={setselectedCustomerFromList}
+
+                  selectedCustomerIDFromListProps={selectedCustomerIDFromList}
+                  setselectedCustomerIDFromListProps={setselectedCustomerIDFromList}
+                />
+              </View>
+
+              {/* DropDown for Customer List Ends Here */}
+
+              {/* Drop Down for Supplier List starts here */}
+
+              <View>
+                <Text style={styles.dropDownTopSideLabels}>Select Supplier</Text>
+
+                <AnimatedTextInputFile
+                  show={'AnimatedTextInputDDL'}
+                  ddlWidth={responsiveWidth(81)}
+                  heightOfDDLprops={responsiveHeight(7)}
+                  marginTopPropsForDDL={responsiveHeight(1)}
+                  widthForTextInDDLprops={responsiveWidth(81)}
+                  ddlboarderThickness={responsiveWidth(0.15)}
+                  ddlTextmarginLeft={responsiveWidth(2)}
+                  //marginVerticalPropsForDDL={0.9}
+                  //marginTopPropsForDDL={1}
+                  ddlDownArrowIconmarginLeft={responsiveWidth(22)}
+                  dropdownIconProps={require('../images/dropdowncurved.png')}
+                  //heightOfDDLprops={7}
+                  ddlInsideTextFontSize={responsiveFontSize(2)}
+                  ddlInsideTextFontName={'raleway-light'}
+                  ddlBoarderColor={'#8e8e8e'}
+                  largeDropDownListTopLabel={'Supplier'}
+                  itemIconPropslabel={require('../images/supplier_whiteR.png')}
+                  tintColorForDDLIconLeft={'#283E65'}
+                  ddlInsideTextFontColor={'#2D2D2D'}
+                  accessTokenprops={logedInPersonAccessToken}
+                  modalToplabelProps={'Select Supplier'}
+                  selectSetter={'ForSupplier'}
+                  largeDropDownListOnPressCallThisAPI={'manage_supplier'}
+                  actionprops={'search'}
+                  startprops={'0'}
+                  limitprops={'100000'}
+                  state_idprops={''}
+                  city_idprops={''}
+                  search_allprops={''}
+                  sortby_nameprops={'desc'}
+                  mobile_noprops={'4343'}
+                  passwordprops={'34343'}
+                  selectedSupplierFromListProps={selectedSupplierFromList}
+                  setselectedSupplierFromListProps={setselectedSupplierFromList}
+
+                  selectedSupplierIDFromListProps={selectedSupplierIDFromList}
+                  setselectedSupplierIDFromListProps={setselectedSupplierIDFromList}
+                />
+              </View>
+
+              {/* DropDown for Supplier List Ends Here */}
+
+              {/* Drop Down for Select Category List starts here */}
+
+              <View>
+                <Text style={styles.dropDownTopSideLabels}>Select Category</Text>
+              </View>
 
               <AnimatedTextInputFile
                 show={'AnimatedTextInputDDL'}
                 ddlWidth={responsiveWidth(81)}
-                heightOfDDLprops={responsiveHeight(7)} 
-                        marginTopPropsForDDL={responsiveHeight(1)}    
-                        widthForTextInDDLprops={responsiveWidth(81)}
+                heightOfDDLprops={responsiveHeight(7)}
+                marginTopPropsForDDL={responsiveHeight(1)}
+                widthForTextInDDLprops={responsiveWidth(81)}
+                ddlboarderThickness={responsiveWidth(0.15)}
                 ddlTextmarginLeft={responsiveWidth(2)}
-                ddlDownArrowIconmarginLeft={responsiveWidth(22)}
                 //marginVerticalPropsForDDL={0.9}
-               // marginTopPropsForDDL={1}
+                //marginTopPropsForDDL={1}
+                ddlDownArrowIconmarginLeft={responsiveWidth(22)}
+                dropdownIconProps={require('../images/dropdowncurved.png')}
+                // heightOfDDLprops={7}
                 ddlInsideTextFontSize={responsiveFontSize(2)}
                 ddlInsideTextFontName={'raleway-light'}
                 ddlBoarderColor={'#8e8e8e'}
-                ddlboarderThickness={responsiveWidth(0.15)}
-                ddlInsideTextFontColor={'#2D2D2D'}
-                dropdownIconProps={require('../images/dropdowncurved.png')}
-                      //heightOfDDLprops={7}
-                largeDropDownListTopLabel={'Customer'}
-                itemIconPropslabel={require('../images/customer_whiteR.png')}
+                largeDropDownListTopLabel={'Category'}
+                itemIconPropslabel={require('../images/category.png')}
                 tintColorForDDLIconLeft={'#283E65'}
-                largeDropDownListOnPressCallThisAPI={'manage_customer'}
+                modalToplabelProps={'Select Category'}
+                ddlInsideTextFontColor={'#2D2D2D'}
+                largeDropDownListOnPressCallThisAPI={'category_list'}
                 actionprops={'search'}
-                selectSetter={'ForCustomer'}
-                //setterPathToFetchAPIResult={customer}
-                modalToplabelProps={'Select Customer'}
+                selectSetter={'ForCategory'}
                 accessTokenprops={logedInPersonAccessToken}
                 startprops={'0'}
                 limitprops={'100000'}
@@ -1362,255 +1461,158 @@ const openFullScreenCamera=()=>{
                 sortby_nameprops={'desc'}
                 mobile_noprops={''}
                 passwordprops={''}
-                selectedCustomerFromListProps={selectedCustomerFromList}
-                setselectedCustomerFromListProps={setselectedCustomerFromList}
+                selectedCategoryFromListProps={selectedCategoryFromList}
+                setselectedCategoryFromListProps={setselectedCategoryFromList}
 
-                selectedCustomerIDFromListProps={selectedCustomerIDFromList}
-                setselectedCustomerIDFromListProps={setselectedCustomerIDFromList}
+                selectedCategoryIDFromListProps={selectedCategoryIDFromList}
+                setselectedCategoryIDFromListProps={setselectedCategoryIDFromList}
               />
-            </View>
 
-            {/* DropDown for Customer List Ends Here */}
+              {/* DropDown for Select Category List Ends Here */}
 
-            {/* Drop Down for Supplier List starts here */}
+              {/* Code to include Order Date , date selector and Order for text and Client drop down in one row starts here */}
 
-            <View>
-              <Text style={styles.dropDownTopSideLabels}>Select Supplier</Text>
-
-              <AnimatedTextInputFile
-                show={'AnimatedTextInputDDL'}
-                ddlWidth={responsiveWidth(81)}
-                heightOfDDLprops={responsiveHeight(7)} 
-                        marginTopPropsForDDL={responsiveHeight(1)}    
-                        widthForTextInDDLprops={responsiveWidth(81)}
-                ddlboarderThickness={responsiveWidth(0.15)}
-                ddlTextmarginLeft={responsiveWidth(2)}
-                //marginVerticalPropsForDDL={0.9}
-                //marginTopPropsForDDL={1}
-                ddlDownArrowIconmarginLeft={responsiveWidth(22)}
-                dropdownIconProps={require('../images/dropdowncurved.png')}
-                      //heightOfDDLprops={7}
-                ddlInsideTextFontSize={responsiveFontSize(2)}
-                ddlInsideTextFontName={'raleway-light'}
-                ddlBoarderColor={'#8e8e8e'}
-                largeDropDownListTopLabel={'Supplier'}
-                itemIconPropslabel={require('../images/supplier_whiteR.png')}
-                tintColorForDDLIconLeft={'#283E65'}
-                ddlInsideTextFontColor={'#2D2D2D'}
-                accessTokenprops={logedInPersonAccessToken}
-                modalToplabelProps={'Select Supplier'}
-                selectSetter={'ForSupplier'}
-                largeDropDownListOnPressCallThisAPI={'manage_supplier'}
-                actionprops={'search'}
-                startprops={'0'}
-                limitprops={'100000'}
-                state_idprops={''}
-                city_idprops={''}
-                search_allprops={''}
-                sortby_nameprops={'desc'}
-                mobile_noprops={'4343'}
-                passwordprops={'34343'}
-                selectedSupplierFromListProps={selectedSupplierFromList}
-                setselectedSupplierFromListProps={setselectedSupplierFromList}
-
-                selectedSupplierIDFromListProps={selectedSupplierIDFromList}
-                setselectedSupplierIDFromListProps={setselectedSupplierIDFromList}
-              />
-            </View>
-
-            {/* DropDown for Supplier List Ends Here */}
-
-            {/* Drop Down for Select Category List starts here */}
-
-            <View>
-              <Text style={styles.dropDownTopSideLabels}>Select Category</Text>
-            </View>
-
-            <AnimatedTextInputFile
-              show={'AnimatedTextInputDDL'}
-              ddlWidth={responsiveWidth(81)}
-              heightOfDDLprops={responsiveHeight(7)} 
-                        marginTopPropsForDDL={responsiveHeight(1)}    
-                        widthForTextInDDLprops={responsiveWidth(81)}
-              ddlboarderThickness={responsiveWidth(0.15)}
-              ddlTextmarginLeft={responsiveWidth(2)}
-              //marginVerticalPropsForDDL={0.9}
-              //marginTopPropsForDDL={1}
-              ddlDownArrowIconmarginLeft={responsiveWidth(22)}
-              dropdownIconProps={require('../images/dropdowncurved.png')}
-                     // heightOfDDLprops={7}
-              ddlInsideTextFontSize={responsiveFontSize(2)}
-              ddlInsideTextFontName={'raleway-light'}
-              ddlBoarderColor={'#8e8e8e'}
-              largeDropDownListTopLabel={'Category'}
-              itemIconPropslabel={require('../images/category.png')}
-              tintColorForDDLIconLeft={'#283E65'}
-              modalToplabelProps={'Select Category'}
-              ddlInsideTextFontColor={'#2D2D2D'}
-              largeDropDownListOnPressCallThisAPI={'category_list'}
-              actionprops={'search'}
-              selectSetter={'ForCategory'}
-              accessTokenprops={logedInPersonAccessToken}
-              startprops={'0'}
-              limitprops={'100000'}
-              state_idprops={''}
-              city_idprops={''}
-              search_allprops={''}
-              sortby_nameprops={'desc'}
-              mobile_noprops={''}
-              passwordprops={''}
-              selectedCategoryFromListProps={selectedCategoryFromList}
-              setselectedCategoryFromListProps={setselectedCategoryFromList}
-
-              selectedCategoryIDFromListProps={selectedCategoryIDFromList}
-              setselectedCategoryIDFromListProps={setselectedCategoryIDFromList}
-            />
-
-            {/* DropDown for Select Category List Ends Here */}
-
-            {/* Code to include Order Date , date selector and Order for text and Client drop down in one row starts here */}
-
-            <View
-              style={{
-                flexDirection: 'row',
-                marginTop: responsiveHeight(0),
-              }}>
-              {/* Code to include Order Date , date selector starts here */}
-              <View>
-                <Text style={styles.dropDownTopSideLabels}>Order Date</Text>
-
-                <View style={styles.inputBtn}>
-                  <Text
-                    style={{
-                      fontSize: responsiveHeight(1.9),
-                      fontFamily: 'raleway-light',
-                      flex: 1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    {orderDateReveivedFromOrderScreen}
-                  </Text>
-                </View>
-              </View>
-              {/*  orderDateSentFromOrderScreen       Code to include Order Date , date selector ends here */}
-
-              {/* Code to include Order for text and Client drop down starts here */}
               <View
                 style={{
-                  //backgroundColor:'blue',
-                  marginLeft: responsiveWidth(2.5),
+                  flexDirection: 'row',
+                  marginTop: responsiveHeight(0),
                 }}>
-                {/* <Text style={styles.dropDownTopSideLabels}>Order For</Text> */}
-                <Text style={ styles.dropDownTopSideLabels }>
-                      Order For
-                      </Text>
+                {/* Code to include Order Date , date selector starts here */}
+                <View>
+                  <Text style={styles.dropDownTopSideLabels}>Order Date</Text>
+
+                  <View style={styles.inputBtn}>
+                    <Text
+                      style={{
+                        fontSize: responsiveHeight(1.9),
+                        fontFamily: 'raleway-light',
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      {orderDateReveivedFromOrderScreen}
+                    </Text>
+                  </View>
+                </View>
+                {/*  orderDateSentFromOrderScreen       Code to include Order Date , date selector ends here */}
+
+                {/* Code to include Order for text and Client drop down starts here */}
+                <View
+                  style={{
+                    //backgroundColor:'blue',
+                    marginLeft: responsiveWidth(2.5),
+                  }}>
+                  {/* <Text style={styles.dropDownTopSideLabels}>Order For</Text> */}
+                  <Text style={styles.dropDownTopSideLabels}>
+                    Order For
+                  </Text>
+                  <AllUITogether
+                    show={'ddLforlocalData'}
+                    fetchLocalDataDDLDownArrowMarginLeft={responsiveWidth(-18)}
+                    fetchLocalDataDDLWidth={responsiveWidth(38.5)}
+                    fetchLocalDataDDLTextmarginLeft={responsiveWidth(-8)}
+                    largeDropDownListTopLabel={'Order For'}
+                    itemIconPropslabel={null}
+                    itemNamePropslabel={'Normal'}
+                    fontForDDLTextInsideModal={'raleway-medium'}
+                    fontForDDLInsideText={'raleway-light'}
+                    dataForFlatListprops={data}
+                    setterMethodInDropDownTextArea={setselectedOrderForValue}
+                    valueForDropDownToShowInText={selectedOrderForValue}
+                    marginbetweenTopLabelandTouchableOpactiy={responsiveHeight(0.9)}
+                    largeDropDownModalMarginTopProps={responsiveHeight(81)}
+                    largeDropDownModalMarginLeftProps={responsiveWidth(48)}
+                    largeDropDownModalHeightProps={responsiveHeight(15)}
+                    largeDropDownModalWidthProps={responsiveWidth(48)}
+                    ddlForLocalDataIconHeightProps={23}
+                    ddlForLocalDataIconWidthProps={23}
+                    borderRadiusPropsForDDLModal={responsiveHeight(0)}
+                  />
+                </View>
+                {/* Code to include Order for text and Client drop down ends here */}
+              </View>
+
+              {/* Code to include Order Date , date selector and Order for text and Client drop down in one row ends here */}
+
+              {/* DropDown for Type of Order and its List starts here */}
+
+              <View>
+                <Text style={styles.dropDownTopSideLabels}>
+                  Type of Order
+                </Text>
                 <AllUITogether
                   show={'ddLforlocalData'}
-                  fetchLocalDataDDLDownArrowMarginLeft={responsiveWidth(-18)}
-                  fetchLocalDataDDLWidth={responsiveWidth(38.5)}
-                  fetchLocalDataDDLTextmarginLeft={responsiveWidth(-8)}
-                  largeDropDownListTopLabel={'Order For'}
-                  itemIconPropslabel={null}
-                  itemNamePropslabel={'Normal'}
+                  //largeDropDownListTopLabel={'Type of Order'}
+                  fetchLocalDataDDLDownArrowMarginLeft={responsiveWidth(22)}
+                  fetchLocalDataDDLWidth={responsiveWidth(81)}
+                  fetchLocalDataDDLTextmarginLeft={responsiveWidth(2)}
+                  itemIconPropslabel={require('../images/orderTypeBlue.png')}
+                  itemNamePropslabel={'Type of Order'}
                   fontForDDLTextInsideModal={'raleway-medium'}
                   fontForDDLInsideText={'raleway-light'}
-                  dataForFlatListprops={data}
-                  setterMethodInDropDownTextArea={setselectedOrderForValue}
-                  valueForDropDownToShowInText={selectedOrderForValue}
+                  dataForFlatListprops={dataForTypeOfOrder}
+                  setterMethodInDropDownTextArea={setSelectedTypeOfOrderValue}
+                  valueForDropDownToShowInText={selectedTypeOfOrderValue}
+                  //Next time when we use this Reusable component, give all the
+                  //required numberic parameter in props using
+                  //responssiveHeight and responsiveWidth.
                   marginbetweenTopLabelandTouchableOpactiy={responsiveHeight(0.9)}
-                  largeDropDownModalMarginTopProps={responsiveHeight(81)}
-                  largeDropDownModalMarginLeftProps={responsiveWidth(48)}
-                  largeDropDownModalHeightProps={responsiveHeight(15)}
-                  largeDropDownModalWidthProps={responsiveWidth(48)}
+                  largeDropDownModalMarginTopProps={560}
+                  largeDropDownModalMarginLeftProps={18}
+                  largeDropDownModalHeightProps={150}
+                  largeDropDownModalWidthProps={324}
                   ddlForLocalDataIconHeightProps={23}
-                  ddlForLocalDataIconWidthProps={23}
+                  ddlForLocalDataIconWidthProps={30}
                   borderRadiusPropsForDDLModal={responsiveHeight(0)}
                 />
               </View>
-              {/* Code to include Order for text and Client drop down ends here */}
-            </View>
 
-            {/* Code to include Order Date , date selector and Order for text and Client drop down in one row ends here */}
+              {/* DropDown for Type of Order and its List Ends Here */}
+              <View
+                style={{
+                  marginLeft: responsiveWidth(1),
+                  marginBottom: responsiveHeight(8),
+                }}>
+                {/*  This below is perfect example of how to SHOW THAT THERE IS SAME UI LIKE GIVEN BELOW NEXT BUTTON, BUT ON DIFFERENT CONDITION THIS BUTTON PERFORMS DIFFERENT TASK, BY USING TERNARRY OPERATOR AND USING ONE VARIABLE LIKE selectedTypeOfOrderValue to select different kind of task in onPress event but both button looks exectly same when running app.*/}
+                {selectedTypeOfOrderValue != 'Platinum' ? (
 
-            {/* DropDown for Type of Order and its List starts here */}
+                  <AllUITogether
+                    show={'ThickRoundedBtn'}
+                    widthPropsForthickbtn={responsiveWidth(81)}
+                    marginLeftPropsForthickbtn={responsiveWidth(0)}
+                    marginTopPropsForthickbtn={responsiveHeight(3)}
+                    heightPropsForthickbtn={responsiveHeight(8)}
+                    backgroundColorPropsForthickbtn={'#283E65'}
+                    borderRadiusPropsForthickbtn={responsiveWidth(10)}
 
-            <View>
-            <Text style={ styles.dropDownTopSideLabels }>
-                      Type of Order
-                      </Text>
-              <AllUITogether
-                show={'ddLforlocalData'}
-                //largeDropDownListTopLabel={'Type of Order'}
-                fetchLocalDataDDLDownArrowMarginLeft={responsiveWidth(22)}
-                fetchLocalDataDDLWidth={responsiveWidth(81)}
-                fetchLocalDataDDLTextmarginLeft={responsiveWidth(2)}
-                itemIconPropslabel={require('../images/orderTypeBlue.png')}
-                itemNamePropslabel={'Type of Order'}
-                fontForDDLTextInsideModal={'raleway-medium'}
-                fontForDDLInsideText={'raleway-light'}
-                dataForFlatListprops={dataForTypeOfOrder}
-                setterMethodInDropDownTextArea={setSelectedTypeOfOrderValue}
-                valueForDropDownToShowInText={selectedTypeOfOrderValue}
-                //Next time when we use this Reusable component, give all the
-                //required numberic parameter in props using
-                //responssiveHeight and responsiveWidth.
-                marginbetweenTopLabelandTouchableOpactiy={responsiveHeight(0.9)}
-                largeDropDownModalMarginTopProps={560}
-                largeDropDownModalMarginLeftProps={18}
-                largeDropDownModalHeightProps={150}
-                largeDropDownModalWidthProps={324}
-                ddlForLocalDataIconHeightProps={23}
-                ddlForLocalDataIconWidthProps={30}
-                borderRadiusPropsForDDLModal={responsiveHeight(0)}
-              />
-            </View>
+                    thickbtnOnpressprops={() => { gotoEditOrderSecondPage() }}
+                    thickbtnTitleprops={'NEXT'}
+                    fontFamilyPropsForthickbtn={'raleway-semibold'}
+                    fontcolorPropsForthickbtn={'white'}
+                    fontSizePropsForthickbtn={responsiveFontSize(2.2)}
+                    paddingForthickbtn={responsiveHeight(2)}
+                  />
+                ) : (
 
-            {/* DropDown for Type of Order and its List Ends Here */}
-            <View
-              style={{
-                marginLeft: responsiveWidth(1),
-                marginBottom: responsiveHeight(8),
-              }}>
-              {/*  This below is perfect example of how to SHOW THAT THERE IS SAME UI LIKE GIVEN BELOW NEXT BUTTON, BUT ON DIFFERENT CONDITION THIS BUTTON PERFORMS DIFFERENT TASK, BY USING TERNARRY OPERATOR AND USING ONE VARIABLE LIKE selectedTypeOfOrderValue to select different kind of task in onPress event but both button looks exectly same when running app.*/}
-              {selectedTypeOfOrderValue != 'Platinum' ? (
-                
-                <AllUITogether
-                show={'ThickRoundedBtn'}
-                widthPropsForthickbtn={responsiveWidth(81)}  
-                marginLeftPropsForthickbtn={responsiveWidth(0)}
-                marginTopPropsForthickbtn={responsiveHeight(3)}
-                heightPropsForthickbtn={responsiveHeight(8)}
-                backgroundColorPropsForthickbtn={'#283E65'}
-                borderRadiusPropsForthickbtn={responsiveWidth(10)}
-                
-                thickbtnOnpressprops={()=>{gotoEditOrderSecondPage()}}
-                thickbtnTitleprops={'NEXT'}
-                fontFamilyPropsForthickbtn={'raleway-semibold'}
-                fontcolorPropsForthickbtn={'white'}
-                fontSizePropsForthickbtn={responsiveFontSize(2.2)}   
-                paddingForthickbtn={responsiveHeight(2)}
-                />
-              ) : (
-                
-                <AllUITogether
-                show={'ThickRoundedBtn'}
-                widthPropsForthickbtn={responsiveWidth(81)}  
-                marginLeftPropsForthickbtn={responsiveWidth(0)}
-                marginTopPropsForthickbtn={responsiveHeight(3)}
-                heightPropsForthickbtn={responsiveHeight(8)}
-                backgroundColorPropsForthickbtn={'#283E65'}
-                borderRadiusPropsForthickbtn={responsiveWidth(10)}
-                
-                thickbtnOnpressprops={()=>{gotoEditOrderSecondPageWithPlatinum()}}
-                thickbtnTitleprops={'NEXT'}
-                fontFamilyPropsForthickbtn={'raleway-semibold'}
-                fontcolorPropsForthickbtn={'white'}
-                fontSizePropsForthickbtn={responsiveFontSize(2.2)}   
-                paddingForthickbtn={responsiveHeight(2)}
-                />
-              )}
-            </View>
-            {/*Our UI in Card ends here  */}
+                  <AllUITogether
+                    show={'ThickRoundedBtn'}
+                    widthPropsForthickbtn={responsiveWidth(81)}
+                    marginLeftPropsForthickbtn={responsiveWidth(0)}
+                    marginTopPropsForthickbtn={responsiveHeight(3)}
+                    heightPropsForthickbtn={responsiveHeight(8)}
+                    backgroundColorPropsForthickbtn={'#283E65'}
+                    borderRadiusPropsForthickbtn={responsiveWidth(10)}
+
+                    thickbtnOnpressprops={() => { gotoEditOrderSecondPageWithPlatinum() }}
+                    thickbtnTitleprops={'NEXT'}
+                    fontFamilyPropsForthickbtn={'raleway-semibold'}
+                    fontcolorPropsForthickbtn={'white'}
+                    fontSizePropsForthickbtn={responsiveFontSize(2.2)}
+                    paddingForthickbtn={responsiveHeight(2)}
+                  />
+                )}
+              </View>
+              {/*Our UI in Card ends here  */}
           </ScrollView>
         </Card>
         {/* </View> */}
@@ -1644,7 +1646,7 @@ const styles = StyleSheet.create({
     //backgroundColor:'purple',
   },
 
-   containerStyleForFullScreenCamera: {
+  containerStyleForFullScreenCamera: {
     flex: 1,
     //width:width,
     //height:height,   
@@ -1659,7 +1661,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flex: 1
   }
-  
-});          
+
+});
 
 export default EditOrderScreen;

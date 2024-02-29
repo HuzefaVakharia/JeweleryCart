@@ -273,7 +273,7 @@ let [selectedColorIDInEditOrderScreenSecond, setselectedColorIDInEditOrderScreen
 
 
 
-   alert(
+   /* alert(
     'Access Token is:'+accessTokenSentToEditOrderSecond+'\n'+
      '1.ORDER ID received from First Edit Order screen is: '+orderIDSentToEditOrderSecond+'\n'+
      '2.customerID is: '+customerIDSentToEditOrderSecond+'\n'+
@@ -282,9 +282,10 @@ let [selectedColorIDInEditOrderScreenSecond, setselectedColorIDInEditOrderScreen
       '5.color is:'+colorIDSentToEditOrderSecond+'\n'+
       '6.carret is:'+carretNameSentToEditOrderSecond+'\n'+
       '7.Quantity is:'+qtySentToEditOrderSecond+'\n'+    
-      '8.combine images length is:'+combineImagesFromGalleryAndCamera.length
+      '8.combine images length is:'+combineImagesFromGalleryAndCamera.length+'\n'+
+      '9. Item Image length is:'+itemImageSentToEditOrderSecond.length
       
-      );   
+      );  */  
 
 
    // getDataFromAsyncStorageForEditOrderScreenSecond();
@@ -362,10 +363,10 @@ let [selectedColorIDInEditOrderScreenSecond, setselectedColorIDInEditOrderScreen
 
 
 
-    alert('1. Carret ID being sent back to Edit Order First is:'+carretIDSentToEditOrderSecond+'\n'+
+    /* alert('1. Carret ID being sent back to Edit Order First is:'+carretIDSentToEditOrderSecond+'\n'+
           '2. Carret Name being sent back to Edit Order First is:'+carretNameSentToEditOrderSecond  
           
-          );    
+          ); */    
     
       
 
@@ -416,11 +417,11 @@ let [selectedColorIDInEditOrderScreenSecond, setselectedColorIDInEditOrderScreen
 const uploadImageAndStringForEditOrder = async () => {
 
 
-    alert(
+    /* alert(
       '1. color_id number which is appending is:'+selectedColorIDInEditOrderScreenSecond+'\n'+
       '2. carret_id number which is appending is:'+selectedCaratIDInEditOrderScreenSecond+'\n'+
       '3. order_id number which is appending is:'+orderIDSentToEditOrderSecond+'\n'+
-      '4. Access Token is:'+accessTokenSentToEditOrderSecond)       
+      '4. Access Token is:'+accessTokenSentToEditOrderSecond)  */      
 
 
 
@@ -437,6 +438,71 @@ const uploadImageAndStringForEditOrder = async () => {
      // alert('Single file is not null');
      
       const data = new FormData();
+
+      for (let i = 0; i < combineImagesFromGalleryAndCamera.length; i++) {
+       /*  alert(
+          'For Image number from combineImagesFromGalleryAndCamera:' +
+            i +
+            '\n' +
+            'File uri is:' +
+            combineImagesFromGalleryAndCamera[i].path +
+            '\n' +
+            'File Name is:' +
+            combineImagesFromGalleryAndCamera[i].path +
+            '\n' +
+            'File mimeType is:' +
+            combineImagesFromGalleryAndCamera[i].type,
+        ); */
+        data.append(
+          'image_file[]',
+  
+          {
+            uri: combineImagesFromGalleryAndCamera[i].path,
+            type: combineImagesFromGalleryAndCamera[i].type,
+            name: combineImagesFromGalleryAndCamera[i].path,
+          },
+        );
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      for (let i = 0; i < itemImageSentToEditOrderSecond.length; i++) {
+        /* alert(
+          'For Image number from itemImageSentToEditOrderSecond:' +
+            i +
+            '\n' +
+            'File uri is:' +
+            itemImageSentToEditOrderSecond[i].path +
+            '\n' +
+            'File Name is:' +
+            itemImageSentToEditOrderSecond[i].path +
+            '\n' +
+            'File mimeType is:' +
+            itemImageSentToEditOrderSecond[i].type,
+        ); */
+        data.append(
+          'image_file[]',
+  
+          {
+            uri: itemImageSentToEditOrderSecond[i].path,
+            type: itemImageSentToEditOrderSecond[i].type,
+            name: itemImageSentToEditOrderSecond[i].path,
+          },
+        );
+      }
+
+
+
       
        /* for(i=0;i<combineImagesFromGalleryAndCamera.length;i++){
          
@@ -494,7 +560,7 @@ const uploadImageAndStringForEditOrder = async () => {
 
         let result = await res.json();
         console.log('result', result);
-        alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
+        //alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
         //alert('Info after Uploading Image:'+result.message); 
         setIsLoading(false);
         gotoOrderScreen();
@@ -502,6 +568,13 @@ const uploadImageAndStringForEditOrder = async () => {
       } catch (error) {
         
         console.log('error upload', error);
+        /* ToastAndroid.showWithGravity(
+          'Error upload',JSON.stringify(error),
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
+        setIsLoading(false);
+        gotoOrderScreen();
       }
 
       //gotoOrderScreen();

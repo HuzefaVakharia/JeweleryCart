@@ -24,6 +24,7 @@ import {
   ImageBackground,   
   View,
   Alert,
+  ToastAndroid,
   LogBox,
 } from 'react-native';   
 import {
@@ -660,7 +661,12 @@ const Order = ({ route, navigation }) => {
 
   const showingAlert = () =>
   {
-    alert('Last FlatList data deleted successfully.');
+    //alert('Last FlatList data deleted successfully.');
+    ToastAndroid.showWithGravity(
+      'Last FlatList data deleted successfully.',
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+    );
   };
 
   const orderIconClickedDoThis = () =>
@@ -797,7 +803,7 @@ const Order = ({ route, navigation }) => {
 
   const onPressShareInOrderScreen = () =>
   {
-    onShare();
+    //onShare();
     //alert('Share button pressed In Order Screen...');
   };    
 
@@ -1426,7 +1432,7 @@ const Order = ({ route, navigation }) => {
                                             : null;
                                         }
 
-                                        //alert('Name which is being sent to Edit Customer Screen is:'+nameForCustomerScreen);
+                                        //alert('Name which is being sent to Edit Order Screen is:'+nameForCustomerScreen);
                                       } }
                                       style={ {
                                         width: responsiveWidth(20),
@@ -2517,7 +2523,7 @@ const Order = ({ route, navigation }) => {
                                             : null;
                                         }
 
-                                        //alert('Name which is being sent to Edit Customer Screen is:'+nameForCustomerScreen);
+                                        //alert('Name which is being sent to Edit Order Screen is:'+nameForCustomerScreen);
                                       } }
                                       style={ {
                                         width: responsiveWidth(20),
@@ -2911,21 +2917,21 @@ const Order = ({ route, navigation }) => {
                                           )
                                           : null;
 
-                                        alert(
-                                          '1. Order ID which is being sent to Edit Customer Screen is:' + orderIDFromOrderScreen + '\n' +
-                                          '2. Category which is being sent to Edit Customer Screen is:' + categorynameFromOrderScreen + '\n' +
+                                        /*alert(
+                                          '1. Order ID which is being sent to Edit Order Screen is:' + orderIDFromOrderScreen + '\n' +
+                                          '2. Category which is being sent to Edit Order Screen is:' + categorynameFromOrderScreen + '\n' +
 
-                                          '3. Color Name which is being sent to Edit Customer Screen is:' + colorNameFromOrderScreen + '\n' +
-                                          '4. Color ID which is being sent to Edit Customer Screen is:' + colorIDFromOrderScreen + '\n' +
-                                          '5. Carret Name which is being sent to Edit Customer Screen is:' + carretNameFromOrderScreen + '\n' +
-                                          '6. Carret ID which is being sent to Edit Customer Screen is:' + carretIDFromOrderScreen + '\n' +
+                                          '3. Color Name which is being sent to Edit Order Screen is:' + colorNameFromOrderScreen + '\n' +
+                                          '4. Color ID which is being sent to Edit Order Screen is:' + colorIDFromOrderScreen + '\n' +
+                                          '5. Carret Name which is being sent to Edit Order Screen is:' + carretNameFromOrderScreen + '\n' +
+                                          '6. Carret ID which is being sent to Edit Order Screen is:' + carretIDFromOrderScreen + '\n' +
 
-                                          '7. Category ID which is being sent to Edit Customer Screen is:' + categoryIDFromOrderScreen + '\n' +
+                                          '7. Category ID which is being sent to Edit Order Screen is:' + categoryIDFromOrderScreen + '\n' +
 
-                                          '8. partydiamondFromOrderScreen which is being sent to Edit Customer Screen is:' + partydiamondFromOrderScreen + '\n' +
+                                          '8. partydiamondFromOrderScreen which is being sent to Edit Order Screen is:' + partydiamondFromOrderScreen + '\n' +
 
-                                          '9. partystoneFromOrderScreen which is being sent to Edit Customer Screen is:' + partystoneFromOrderScreen
-                                        );
+                                          '9. partystoneFromOrderScreen which is being sent to Edit Order Screen is:' + partystoneFromOrderScreen
+                                        );*/
 
                                         navigation.replace('EditOrderScreen', {
                                           accessTokenSentToEditOrder: accessTokenSentToOrderScreen,

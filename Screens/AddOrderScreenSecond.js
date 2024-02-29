@@ -271,7 +271,7 @@ const chkAllFieldsEnteredInAddOrderScreenSecond = () =>
       const data = new FormData();
 
       for (let i = 0; i < combineImagesFromGalleryAndCamera.length; i++) {
-        alert(
+        /* alert(
           'For Image number:' +
             i +
             '\n' +
@@ -283,7 +283,7 @@ const chkAllFieldsEnteredInAddOrderScreenSecond = () =>
             '\n' +
             'File mimeType is:' +
             combineImagesFromGalleryAndCamera[i].type,
-        );
+        ); */
         data.append(
           'image_file[]',
   
@@ -384,13 +384,29 @@ const chkAllFieldsEnteredInAddOrderScreenSecond = () =>
 
         let result = await res.json();
         console.log('result', result);
-        alert('Info after Uploading Image:'+result.message); 
+        //alert('Info after Uploading Image:'+result.message); 
+        
+
+        ToastAndroid.showWithGravity(
+          result.message,
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        );
+
+
         setIsLoading(false);
         gotoOrderScreen();
         
       } catch (error) {
         
         console.log('error upload', error);
+        /* ToastAndroid.showWithGravity(
+          'Error:',JSON.stringify(error),
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
+        setIsLoading(false);
+        gotoOrderScreen();
       }
 
       //gotoOrderScreen();

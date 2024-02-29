@@ -384,6 +384,11 @@ const LoginScreen = ({ navigation }) =>
       {
         this.setState({ errorMessage: error.toString() });
         console.error('There was an error!', error);
+        /* ToastAndroid.showWithGravity(
+          'Error:',JSON.stringify(error),
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
       });
 
 
@@ -431,7 +436,12 @@ const LoginScreen = ({ navigation }) =>
       .catch((error) =>
       {
         this.setState({ errorMessage: error.toString() });
-        console.error('There was an error!', error);
+        console.error('There was an error!',JSON.stringify(error));
+        /* ToastAndroid.showWithGravity(
+          'Error:', error,
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
       });
   };
 
@@ -1041,7 +1051,7 @@ const styles = StyleSheet.create({
     marginLeft: responsiveWidth(2.5),
 
     color: '#2B95E1',
-    fontStyle: 'bold',
+    //fontStyle: 'bold',
 
   },
 });

@@ -441,7 +441,7 @@ const chkAllFieldsEnteredInAddOrderScreen = () =>
 /* Here before calling this function our old image selected from camera section is getting added to our new image selected using our camera section. So empty array of our  arrayOfimagesCapturedUsingCamera before calling this function*/
 
 
-alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCamera?.length+'\n'+
+/* alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCamera?.length+'\n'+
       'Length of Images from Gallery Directly is:'+singleFileButArray?.length
       )   
 
@@ -462,7 +462,7 @@ alert('Length of images Captured Using Camera is:'+arrayOfimagesCapturedUsingCam
       
       if(combineImagesArray?.length>0){
        alert('Length of combineImagesArray Captured Using Camera is:'+combineImagesArray.length);  
-    }
+    } */
 
 //console.log('Information: '+collectionOfAllImagesToSendToSecondEditScreen);
 

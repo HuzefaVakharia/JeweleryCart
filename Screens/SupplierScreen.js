@@ -320,7 +320,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
  useEffect(() =>
  {
    setIsLoadingSupplierScreenData(true);
-   alert('Refreshing Supplier list...');
+   //alert('Refreshing Supplier list...');
   setcallFetchDynamicAPIsInSupplierScreen(true);
   getSupplierScreenData();
  }, []);
@@ -398,7 +398,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
 
  const plusTopSmallIconPressedDoThis = () =>
  {
-  alert('plus icon button pressed...');
+  //alert('plus icon button pressed...');
   navigation.navigate('AddSupplierScreen', {
    accessTokenSentToAddSupplier: accessTokenSentToSupplierScreen
    
@@ -450,80 +450,58 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
   
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1, height: height, width: width }}>
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-        <View style={styles.container}>
-          <StatusBar backgroundColor="#283E65" barStyle={'light-content'} />
-
-          <View
-            style={{
-              //flex: 1,
-              width: width,
-              backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
-
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }}>
-            {/* Another Module for curve background starts here: */}
-
-
-
-
-
-
-
-
-
-
-             <ImageBackground
-          source={ require('../images/background.png') }
-          resizeMode="cover"
-          style={ {
-           // marginTop: responsiveHeight(-5),      
-
-            //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
-            //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
-            //expo snake
-            //height: responsiveHeight(35),
-            height: responsiveHeight(29),
-            //marginBottom:responsiveHeight(-30),         
-          } }/>
-
-
-
-         
-                  
-        
-
-            {/* <AllUITogether show="ImageBackgroundWhichContainsChildren">  */}
-              {/*Another Module for curve background Ends here: */}
-
+    
+      <SafeAreaView style={{
+        flex: 1,
+        //backgroundColor: 'red',
+      }}>
+        <GestureHandlerRootView style={{
+          flex: 1,
+          height: height,
+          width: width,
+          //backgroundColor: 'purple',
+        }}>
+          <View style={styles.container}>
+            <StatusBar backgroundColor="#283E65" barStyle={'light-content'} />
+            <View
+              style={{
+                //flex: 1,
+                width: width,
+                backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
+                //backgroundColor: 'green',
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+              }}>
+              {/* Another Module for curve background starts here: */}
+              <ImageBackground
+                source={require('../images/background.png')}
+                resizeMode="cover"
+                style={{
+                  // marginTop: responsiveHeight(-5),      
+  
+                  //When using this code for making apk just uncomment this above marginTop:responsiveHeight(-5)
+                  //because this marginTop: responsiveHeight(-5), is perfect for VSCode but not perfect for
+                  //expo snake
+                  //height: responsiveHeight(35),
+                  height: responsiveHeight(37),
+                  //marginBottom:responsiveHeight(-30),         
+                }} />
+              {/*Module for curve background Ends here: */}
+  
               <GestureDetector gesture={gesture}>
+                {/* Above is Starting of First GestureDetector */}
+  
                 <Animated.View>
-                  {/*View to hold our created Drawer Navigation Three line image button */}
-
+                  {/*First View to hold our created Drawer Navigation Three line image button */}
                   <View
                     style={{
                       flexDirection: 'row',
-                      marginTop: responsiveHeight(-27),                 
+                      marginTop: responsiveHeight(-33),
+                      //marginTop: responsiveHeight(-31),
+                      //backgroundColor:'red',        
                     }}>
                     <TouchableOpacity
                       style={{ marginLeft: 20 }}
@@ -535,23 +513,28 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
                       }>
                       <AllUITogether show={'SideDrawerThreeLineImage'} />
                     </TouchableOpacity>
-
-                    {/*View to hold Side Drawer Opening Icon ends here at below View  */}
                   </View>
-
-
-
-                  {/* Another Module for SupplierScreen text starts here: */ }
-             <AllUITogether
-                show={'TopLabelForPagesListedInBottomNavigation'}
-                topLabelForPagesListedInBottomNavProps={'SUPPLIER'}
-                marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(26)}
-              />
-
-              {/* Another Module for JEWEL CART text Ends here: */ }
-                  
-                  
-              {/* Another Module for Search, Filter and Plus icon starts here: */ }
+                  {/*First View to hold Side Drawer Opening Icon ends here at below View  */}
+  
+  
+  
+  
+  
+  
+                  {/* Second View for JEWEL CART text starts here: */}
+                  <View>
+                    <AllUITogether
+                      show={'TopLabelForPagesListedInBottomNavigation'}
+                      topLabelForPagesListedInBottomNavProps={'SUPPLIER'}
+                      marginLeftPropsForTopLabelForPagesInBottomNav={responsiveWidth(31)}
+                    />
+                  </View>
+                  {/* Second View for JEWEL CART text Ends here: */}
+  
+  
+  
+  
+                  {/* Another Module for Search, Filter and Plus icon starts here: */ }
        <View styles={ { flexDirection: 'row' } }>
         <AllUITogether
          show={ 'TopSmallIcon' }
@@ -606,40 +589,65 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
 
 
 
-
-
-
-
-             
-
-
-
-
+       {callFetchDynamicAPIsInSupplierScreen == true ? (
+        <FetchDynamicAPIs
+         urlToFetchProps={ 'manage_supplier' }
+         //mobileNumberForAuthentication={''}
+         //passwordForAuthentication={''}
+         accessTokenForFetchingAPIProps={
+          accessTokenSentToSupplierScreen    
+         }
+         startProps={ '0' }
+         limitProps={ '1000' }
+         actionProps={ 'search' }
+         sortByProps={ 'desc' }
+         screenNameProps={ 'SupplierScreen' }
+         getData={ getSupplierScreenData }
+         /* This below props setterToStopCallingFetchDynamicAPIsInSupplierScreenprops is useful to pass, if we will not pass this props then once our Supplier screen will open, and our Flatlist with data of Supplier will get fetched, then if we will not make our callFetchDynamicAPIsInSupplierScreen variable to false, by sending this below props then when we will do any modification in our FlatList data of Supplier, like deleting any entry from flatlist, editing any entery or inserting any new entery in our Supplier list then our Flatlist will not get refreshed at the time of our changes done spontaniously because to refresh our flat list we have to call our FetchDynamicAPIs tag, and this tag will only be called when callFetchDynamicAPIsInSupplierScreen will be true, and if once we have filled our full FlatList of Supplier in our Screen and if we do not make callFetchDynamicAPIsInSupplierScreen to false by passing  setcallFetchDynamicAPIsInSupplierScreen as props then callFetchDynamicAPIsInSupplierScreen variable will store always true value, and when any changes will be done in our Flatlist like delete or edit or insert new data then our FetchDynamicAPIs tag will not be called because our Flatlist will never get refreshed.Because we have to toggle our callFetchDynamicAPIsInSupplierScreen variable to false to true everytime when we have to refresh our flatlist when any changes will be done, and if callFetchDynamicAPIsInSupplierScreen will only contain true everytime once our flatlist is called initially when screen opens then the callFetchDynamicAPIsInSupplierScreen will never get change to toggle and so when any changes will be done like edit or delete then our flatlist data will not be called again after any changes and so we will not see any rapid changes in flatlist when we will perform delete or edit.  */
+         setterToStopCallingFetchDynamicAPIsInSupplierScreenprops={setcallFetchDynamicAPIsInSupplierScreen}
+        />
+       ) : null }
+  
+                 
+  
+  
+  
+  
                 </Animated.View>
+  
+                {/* Below is Ending of First GestureDetector */}
               </GestureDetector>
-
-
-
+  
               
-
-             {/*View to start FlatList for Supplier */ }
-
-       <View style={ styles.flatListForOrdersViewStyle }>
-        {/* Another Module for Cards starts here   : */ }
-
-        <View
-         style={ {
-          marginTop: responsiveHeight(-22),
-          alignItems: 'center',
-          height: responsiveHeight(80),
-          // backgroundColor:'yellow',
-         } }>
-          {isLoadingSupplierScreenData == true ? (
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+              {isLoadingSupplierScreenData == true ? (
                     <ActivityIndicator size="large" color="#013F66" style={{marginTop:responsiveHeight(30)}} />
                   ) : (
-                    <> 
+                    <>
                      
          <FlatList
+         style={{
+                marginTop: responsiveHeight(-22.5),
+                marginLeft: responsiveWidth(2.5),
+                //marginBottom: responsiveHeight(16),
+                height: responsiveHeight(60),
+              }}
           numColumns={ 1 }
           data={ resultsecondForSupplierScreen }
           showsVerticalScrollIndicator={ false }
@@ -656,8 +664,8 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
               //height: responsiveHeight(cardSize),
               height:
                selectedIndexNumber == index
-                ? responsiveHeight(40)
-                : responsiveHeight(26),
+                ? responsiveHeight(44)
+                : responsiveHeight(28),
               borderRadius: responsiveWidth(2),
               elevation: responsiveWidth(3),
               margin: 10,
@@ -1094,35 +1102,17 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
            );
           } }
          />
-         
          </>
                   )
           }
-         {/*Flat list inside the Root View for Cards ends here  */ }
-        </View>
-        {/*Root View for Cards ends here  */ }
-       </View>
-
+         
+        
+                  
        {/*View to end FlatList of Orders  */ }
-
-
-
-
-              
-
-
-
-
-                    {/*Rounded Bottom Tab Bar code starts here */}
-                    {/* <GestureDetector gesture={ gesture }>
-                 <View style={ {
-                 marginTop: responsiveHeight(-19),               
-                  //backgroundColor:'purple',     
-                  //marginBottom:responsiveHeight(6),        
-                  //CCCCCCCCCCCCC   
-                } }>     */}
-
-              <AllUITogether
+  
+  
+  
+       <AllUITogether
         show={ 'CustomeRoundBottomNavBar' }
         onPressOnHome={ homeIconClickedDoThis }
         homeIconColorprops={ '#fff' }
@@ -1138,176 +1128,58 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
         supplierIconColorprops={ '#F1CB8C' }
         supplierTextColorprops={ '#F1CB8C' }
        />
-
-       {callFetchDynamicAPIsInSupplierScreen == true ? (
-        <FetchDynamicAPIs
-         urlToFetchProps={ 'manage_supplier' }
-         //mobileNumberForAuthentication={''}
-         //passwordForAuthentication={''}
-         accessTokenForFetchingAPIProps={
-          accessTokenSentToSupplierScreen    
-         }
-         startProps={ '0' }
-         limitProps={ '1000' }
-         actionProps={ 'search' }
-         sortByProps={ 'desc' }
-         screenNameProps={ 'SupplierScreen' }
-         getData={ getSupplierScreenData }
-         /* This below props setterToStopCallingFetchDynamicAPIsInSupplierScreenprops is useful to pass, if we will not pass this props then once our Supplier screen will open, and our Flatlist with data of Supplier will get fetched, then if we will not make our callFetchDynamicAPIsInSupplierScreen variable to false, by sending this below props then when we will do any modification in our FlatList data of Supplier, like deleting any entry from flatlist, editing any entery or inserting any new entery in our Supplier list then our Flatlist will not get refreshed at the time of our changes done spontaniously because to refresh our flat list we have to call our FetchDynamicAPIs tag, and this tag will only be called when callFetchDynamicAPIsInSupplierScreen will be true, and if once we have filled our full FlatList of Supplier in our Screen and if we do not make callFetchDynamicAPIsInSupplierScreen to false by passing  setcallFetchDynamicAPIsInSupplierScreen as props then callFetchDynamicAPIsInSupplierScreen variable will store always true value, and when any changes will be done in our Flatlist like delete or edit or insert new data then our FetchDynamicAPIs tag will not be called because our Flatlist will never get refreshed.Because we have to toggle our callFetchDynamicAPIsInSupplierScreen variable to false to true everytime when we have to refresh our flatlist when any changes will be done, and if callFetchDynamicAPIsInSupplierScreen will only contain true everytime once our flatlist is called initially when screen opens then the callFetchDynamicAPIsInSupplierScreen will never get change to toggle and so when any changes will be done like edit or delete then our flatlist data will not be called again after any changes and so we will not see any rapid changes in flatlist when we will perform delete or edit.  */
-         setterToStopCallingFetchDynamicAPIsInSupplierScreenprops={setcallFetchDynamicAPIsInSupplierScreen}
-        />
-       ) : null }
-
-
-
-
-
-
-
-
-
-
-
-
-       {callFetchDynamicAPIsInSupplierScreenToDelete == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'manage_supplier'}
-                  
-                  accessTokenForFetchingAPIProps={
-                    accessTokenSentToSupplierScreen
-                  }
-                  actionProps={'delete'}    
-                  
-                  //customerIDProps={customerIDNowToDeleteIt}
-                  supplierIDProps={customerIDNowToDeleteIt}
-                  screenNameProps={'SupplierScreenForDelete'}
-                  
-                  setNowcallingDeleteAPIVariablePropsInCustomerScreen={setcallFetchDynamicAPIsInSupplierScreenToDelete}
-                  setterForRefreshingOurFlatListInCustomerScreen={setcallFetchDynamicAPIsInSupplierScreen}
-                  variableForRefreshingOurFlatListInCustomerScreen={callFetchDynamicAPIsInSupplierScreen}
-
-                  setterForLastFlatListDataisToBeDeletedPropsInCustomerScreen={setLastCustomerInFlatListIsToBeDeleted}
-                  variableForLastFlatListDataisToBeDeletedPropsInCustomerScreen={lastCustomerInFlatListIsToBeDeleted}
-                  removeFlatListDataFromAsynPropsInCustomerScreen={removeDataForCustomerScreenFromAsync}  
-                  refreshOnLastFlatListDeletedSuccessfullyInCustomerScreen={setResultsecondForSupplierScreen} 
-                   
-                 
-                />
-              ) : null}
-
-
-              {askDeleteOrNotModal==true?<AllUITogether
-              show={'InteractiveModalWithTwoOptions'}
-              //widthPropsForInteractiveModal={78}
-              //heightPropsForInteractiveModal={19}
-              widthPropsForInteractiveModal={responsiveWidth(78)}
-              heightPropsForInteractiveModal={responsiveHeight(19)}
-              questionToAskForInteractiveModalProps={'Do you really want to '+'\n'+'delete?'}
-              interactiveModalFirstOptionLabelProps={'Yes'}
-              interactiveModalSecondOptionLabelProps={'No'}
-              tasktoDowhenFirstOptionSelectedProps={dothisOnSelectingFirstOptionForInteractiveModal}
-              tasktoDowhenSecondOptionSelectedProps={dothisOnSelectingSecondOptionForInteractiveModal}
-              doWhenBackBtnPressedOnInteractiveModalWithTwoOptions={dothisOnBackButtonPressedInteractiveModal}
-              />:null}
-
-
-
-
-
-                  </View>
-              {/*</GestureDetector>*/}
-
-              {/*Rounded Bottom Tab Bar code ends here*/}
-
-
-
-
-              {/* <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
-            />
- */}
-
-
+  
               <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              gotoCaratScreenPropsLabel={ goToCaratScreen }
-                goToAddStaffScreenPropsLabel={ goToAddStaffScreen }
-                gotoColorScreenPropsLabel={ goToColorScreen }
-              gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
-              
-              removeAllAsyncStorageInformation={ removeData }
+                ref={ChildRef}
+                removeGraycolorPropsLabel={removingNowGrayColor}
+                gotoCategoryScreenPropsLabel={goToCategoryScreen}
+                gotoCaratScreenPropsLabel={goToCaratScreen}
+                goToAddStaffScreenPropsLabel={goToAddStaffScreen}
+                gotoColorScreenPropsLabel={goToColorScreen}
+                gotoSettingsScreenPropsLabel={goToSettingsScreen}
+                gotoChangePasswordScreenPropsLabel={goToChangePasswordScreen}
+  
+                removeAllAsyncStorageInformation={removeData}
               />
-
-
-
-
-
-             {/* <ActualSideNavigationMenu
-              ref={ ChildRef }
-              removeGraycolorPropsLabel={ removingNowGrayColor }
-              gotoCategoryScreenPropsLabel={ goToCategoryScreen }   
-              //gotoSettingsScreenPropsLabel={ goToSettingsScreen }
-              gotoChangePasswordScreenPropsLabel={ goToChangePasswordScreen }    
+  
+  
+  
               
-              removeAllAsyncStorageInformation={ removeData }
-            />    */} 
-
-              
-
-             {/*  {callFetchDynamicAPIs == true ? (
-                <FetchDynamicAPIs
-                  urlToFetchProps={'dashboard_count'}
-                  mobileNumberForAuthentication={''}
-                  passwordForAuthentication={''}
-                  accessTokenForFetchingAPIProps={accessTokenKey}
-                  getData={getDashBoardData}
-                  screenNameProps={'SupplierScreen'}
-                />
-              ) : null} */}    
-
-                
-
-
-
-
-
-
-
-
-
-             {/* </AllUITogether> */}      
-             
-
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+            </View>
+  
           </View>
-          
-        
-            
-      </GestureHandlerRootView>
-
-
-        
-
-
-
-    </SafeAreaView>
-  );
+  
+  
+        </GestureHandlerRootView>
+      </SafeAreaView>
+    );
 };
 
 export default SupplierScreen;    
 
 const styles = StyleSheet.create({
  container: {
-  flex: 1,
+  //flex: 1,
   height: height,
   width: width,
   backgroundColor: 'purple',

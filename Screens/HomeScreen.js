@@ -455,7 +455,7 @@ const HomeScreen = ({ route, navigation }) => {
             style={{
               //flex: 1,
               width: width,
-              //backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
+              backgroundColor: threeLineButtonClicked ? '#757575' : '#FBF8F1',
               //backgroundColor: 'green',
               position: 'absolute',
               left: 0,
@@ -487,7 +487,7 @@ const HomeScreen = ({ route, navigation }) => {
                 <View
                   style={{
                     flexDirection: 'row',
-                    marginTop: responsiveHeight(-27),
+                    marginTop: responsiveHeight(-33),
                     //marginTop: responsiveHeight(-31),
                     //backgroundColor:'red',        
                   }}>

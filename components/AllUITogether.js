@@ -1064,11 +1064,11 @@ export default function AllUITogether(props)
                   backgroundColor: 'white',
                   padding: 13,
                   margin: 40,
-                  height: responsiveHeight(22),
+                  height: responsiveHeight(15),
                   width: responsiveWidth(80),
                 } }>
                 <Text style={ styles.textCameraOrGalleryModalStyle }>
-                  Camera/Gallery
+                  Open Gallery
                 </Text>
 
                 {/*Camera Text With Image in one row starts here  */ }
@@ -1080,16 +1080,16 @@ export default function AllUITogether(props)
                     //alignSelf: 'center',
                     marginLeft: responsiveWidth(2),
                   } }>
-                  <Image
+                  {/* <Image
                     source={ require('../images/CameraCircle.png') }
                     style={ {
                       height: responsiveHeight(3),
                       width: responsiveWidth(6),
                       marginTop: responsiveHeight(1),
                     } }
-                  />
+                  /> */}
 
-                  <Text
+                  {/* <Text
                     style={ styles.textCameraOrGalleryModalStyle }
                     onPress={ () =>
                     {
@@ -1100,8 +1100,8 @@ export default function AllUITogether(props)
                       );
                       //props.setdoneAddingImageProps(props.doneAddingImageprops);
                     } }>
-                    Camera
-                  </Text>
+                    Gallery
+                  </Text> */}
                 </View>
                 {/*Text With Image in one row ends here  */ }
 

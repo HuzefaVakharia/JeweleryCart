@@ -338,13 +338,13 @@ Note that when we will come from EditOrderScreen to PlatinumEditOrderTwo then th
 
    useEffect(() => {
 
-alert('customerID is: '+customerIDSentToPlatinumEditOrderTwo+'\n'+
+/* alert('customerID is: '+customerIDSentToPlatinumEditOrderTwo+'\n'+
       'supplierID is:'+supplierIDSentToPlatinumEditOrderTwo+'\n'+
       'design_no is:'+designNoSentToPlatinumEditOrderTwo+'\n'+
       'orderFor is:'+orderForSentToPlatinumEditOrderTwo+'\n'+
       'categoryid is:'+categoryIDSentToPlatinumEditOrderTwo
       
-      );
+      ); */
 
 
 //orderForSentToPlatinumEditOrderTwo
@@ -526,10 +526,10 @@ alert('customerID is: '+customerIDSentToPlatinumEditOrderTwo+'\n'+
 
   const gotoFirstEditOrderScreen = () => {
 
-    alert(
+    /* alert(
       '1. party diamond being sent backside is'+isEnabledMeansDiamondisFromParty==true?'Yes':'No'+'\n'+
       '2. party stone being sent backside is'+isEnabledMeansStoneisFromParty==true?'Yes':'No'   
-    )    
+    )     */
 
 
       
@@ -568,7 +568,7 @@ alert('customerID is: '+customerIDSentToPlatinumEditOrderTwo+'\n'+
     });
   };
 
-  const image = { uri: 'https://reactjs.org/logo-og.png' };
+  //const image = { uri: 'https://reactjs.org/logo-og.png' };
 
 
 
@@ -605,6 +605,68 @@ const uploadImageAndStringForEditOrder = async () => {
      // alert('Single file is not null');
      
       const data = new FormData();
+
+      for (let i = 0; i < combineImagesFromGalleryAndCamera.length; i++) {
+          /* alert(
+           'For Image number from combineImagesFromGalleryAndCamera:' +
+             i +
+             '\n' +
+             'File uri is:' +
+             combineImagesFromGalleryAndCamera[i].path +
+             '\n' +
+             'File Name is:' +
+             combineImagesFromGalleryAndCamera[i].path +
+             '\n' +
+             'File mimeType is:' +
+             combineImagesFromGalleryAndCamera[i].type,
+         );  */
+         data.append(
+           'image_file[]',
+   
+           {
+             uri: combineImagesFromGalleryAndCamera[i].path,
+             type: combineImagesFromGalleryAndCamera[i].type,
+             name: combineImagesFromGalleryAndCamera[i].path,
+           },
+         );
+       }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+       for (let i = 0; i < itemImageSentToEditOrderSecond.length; i++) {
+         /* alert(
+           'For Image number from itemImageSentToEditOrderSecond:' +
+             i +
+             '\n' +
+             'File uri is:' +
+             itemImageSentToEditOrderSecond[i].path +
+             '\n' +
+             'File Name is:' +
+             itemImageSentToEditOrderSecond[i].path +
+             '\n' +
+             'File mimeType is:' +
+             itemImageSentToEditOrderSecond[i].type,
+         ); */
+         data.append(
+           'image_file[]',
+   
+           {
+             uri: itemImageSentToEditOrderSecond[i].path,
+             type: itemImageSentToEditOrderSecond[i].type,
+             name: itemImageSentToEditOrderSecond[i].path,
+           },
+         );
+       }
       
        /* for(i=0;i<combineImagesFromGalleryAndCamera.length;i++){
          
@@ -688,13 +750,20 @@ const uploadImageAndStringForEditOrder = async () => {
 
         let result = await res.json();
         console.log('result', result);
-        alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
+        //alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
         //alert('Info after Uploading Image:'+result.message); 
         setIsLoading(false);
         gotoOrderScreen();
       } catch (error) {
         
         console.log('error upload', error);
+        /* ToastAndroid.showWithGravity(
+          'Error upload',JSON.stringify(error),
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        ); */
+        setIsLoading(false);
+        gotoOrderScreen();
       }
 
       //gotoOrderScreen();
