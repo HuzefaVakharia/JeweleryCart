@@ -138,7 +138,7 @@ const {
 
 
   useEffect(() => {
-    alert('UseEffect called...');
+    //alert('UseEffect called...');
     setcallFetchDynamicAPIsInCategoryScreen(true);  
   }, []); 
 
@@ -582,10 +582,8 @@ const getCategoryScreenAsynData = () => {
                   selectedIndexNumberToDeleteDataInCategoryScreen ==index
                     ?
                      (
-                      (categoryIDForCategoryScreen =item.id),
-                      //setcategoryIDNowToDeleteIt(categoryIDForCategoryScreen),
-                      alert('1. categoryIDForCategoryScreen variable initially got this value using item.id:'+categoryIDForCategoryScreen+'\n'+
-                      '2. setcategoryIDNowToDeleteIt() setter got this value:'+categoryIDNowToDeleteIt)
+                      (categoryIDForCategoryScreen =item.id)
+                      
 
                     )
                       
@@ -603,10 +601,8 @@ const getCategoryScreenAsynData = () => {
                       selectedIndexNumberToDeleteDataInCategoryScreen ==index
                     ?
                       (
-                      (categoryIDForCategoryScreen =item.id),
-                      //setcategoryIDNowToDeleteIt(categoryIDForCategoryScreen),
-                      alert('1. categoryIDForCategoryScreen variable initially got this value using item.id:'+categoryIDForCategoryScreen+'\n'+
-                      '2. setcategoryIDNowToDeleteIt() setter got this value:'+categoryIDNowToDeleteIt)
+                      (categoryIDForCategoryScreen =item.id)
+                      
                       )
                       
                       
@@ -673,11 +669,11 @@ const getCategoryScreenAsynData = () => {
                     )
                     : null;
 
-                  alert(
+                  /*alert(
                     '1. Category Name is:'+categorynameForCategoryScreen+'\n'+
                     '2. Category ID is:'+categoryIDForCategoryScreen
                     
-                  );   
+                  );*/   
 
                    navigation.replace('EditCategoryScreen', {
                    accessTokenSentToEditCategoryScreen: accessTokenSentToCategoryScreen,

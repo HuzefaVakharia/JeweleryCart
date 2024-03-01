@@ -222,7 +222,7 @@ const Order = ({ route, navigation }) => {
   };
 
   const goToSettingsScreen = () => {
-    Alert.alert('Clicked...');
+    //Alert.alert('Clicked...');
     navigation.navigate('Settings', {
       accessTokenSentToColorScreen: accessTokenSentToOrderScreen,
       previousScreenName: 'Order',

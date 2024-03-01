@@ -199,12 +199,13 @@ let [selectedCaratIDInAddColorScreen, setselectedCaratIDInAddColorScreen] = useS
     if (selectedCaratIDInAddColorScreen==-1)
     {
       //setselectedCaratIDInAddColorScreen(2);
-      alert('Please Select Carrat');
+      //alert('Please Select Carrat');
        ToastAndroid.showWithGravity(
         'Please Select Carat',
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return; 
     } 
     else if (!colornameInAddColorScreen.trim()) {
@@ -234,7 +235,7 @@ let [selectedCaratIDInAddColorScreen, setselectedCaratIDInAddColorScreen] = useS
   }, []);*/     
 
   const gotoColorScreen = () => {
-    alert('going to Color Screen....');
+    //alert('going to Color Screen....');
      navigation.replace("ColorScreen", {     
       accessTokenSentToColorScreen: accessTokenSentToAddColorScreen,
       previousScreenName:previousScreenName    

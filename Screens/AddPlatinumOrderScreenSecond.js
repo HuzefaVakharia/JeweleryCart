@@ -1533,9 +1533,11 @@ const uploadImageAndStringForEditOrder = async () => {
                     SELECT DATE
                   </Text>
 
-                  <Text style={styles.datePickerUpperHeaderSectionDateText}>
+                  {/* <Text style={styles.datePickerUpperHeaderSectionDateText}>
                     {weekday},{currentMonthName} {todaysDate}
-                  </Text>
+                  </Text> */}
+                  <Text style={ styles.datePickerUpperHeaderSectionDateText }>{ daysName[new Date().getDay()]},{ monthNames[new Date().getMonth()] } {today.getDate()}</Text>
+
 
                   <AllUITogether
                     show={'TopSmallIcon'}
@@ -1631,9 +1633,11 @@ const uploadImageAndStringForEditOrder = async () => {
                     <Text style={styles.datePickerUpperHeaderSectionLabelText}>
                       SELECT DATE
                     </Text>
-                    <Text style={styles.datePickerUpperHeaderSectionDateText}>
+                    {/* <Text style={styles.datePickerUpperHeaderSectionDateText}>
                       {weekday},{currentMonthName} {todaysDate}
-                    </Text>
+                    </Text> */}
+                    <Text style={ styles.datePickerUpperHeaderSectionDateText }>{ daysName[new Date().getDay()]},{ monthNames[new Date().getMonth()] } {today.getDate()}</Text>
+
 
                     <AllUITogether
                       show={'TopSmallIcon'}

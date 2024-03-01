@@ -750,6 +750,11 @@ const uploadImageAndStringForEditOrder = async () => {
 
         let result = await res.json();
         console.log('result', result);
+        ToastAndroid.showWithGravity(
+          result.message,
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        );
         //alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
         //alert('Info after Uploading Image:'+result.message); 
         setIsLoading(false);

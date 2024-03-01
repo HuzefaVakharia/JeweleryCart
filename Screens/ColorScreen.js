@@ -140,7 +140,7 @@ import {
   
   
     useEffect(() => {
-      alert('UseEffect got this access token: '+accessTokenSentToColorScreen);
+      //alert('UseEffect got this access token: '+accessTokenSentToColorScreen);
       setcallFetchDynamicAPIsInColorScreen(true);
       /* if(callFetchDynamicAPIsInColorScreen==false)
       {
@@ -200,7 +200,7 @@ import {
   
     const gotoPreviousScreen = () => {
   
-      alert('From ColorScreen Left Back Button Pressed...');
+      //alert('From ColorScreen Left Back Button Pressed...');
   
        if(previousScreenName=='HomeScreen'){
         navigation.navigate('HomeScreen', {
@@ -234,7 +234,7 @@ import {
   
    const plusTopSmallIconPressedDoThis = () =>
    {
-    alert('plus icon button pressed...');
+    //alert('plus icon button pressed...');
   
      navigation.navigate('AddColorScreen', {
      accessTokenSentToAddColorScreen: accessTokenSentToColorScreen,
@@ -676,12 +676,12 @@ import {
                       )
                       : null;
   
-                    alert(
+                    /*alert(
                       '1. Color Name is:'+colornameForColorScreen+'\n'+
                       '2. Color ID is:'+colorIDForColorScreen+'\n'+
                       '3. Carrat ID is:'+caratIDForColorScreen    
                       
-                    );   
+                    );*/   
   
                      navigation.replace('EditColorScreen', {
                      accessTokenSentToEditColorScreen: accessTokenSentToColorScreen,
@@ -740,9 +740,8 @@ import {
                     selectedIndexNumberToDeleteDataInColorScreen ==index
                       ?
                        (
-                        (colorIDForColorScreen =item.id),
-                        //setcategoryIDNowToDeleteIt(colorIDForColorScreen),
-                        alert('1. colorIDForColorScreen variable initially got this value using item.id:'+colorIDForColorScreen)
+                        (colorIDForColorScreen =item.id)
+                        
   
                       )
                         
@@ -760,9 +759,8 @@ import {
                         selectedIndexNumberToDeleteDataInColorScreen ==index
                       ?    
                         (
-                        (colorIDForColorScreen =item.id),
-                        //setcategoryIDNowToDeleteIt(colorIDForColorScreen),
-                        alert('1. colorIDForColorScreen variable initially got this value using item.id:'+colorIDForColorScreen)
+                        (colorIDForColorScreen =item.id)
+                        
                         )
                         
                         

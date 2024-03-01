@@ -138,7 +138,7 @@ import {
   
   
     useEffect(() => {
-      alert('UseEffect called...');
+      //alert('UseEffect called...');
       setcallFetchDynamicAPIsInCaratScreen(true);  
     }, []); 
   
@@ -662,11 +662,11 @@ import {
                       )
                       : null;
   
-                    alert(
+                    /*alert(
                       '1. CaratScreen Name is:'+caratnameForCaratScreen+'\n'+
                       '2. CaratScreen ID is:'+caratIDForCaratScreen
                       
-                    );   
+                    );*/   
   
                      navigation.replace('EditCaratScreen', {
                      accessTokenSentToEditCaratScreen: accessTokenSentToCaratScreen,
@@ -724,9 +724,8 @@ import {
                     selectedIndexNumberToDeleteDataInCaratScreen ==index
                       ?
                        (
-                        (caratIDForCaratScreen =item.id),
-                        //setcategoryIDNowToDeleteIt(caratIDForCaratScreen),
-                        alert('1. caratIDForCaratScreen variable initially got this value using item.id:'+caratIDForCaratScreen)
+                        (caratIDForCaratScreen =item.id)
+                        
   
                       )
                         
@@ -744,9 +743,8 @@ import {
                         selectedIndexNumberToDeleteDataInCaratScreen ==index
                       ?    
                         (
-                        (caratIDForCaratScreen =item.id),
-                        //setcategoryIDNowToDeleteIt(caratIDForCaratScreen),
-                        alert('1. caratIDForCaratScreen variable initially got this value using item.id:'+caratIDForCaratScreen)
+                        (caratIDForCaratScreen =item.id)
+                        
                         )
                         
                         

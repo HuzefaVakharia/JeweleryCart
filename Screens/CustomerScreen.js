@@ -18,6 +18,7 @@ import {
   BackHandler,
   Text,
   Button,
+  ToastAndroid,
   ActivityIndicator,
   Modal,
   TouchableOpacity,
@@ -308,6 +309,11 @@ const removeDataForCustomerScreenFromAsync = async () =>
   
   useEffect(() => {
     //alert('UseEffect inside CustomerScreen running...');
+    ToastAndroid.showWithGravity(
+      'Customer Details Fetching',
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+    );
     setIsLoadingCustomerScreenData(true);
     setcallFetchDynamicAPIsInCustomerScreen(true);
     getCustomerScreenData();
@@ -712,7 +718,7 @@ const removeDataForCustomerScreenFromAsync = async () =>
                               show={'NumberLabelOnImage'}
                               numberLabelWidthProps={responsiveWidth(58)}
                               numberFetchedFromAPIProps={
-                                'Customer Code: ' + item.customer_code    
+                                'Customer Details'     
                               }
                               fontFamilyPropsforNumberLabel={'raleway-regular'}
                             />

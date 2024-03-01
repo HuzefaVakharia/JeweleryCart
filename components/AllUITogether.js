@@ -534,7 +534,7 @@ export default function AllUITogether(props)
             
           } }>
 
-          <Text 
+           {/* <Text 
           style={ styles.dropDownTopSideLabelswhite }
           onPress={ () =>
             {
@@ -543,7 +543,63 @@ export default function AllUITogether(props)
             } }
           >
                          Back   
-                      </Text>
+                      </Text>  */}
+
+
+
+
+
+                      <TouchableOpacity
+                    style={ {
+                      //width: '85%',
+                      width: responsiveWidth(3),
+                      height: responsiveHeight(3),
+                      alignSelf: 'center',
+                      //height: 50,
+                      justifyContent: 'center',
+                      //borderBottomWidth: 0.5,
+                      //borderColor: '#8e8e8e',
+                    } }
+                    onPress={ () =>
+                    {
+                      props.dothisProps();  }      
+                       }>
+
+
+
+
+
+
+
+
+
+
+                        
+
+                      <Image
+            source={require('../images/back.png')}
+            onPress={ () =>
+            {
+              //alert('Golden Back Btn pressed....')
+              props.dothisProps();
+            } }
+            //source={ props.iconToDisplayPathProps }
+            style={ {
+              width: responsiveWidth(3),
+              height: responsiveHeight(3),
+              //marginTop: responsiveHeight(-4),
+              //marginLeft: responsiveWidth(85),
+              //marginTop: props.marginTopOfTopSmallIconprops,
+              //marginLeft: props.marginLeftOfTopSmallIconprops,
+              //backgroundColor:'purple',
+            } }
+          />
+
+
+
+
+                      
+          </TouchableOpacity>
          
           {/* <AntDesign
             name={props.iconDesignName}

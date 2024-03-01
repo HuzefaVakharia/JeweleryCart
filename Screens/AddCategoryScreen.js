@@ -218,7 +218,7 @@ const route = useRoute();
   }, []);*/     
 
   const gotoCategoryScreen = () => {
-    alert('going to Category Screen....');
+    //alert('going to Category Screen....');
      navigation.replace("Category", {     
       accessTokenSentToCategoryScreen: accessTokenSentToAddCategoryScreen,
       previousScreenName:previousScreenName    

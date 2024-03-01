@@ -310,6 +310,7 @@ const [dataForSelectStaffRole, setdataForSelectStaffRole] = useState(staffRoleAr
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (contact_person_no.length > 10)
     {
@@ -319,6 +320,7 @@ const [dataForSelectStaffRole, setdataForSelectStaffRole] = useState(staffRoleAr
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 

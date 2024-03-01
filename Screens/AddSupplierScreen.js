@@ -259,6 +259,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     //Check for the Email TextInput
@@ -270,6 +271,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInAddSupplierScreen.length < 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -278,6 +280,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInAddSupplierScreen.length > 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -286,6 +289,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 
@@ -296,6 +300,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!stateInAddSupplierScreen.trim()) {
@@ -305,6 +310,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!cityInAddSupplierScreen.trim()) {
@@ -314,6 +320,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 

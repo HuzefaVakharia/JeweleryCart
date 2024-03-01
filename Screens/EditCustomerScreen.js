@@ -44,27 +44,25 @@ import { Button, Card } from '@rneui/themed';
 let { height, width } = Dimensions.get('window');
 
 const EditCustomerScreen = ({ route, navigation }) => {
-  let name = '',
+  /* let name = '',
     id = '',
     orderPerson = '',
     mobileNumber = '',
     orderPersonNumber = '',
     address = '',
     city = '',
-    state = '';
-    //stateWithID='';
-    //cityWithID='';
-    //customerCode='';
+    state = ''; */
+    
 
-  //accessTokenGotInEditCustomerScreen = route.params.accessTokenSentToEditCustomerScreen;
-  name = route.params.nameToBeEdited;
-  id = route.params.customerIDToBeEdited;
-  orderPerson = route.params.orderPersonToBeEdited;
-  mobileNumber = route.params.mobileNumberToBeEdited;
-  orderPersonNumber = route.params.orderPersonNumberToBeEdited;
-  address = route.params.addressToBeEdited;
-  city = route.params.cityToBeEdited;
-  state = route.params.stateToBeEdited;
+  let accessTokenGotInEditCustomerScreen = route.params.accessTokenSentToEditCustomerScreen;
+  let name = route.params.nameToBeEdited;
+  let id = route.params.customerIDToBeEdited;
+  let orderPerson = route.params.orderPersonToBeEdited;
+  let mobileNumber = route.params.mobileNumberToBeEdited;
+  let orderPersonNumber = route.params.orderPersonNumberToBeEdited;
+  let address = route.params.addressToBeEdited;
+  let city = route.params.cityToBeEdited;
+  let state = route.params.stateToBeEdited;
   //stateWithID=route.params.stateIDToBeEdited;
   //cityWithID=route.params.cityIDToBeEdited;
   //customerCode=route.params.customerCodeToBeEdited;
@@ -225,7 +223,14 @@ const EditCustomerScreen = ({ route, navigation }) => {
 
   let [resultForNewUserCreated, setResultForNewUserCreated] = useState([]);
 
-  
+  const gotoCustomerScreen = () => {
+    navigation.navigate('CustomerScreen', {
+      accessTokenSentToOrderScreen: accessTokenGotInEditCustomerScreen,
+    });
+    //singleFileButArrayForEdit = [];
+    //arrayOfimagesCapturedUsingCamera=[];
+
+  };
 
   const chkAllFieldsEnteredInEditCustomerScreen = () => {
     if (!nameInEditCustomerScreen.trim()) {
@@ -235,6 +240,7 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     //Check for the Email TextInput
@@ -246,6 +252,7 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInEditCustomerScreen.length < 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -254,6 +261,7 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInEditCustomerScreen.length > 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -262,7 +270,9 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
+      
     }
 
     if (!addressInEditCustomerScreen.trim()) {
@@ -272,6 +282,7 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!stateInEditCustomerScreen.trim()) {
@@ -281,18 +292,22 @@ const EditCustomerScreen = ({ route, navigation }) => {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!cityInEditCustomerScreen.trim()) {
       //alert('Please Enter City');
+      
       ToastAndroid.showWithGravity(
         'Please Enter City',
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
-
+    //alert('Edit button pressed...');
+    //setIsUpdateProcessRunning(false);
     setcallFetchDynamicAPIsInEditCustomerScreen(true);
   };
 
@@ -323,6 +338,9 @@ const EditCustomerScreen = ({ route, navigation }) => {
     //setCustomerCodeInEditCustomerScreen(customerCode);
    /*  alert('Name of Customer is:'+nameInEditCustomerScreen+'State name is:'+stateInEditCustomerScreen+' State ID is:'+stateIDInEditCustomerScreen+' City name is:'+cityInEditCustomerScreen+' City ID is:'+cityIDInEditCustomerScreen); */
   }, []);
+
+
+
 
  
 
@@ -389,7 +407,7 @@ const EditCustomerScreen = ({ route, navigation }) => {
                     <AllUITogether
             show={'AntIconBtn'}
               //dothisProps={gotoSupplierScreen}    
-            //dothisProps={gotoCustomerScreen}
+            dothisProps={gotoCustomerScreen}
             iconDesignName={'left'}
             colorForIconinAntDesignBtn={'gold'}
             backgroundColorForIconinAntDesignBtn={'transparent'}
@@ -709,9 +727,9 @@ const EditCustomerScreen = ({ route, navigation }) => {
                       <FetchDynamicAPIs
                         urlToFetchProps={'manage_customer'}
                         screenNameProps={'EditCustomerScreen'}
-                        //accessTokenForFetchingAPIProps={
-                          //accessTokenGotInEditCustomerScreen
-                        //}
+                        accessTokenForFetchingAPIProps={
+                          accessTokenGotInEditCustomerScreen
+                        }
                         //accessTokenForFetchingAPIProps={''}
                         namePropsToEdit={nameInEditCustomerScreen}
                         mobilenoPropsToEdit={mobileNumberInEditCustomerScreen}

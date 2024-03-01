@@ -150,7 +150,7 @@ const { accessTokenSentToSupplierScreen } = route.params;
   };
 
   const goToSettingsScreen = () => {
-    Alert.alert('Clicked...');
+    //Alert.alert('Clicked...');
     navigation.navigate('Settings', {
       accessTokenSentToColorScreen: accessTokenSentToSupplierScreen,
       previousScreenName: 'SupplierScreen',
@@ -607,6 +607,47 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
          setterToStopCallingFetchDynamicAPIsInSupplierScreenprops={setcallFetchDynamicAPIsInSupplierScreen}
         />
        ) : null }
+
+       {callFetchDynamicAPIsInSupplierScreenToDelete == true ? (
+                <FetchDynamicAPIs
+                  urlToFetchProps={'manage_supplier'}
+                  
+                  accessTokenForFetchingAPIProps={
+                    accessTokenSentToSupplierScreen
+                  }
+                  actionProps={'delete'}    
+                  
+                  //customerIDProps={customerIDNowToDeleteIt}
+                  supplierIDProps={customerIDNowToDeleteIt}
+                  screenNameProps={'SupplierScreenForDelete'}
+                  
+                  setNowcallingDeleteAPIVariablePropsInCustomerScreen={setcallFetchDynamicAPIsInSupplierScreenToDelete}
+                  setterForRefreshingOurFlatListInCustomerScreen={setcallFetchDynamicAPIsInSupplierScreen}
+                  variableForRefreshingOurFlatListInCustomerScreen={callFetchDynamicAPIsInSupplierScreen}
+
+                  setterForLastFlatListDataisToBeDeletedPropsInCustomerScreen={setLastCustomerInFlatListIsToBeDeleted}
+                  variableForLastFlatListDataisToBeDeletedPropsInCustomerScreen={lastCustomerInFlatListIsToBeDeleted}
+                  removeFlatListDataFromAsynPropsInCustomerScreen={removeDataForCustomerScreenFromAsync}  
+                  refreshOnLastFlatListDeletedSuccessfullyInCustomerScreen={setResultsecondForSupplierScreen} 
+                   
+                 
+                />
+              ) : null}
+
+
+              {askDeleteOrNotModal==true?<AllUITogether
+              show={'InteractiveModalWithTwoOptions'}
+              //widthPropsForInteractiveModal={78}
+              //heightPropsForInteractiveModal={19}
+              widthPropsForInteractiveModal={responsiveWidth(78)}
+              heightPropsForInteractiveModal={responsiveHeight(19)}
+              questionToAskForInteractiveModalProps={'Do you really want to '+'\n'+'delete?'}
+              interactiveModalFirstOptionLabelProps={'Yes'}
+              interactiveModalSecondOptionLabelProps={'No'}
+              tasktoDowhenFirstOptionSelectedProps={dothisOnSelectingFirstOptionForInteractiveModal}
+              tasktoDowhenSecondOptionSelectedProps={dothisOnSelectingSecondOptionForInteractiveModal}
+              doWhenBackBtnPressedOnInteractiveModalWithTwoOptions={dothisOnBackButtonPressedInteractiveModal}
+              />:null}
   
                  
   
@@ -664,7 +705,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
               //height: responsiveHeight(cardSize),
               height:
                selectedIndexNumber == index
-                ? responsiveHeight(44)
+                ? responsiveHeight(46)
                 : responsiveHeight(28),
               borderRadius: responsiveWidth(2),
               elevation: responsiveWidth(3),
@@ -688,7 +729,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
                //numberLabelWidthProps={ 55 }
                numberLabelWidthProps={responsiveWidth(55)}
                numberFetchedFromAPIProps={
-                'Supplier Code : ' + item.supplier_code
+                'Supplier Details'
                }
                fontFamilyPropsforNumberLabel={
                 'raleway-regular'
@@ -952,7 +993,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
                       )
                     : null;
 
-                  alert(
+                  /*alert(
                     'Name is:'+nameForSupplierScreen+'\n'+
                     'supplierIDForSupplierScreen is:'+supplierIDForSupplierScreen+'\n'+
                     'mobileNumberForSupplierScreen is:'+mobileNumberForSupplierScreen+'\n'+
@@ -965,7 +1006,7 @@ let [isLoadingSupplierScreenData, setIsLoadingSupplierScreenData] = useState(fal
                     'cityIDForSupplierScreen is:'+cityIDForSupplierScreen+'\n'+
                     'stateIDForSupplierScreen is:'+stateIDForSupplierScreen+'\n'
                     
-                  );   
+                  );*/ 
 
                    navigation.replace('EditSupplierScreen', {
                    accessTokenSentToEditSupplier: accessTokenSentToSupplierScreen,

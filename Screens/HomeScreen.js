@@ -203,7 +203,7 @@ const HomeScreen = ({ route, navigation }) => {
   };
 
   const goToSettingsScreen = () => {
-    Alert.alert('Clicked...');
+    //Alert.alert('Clicked...');
     navigation.navigate('Settings', {
       accessTokenSentToColorScreen: accessTokenKey,
       previousScreenName: 'HomeScreen',

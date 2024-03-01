@@ -267,6 +267,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     //Check for the Email TextInput
@@ -278,6 +279,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInEditSupplierScreen.length < 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -286,6 +288,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (mobileNumberInEditSupplierScreen.length > 10) {
       //alert('Please Enter Mobile Number with Minimum 10 digits');
@@ -294,6 +297,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 
@@ -304,6 +308,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!stateInEditSupplierScreen.trim()) {
@@ -313,6 +318,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
     if (!cityInEditSupplierScreen.trim()) {
@@ -322,6 +328,7 @@ const route = useRoute();
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 
@@ -329,10 +336,10 @@ const route = useRoute();
   };
 
    useEffect(() => {
-    alert(
+    /* alert(
       'supplierCodeToBeEdited got is:'+supplierCodeToBeEdited+'\n'+
       'supplierIDToBeEdited got is:'+supplierIDToBeEdited+'\n'
-    );      
+    );  */     
     
      //alert('Name of supplier is:'+nameInEditSupplierScreen+'State name is:'+stateInEditSupplierScreen+' State ID is:'+stateIDInEditSupplierScreen+' City name is:'+cityInEditSupplierScreen+' City ID is:'+cityIDInEditSupplierScreen); 
   }, []); 

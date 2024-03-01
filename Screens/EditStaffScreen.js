@@ -309,6 +309,7 @@ const [dataForSelectStaffRoleAfterEdit, setdataForSelectStaffRoleAfterEdit] = us
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     } else if (contact_person_noAfterEdit.length > 10)
     {
@@ -318,6 +319,7 @@ const [dataForSelectStaffRoleAfterEdit, setdataForSelectStaffRoleAfterEdit] = us
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
+      setIsUpdateProcessRunning(false);
       return;
     }
 

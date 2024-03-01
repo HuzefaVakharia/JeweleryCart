@@ -562,12 +562,18 @@ const uploadImageAndStringForEditOrder = async () => {
         console.log('result', result);
         //alert('JSON Info after Uploading Image:'+JSON.stringify(result));   
         //alert('Info after Uploading Image:'+result.message); 
+        ToastAndroid.showWithGravity(
+          result.message,
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER
+        );
         setIsLoading(false);
         gotoOrderScreen();
         
       } catch (error) {
         
         console.log('error upload', error);
+        
         /* ToastAndroid.showWithGravity(
           'Error upload',JSON.stringify(error),
           ToastAndroid.LONG,

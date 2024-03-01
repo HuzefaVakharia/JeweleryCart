@@ -8,7 +8,7 @@
 //FetchDynamicAPIs
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { View,ToastAndroid } from 'react-native';
 
 const FetchDynamicAPIs = (props) =>
 {
@@ -256,6 +256,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Edit Customer Screen values got:'+values.result);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoCustomerScreenAfterEditProps();
 
@@ -263,7 +268,12 @@ const FetchDynamicAPIs = (props) =>
                 }else if (props.screenNameProps == 'CategoryScreen')
                 {
 
-                    //alert('CategoryScreen Screen values got:'+values.result);       
+                    //alert('CategoryScreen Screen values got:'+values.result); 
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );      
                     props.setterToStopCallingFetchDynamicAPIsInCategoryScreenprops(false);
                     props.setterForFillingFetchDataFromAPIInFlatListDirectly(values.data)
                     //props.gotoCustomerScreenAfterEditProps();
@@ -273,7 +283,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'CaratScreen')
                 {
 
-                    alert('CaratScreen Screen values got:'+values.result);       
+                    //alert('CaratScreen Screen values got:'+values.result);  
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );     
                     props.setterToStopCallingFetchDynamicAPIsInCaratScreenprops(false);
                     props.setterForFillingFetchDataFromAPIInFlatListDirectly(values.data)
                     //props.gotoCustomerScreenAfterEditProps();
@@ -283,7 +298,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddStaffScreen')
                 {
 
-                    //alert('AddStaffScreen Screen values got:'+JSON.stringify(values));       
+                    //alert('AddStaffScreen Screen values got:'+JSON.stringify(values));   
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );    
                     props.setterToStopCallingFetchDynamicAPIsInAddStaffprops(false);
                     props.setterForFillingFetchDataFromAPIInFlatListDirectly(values.data.staff);
                     //props.gotoCustomerScreenAfterEditProps();
@@ -293,7 +313,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'ColorScreen')
                 {
 
-                    //alert('ColorScreen values got:'+values.result);       
+                    //alert('ColorScreen values got:'+values.result);    
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );   
                     props.setterToStopCallingFetchDynamicAPIsInColorScreenprops(false);
                     props.setterForFillingFetchDataFromAPIInFlatListDirectly(values.data)
                     //props.gotoCustomerScreenAfterEditProps();
@@ -304,6 +329,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Edit Customer Screen values got:'+values.result);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoCustomerScreenAfterAddProps();
                     props.setterToStopCallingAddCustomerAPI(false);   
@@ -312,7 +342,12 @@ const FetchDynamicAPIs = (props) =>
                 }else if (props.screenNameProps == 'CustomerScreenForDelete')
                 {
 
-                    alert('Customer Deleted or not result:'+values.message);   
+                    //alert('Customer Deleted or not result:'+values.message);   
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setNowcallingDeleteAPIVariablePropsInCustomerScreen(false);
                     props.setterForRefreshingOurFlatListInCustomerScreen(true);
 
@@ -328,6 +363,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Deleted or not result:'+values.result);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setNowcallingDeleteAPIVariableProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     
@@ -348,7 +388,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'categoryScreenForDelete')
                 {
 
-                    alert('Category Deleted or not result:'+JSON.stringify(values));   
+                    //alert('Category Deleted or not result:'+JSON.stringify(values)); 
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );  
                     props.setNowcallingDeleteAPIVariableProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     
@@ -369,7 +414,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'colorScreenForDelete')
                 {
 
-                    alert('Color Deleted or not result:'+JSON.stringify(values));   
+                    //alert('Color Deleted or not result:'+JSON.stringify(values));   
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setNowcallingDeleteAPIVariableProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     
@@ -390,7 +440,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'caratScreenForDelete')
                 {
 
-                    alert('Carat Deleted or not result:'+JSON.stringify(values));   
+                    //alert('Carat Deleted or not result:'+JSON.stringify(values));  
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      ); 
                     props.setNowcallingDeleteAPIVariableProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     
@@ -412,6 +467,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                    // alert('Order Status Changed to Pending and API result is:'+values.message);
+                   ToastAndroid.showWithGravity(
+                    values.message,
+                    ToastAndroid.LONG,
+                    ToastAndroid.CENTER
+                  );
                     props.setPendingBtnClickedInsideModalProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -434,6 +494,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Status Changed to Process and API result is:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setProcessBtnClickedInsideModalProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -456,6 +521,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Status Changed to Dispatch and API result is:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setDispatchBtnClickedInsideModalProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -478,6 +548,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Status Changed to Delivered and API result is:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setDeliveredBtnClickedInsideModalProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -501,6 +576,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Status Changed to Cancel and API result is:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setConfirmBtnInsideCancelModalClickedProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -523,6 +603,11 @@ const FetchDynamicAPIs = (props) =>
                 {
 
                     //alert('Order Status Changed to Error and API result is:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setConfirmBtnInErrorModalClickedProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -547,7 +632,7 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditOrderScreen')
                 {
 
-                    alert('Edit Order API result is:'+values.message);   
+                    //alert('Edit Order API result is:'+values.message);   
                     /* props.setConfirmBtnInErrorModalClickedProps(false);
                     props.setterForRefreshingOurFlatList(true);
                     props.setterForPendingBtnModalVisibleProps(false);
@@ -571,7 +656,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditSupplierScreen')
                 {
 
-                    alert('Edit Supplier Screen values got:'+values.message);
+                    //alert('Edit Supplier Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoSupplierScreenAfterEditProps();
                     props.setcallFetchDynamicAPIsInAddSupplierScreenprops(false);
@@ -580,7 +670,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditCategoryScreen')
                 {
 
-                    alert('Edit Category Screen values got:'+values.message);
+                    //alert('Edit Category Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoCategoryScreenAfterEditProps();
                     props.setcallFetchDynamicAPIsInEditCategoryScreenprops(false);
@@ -589,7 +684,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditStaffScreen')
                 {
 
-                    alert('Edit Staff Screen values got:'+values.message);
+                    //alert('Edit Staff Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoAddStaffScreenAfterEditProps();
                     props.setcallFetchDynamicAPIsInEditStaffScreenprops(false);   
@@ -598,7 +698,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditCaratScreen')
                 {
 
-                    alert('Edit Carat Screen values got:'+values.message);
+                    //alert('Edit Carat Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoCaratScreenAfterEditProps();
                     props.setcallFetchDynamicAPIsInEditCaratScreenprops(false);
@@ -607,7 +712,7 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'EditColorScreen')
                 {
 
-                    alert('Edit Color Screen values got:'+values.message);
+                    //alert('Edit Color Screen values got:'+values.message);
                     /* alert('1.colornameProps value:'+props.colorToBeEditedProps+'\n'+
                         '2.colorIDProps value:'+props.colorIDProps+'\n'+
                         '3.caratIDToBeEditedProps value:'+props.caratIDProps);  */  
@@ -616,7 +721,11 @@ const FetchDynamicAPIs = (props) =>
                      
 
 
-
+                        ToastAndroid.showWithGravity(
+                            values.message,
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoColorScreenAfterEditProps();
                     props.setcallFetchDynamicAPIsInEditColorScreenprops(false);
@@ -625,7 +734,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddCategoryScreen')
                 {
 
-                    alert('Add Category Screen values got:'+values.message);
+                    //alert('Add Category Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);    
                     props.gotoCategoryScreenAfterAddProps();
                     props.setcallFetchDynamicAPIsInAddCategoryScreenprops(false);
@@ -634,7 +748,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddStaffFormScreen')
                 {
 
-                    alert('Add Category Screen values got:'+values.message);
+                    //alert('Add Category Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);    
                     props.gotoAddStaffScreenProps();
                     props.setcallFetchDynamicAPIsInAddStaffFormScreenprops(false);     
@@ -643,7 +762,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddCaratScreen')
                 {
 
-                    alert('Add Carat Screen values got:'+values.message);
+                    //alert('Add Carat Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);    
                     props.gotoCaratScreenAfterAddProps();
                     props.setcallFetchDynamicAPIsInAddCategoryScreenprops(false);
@@ -652,7 +776,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddColorScreen')
                 {
 
-                    alert('Add Color Screen values got:'+values.message);
+                    //alert('Add Color Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);    
                     props.gotoColorScreenAfterAddProps();
                     props.setcallFetchDynamicAPIsInAddColorScreenprops(false);
@@ -661,7 +790,12 @@ const FetchDynamicAPIs = (props) =>
                 else if (props.screenNameProps == 'AddSupplierScreen')
                 {
 
-                    alert('Add Supplier Screen values got:'+values.message);
+                    //alert('Add Supplier Screen values got:'+values.message);
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     props.setloaderActiviteOrNotProps(false);
                     props.gotoSupplierScreenAfterAddProps();
                     props.setcallFetchDynamicAPIsInEditSupplierScreenprops(false);
@@ -670,12 +804,18 @@ const FetchDynamicAPIs = (props) =>
                else if (props.screenNameProps == 'SupplierScreenForDelete')
                 {
 
-                    alert('Supplier Deleted or not result:'+values.message);   
+                    //alert('Supplier Deleted or not result:'+values.message);  
+                    
+                    ToastAndroid.showWithGravity(
+                        values.message,
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      ); 
                     props.setNowcallingDeleteAPIVariablePropsInCustomerScreen(false);
                     props.setterForRefreshingOurFlatListInCustomerScreen(true);
                     
                     
-                    alert('variableForRefreshingOurFlatListInCustomerScreen:'+props.variableForRefreshingOurFlatListInCustomerScreen);
+                    //alert('variableForRefreshingOurFlatListInCustomerScreen:'+props.variableForRefreshingOurFlatListInCustomerScreen);
 
 
 
